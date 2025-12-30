@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>1&nbsp; Probability – Probability and Statistics for ISP</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./summary.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Chapter1.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Probability</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Probability and Statistics for ISP</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Probability-and-Statistics-for-ISP.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chapter1.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Probability</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#experiments" id="toc-experiments" class="nav-link active" data-scroll-target="#experiments"><span class="header-section-number">1.1</span> Experiments</a></li>
+  <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events"><span class="header-section-number">1.2</span> Events</a></li>
+  <li><a href="#prob_fcns" id="toc-prob_fcns" class="nav-link" data-scroll-target="#prob_fcns"><span class="header-section-number">1.3</span> Probability Functions</a>
+  <ul class="collapse">
+  <li><a href="#some-implications-of-p1-p3" id="toc-some-implications-of-p1-p3" class="nav-link" data-scroll-target="#some-implications-of-p1-p3">Some implications of (P1) – (P3)</a></li>
+  <li><a href="#interpretation-of-probability" id="toc-interpretation-of-probability" class="nav-link" data-scroll-target="#interpretation-of-probability">Interpretation of probability</a></li>
+  </ul></li>
+  <li><a href="#sampling-from-a-finite-population" id="toc-sampling-from-a-finite-population" class="nav-link" data-scroll-target="#sampling-from-a-finite-population"><span class="header-section-number">1.4</span> Sampling from a Finite Population</a>
+  <ul class="collapse">
+  <li><a href="#counting-principle" id="toc-counting-principle" class="nav-link" data-scroll-target="#counting-principle">Counting principle</a></li>
+  <li><a href="#permutations-and-combinations" id="toc-permutations-and-combinations" class="nav-link" data-scroll-target="#permutations-and-combinations">Permutations and combinations</a></li>
+  </ul></li>
+  <li><a href="#conditional-probability" id="toc-conditional-probability" class="nav-link" data-scroll-target="#conditional-probability"><span class="header-section-number">1.5</span> Conditional Probability</a>
+  <ul class="collapse">
+  <li><a href="#multiplication-law" id="toc-multiplication-law" class="nav-link" data-scroll-target="#multiplication-law">Multiplication law</a></li>
+  <li><a href="#independent-events" id="toc-independent-events" class="nav-link" data-scroll-target="#independent-events">Independent events</a></li>
+  <li><a href="#the-partition-theorem" id="toc-the-partition-theorem" class="nav-link" data-scroll-target="#the-partition-theorem">The partition theorem</a></li>
+  <li><a href="#bayes-theorem" id="toc-bayes-theorem" class="nav-link" data-scroll-target="#bayes-theorem">Bayes’ Theorem</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-chap1" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Probability</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="experiments" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="experiments"><span class="header-section-number">1.1</span> Experiments</h2>
+<p>The starting point for probability theory is the concept of an <em>experiment</em>. The term experiment may actually refer to a physical experiment in the usual sense, but more generally we will refer to something as an experiment when it has the following properties:</p>
+<ul>
+<li><p>There is a well-defined set of possible outcomes of the experiment;</p></li>
+<li><p>Each time the experiment is performed exactly one of the possible outcomes occurs;</p></li>
+<li><p>The outcome that occurs is governed by some chance mechanism.</p></li>
+</ul>
+<p>Let <span class="math inline">\(\Omega\)</span> denote the <em>sample space</em> of the experiment, the set of possible outcomes of the experiment; the term <em>outcome space</em> is also used. We will refer to the elements of <span class="math inline">\(\Omega\)</span> as <em>basic outcomes</em> and use the symbol <span class="math inline">\(\omega\)</span> to denote a generic basic outcome.</p>
+<div class="example">
+<p><span id="onedie1" data-label="onedie1"></span> Consider the experiment in which we roll a die. Then <span class="math display">\[\Omega  = \left\{1, 2, 3, 4, 5, 6 \right\}\]</span> where, for example, <span class="math inline">\(1\)</span> denotes the outcome that we roll a <span class="math inline">\(1\)</span>.</p>
+</div>
+<div class="example">
+<p>Consider the experiment in which we choose a number from the interval <span class="math inline">\((0, 1)\)</span>. Then <span class="math inline">\(\Omega = (0, 1)\)</span>.</p>
+</div>
+<div class="example">
+<p><span id="urn3" data-label="urn3"></span> Suppose that we have an urn that contains three balls, two red balls and one black ball. Consider the experiment in which we successively choose two balls from the urn, that is, the balls are chosen in such a way that we know which ball was chosen first.</p>
+<p>Then the sample space for the experiment can be written <span class="math display">\[\Omega = \left\{ (R, R), \ (R, B), \ (B, R) \right\},\]</span> where, for example, <span class="math inline">\((R, B)\)</span> means that the first ball selected is red and the second ball selected is black.</p>
+<p>Now suppose that the order in which the balls were selected is not recorded. Then the sample space of the experiment is given by <span class="math display">\[\Omega = \left\{ \{R, R\}, \ \{R, B\} \right\},\]</span> where, for example, <span class="math inline">\(\{R, B\}\)</span> means that one red ball is selected and one black ball is selected.</p>
+</div>
+</section>
+<section id="events" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="events"><span class="header-section-number">1.2</span> Events</h2>
+<p>Consider an experiment with sample space <span class="math inline">\(\Omega\)</span>. A subset <span class="math inline">\(A\)</span> of <span class="math inline">\(\Omega\)</span> is called an <em>event</em>. Let <span class="math inline">\(A\)</span> be an event. Then, for each <span class="math inline">\(\omega\in\Omega\)</span>, either <span class="math inline">\(\omega\in A\)</span> or <span class="math inline">\(\omega\notin A\)</span>. That is, when the experiment is performed, either <span class="math inline">\(A\)</span> occurs (the observed outcome is in <span class="math inline">\(A\)</span>) or it doesn’t occur (the observed outcome is not in <span class="math inline">\(A\)</span>).</p>
+<div class="example">
+<p><span id="onedie2" data-label="onedie2"></span> Consider the experiment in which we roll a die. Then <span class="math display">\[A = \left\{2, 4, 6 \right\}\]</span> is the event that we roll an even number.</p>
+<p>The event that we roll a number less than or equal to <span class="math inline">\(3\)</span> is given by <span class="math display">\[B = \left\{1, 2, 3 \right\}.\]</span></p>
+<p>The event that we roll a <span class="math inline">\(5\)</span> is given by <span class="math display">\[C = \left\{ 5 \right\}.\]</span></p>
+<p>The event that we do not roll an even number, that is, that we roll an odd number is given by <span class="math inline">\(A^c\)</span>, the complement of <span class="math inline">\(A\)</span>. Thus, <span class="math display">\[A^c = \left\{1, 3, 5 \right\}.\]</span></p>
+</div>
+<div class="example">
+<p>Consider the experiment in which two balls are drawn successively from an urn containing two red balls and one black ball; the sample space for this experiment is given in Example <a href="#urn3" data-reference-type="ref" data-reference="urn3">[urn3]</a>.</p>
+<p>Let <span class="math inline">\(A\)</span> denote the event that exactly one red ball is selected. Then <span class="math display">\[A  = \left\{ (R, B), \ (B, R) \right\}.\]</span></p>
+</div>
+<p>Because events are defined in terms of sets, sets play a central role in probability theory. Here are few basic properties. Let <span class="math inline">\(A, B, C\)</span> be subsets of a sample space <span class="math inline">\(\Omega\)</span>; that is, let <span class="math inline">\(A, B, C\)</span> be events. Recall that <span class="math inline">\(A \cup B\)</span>, the <em>union</em> of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, is the set consisting of all elements that are either in <span class="math inline">\(A\)</span>, in <span class="math inline">\(B\)</span>, or in both <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>; <span class="math inline">\(A\cap B\)</span>, the <em>intersection</em> of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, is the set consisting of all elements that are in both <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>. Then</p>
+<ul>
+<li><p><span class="math inline">\((A \cup B)\cap C = (A \cap C) \cup (B \cap C)\)</span></p></li>
+<li><p><span class="math inline">\((A \cap B) \cup C = (A \cup C) \cap (B \cup C)\)</span></p></li>
+<li><p><span class="math inline">\((A\cup B)^c = A^c \cap B^c\)</span></p></li>
+<li><p><span class="math inline">\((A \cap B)^c = A^c \cup B^c\)</span>.</p></li>
+</ul>
+<p>If these properties are unfamiliar, you can show why they hold using Venn diagrams. E.g., consider <span class="math inline">\((A \cup B)^c = A^c \cap B^c\)</span>. Figures <a href="#DeMorg1" data-reference-type="ref" data-reference="DeMorg1">1.1</a> – <a href="#DeMorg3" data-reference-type="ref" data-reference="DeMorg3">1.3</a> contain Venn diagrams of <span class="math inline">\((A\cup B)^c\)</span>, <span class="math inline">\(A^c\)</span>, and <span class="math inline">\(B^c\)</span>, respectively. From these diagrams, we can see that <span class="math inline">\((A \cup B)^c = A^c \cap B^c\)</span>.</p>
+<div id="DeMorg1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><embed src="demorgan1.pdf" class="img-fluid" style="width:50.0%"></p>
+<figcaption><span class="math inline">\((A \cup B)^c\)</span></figcaption>
+</figure>
+</div>
+<div id="DeMorg2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><embed src="demorgan2new.pdf" class="img-fluid" style="width:50.0%"></p>
+<figcaption><span class="math inline">\(A^c\)</span></figcaption>
+</figure>
+</div>
+<div id="DeMorg3" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><embed src="demorgan3.pdf" class="img-fluid" style="width:50.0%"></p>
+<figcaption><span class="math inline">\(B^c\)</span></figcaption>
+</figure>
+</div>
+</section>
+<section id="prob_fcns" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="prob_fcns"><span class="header-section-number">1.3</span> Probability Functions</h2>
+<p>Consider an experiment with sample space <span class="math inline">\(\Omega\)</span>; recall that the outcome of an experiment depends on some “chance mechanism". It follows that whether or not an event <span class="math inline">\(A\)</span> occurs depends on that chance mechanism and we use probability theory to describe the likelihood that a given event occurs.</p>
+<p>Therefore, associated with each event <span class="math inline">\(A\)</span> is a probability <span class="math inline">\(\P(A)\)</span>. Here <span class="math inline">\(\P\)</span> is a function defined on subsets of <span class="math inline">\(\Omega\)</span> and taking values in the interval <span class="math inline">\([0, 1]\)</span>. The function <span class="math inline">\(\P\)</span> is required to have certain properties:</p>
+<ul>
+<li><p><span class="math inline">\(\P(\Omega) = 1\)</span></p></li>
+<li><p>If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are disjoint subsets of <span class="math inline">\(\Omega\)</span>, that is, <span class="math inline">\(A\cap B = \emptyset\)</span>, then <span class="math inline">\(\P(A \cup B) = \P(A) + \P(B)\)</span>.</p></li>
+<li><p>If <span class="math inline">\(A_1, A_2, \ldots,\)</span> are disjoint subsets of <span class="math inline">\(\Omega\)</span>, then <span class="math display">\[\P( \cup_{n=1}^\infty A_n) = \sum_{n=1}^\infty \P(A_n).\]</span></p></li>
+</ul>
+<p>Note that when subsets of <span class="math inline">\(\Omega\)</span> are disjoint, the corresponding events are said to be <em>mutually exclusive</em>.</p>
+<div class="example">
+<p><span id="uni_ex" data-label="uni_ex"></span> Suppose that <span class="math inline">\(\Omega = (0, 1)\)</span> and suppose that the probability of any interval in <span class="math inline">\(\Omega\)</span> is the length of the interval. More generally, we may take the probability of a subset <span class="math inline">\(A\)</span> of <span class="math inline">\(\Omega\)</span> to be <span class="math display">\[\P(A) = \int_{A} dx.\]</span></p>
+<p>For example, <span class="math display">\[\P\left( (0.2, 0.7) \right) = 0.5.\]</span></p>
+</div>
+<div class="example">
+<p>Consider the experiment of rolling one die, as discussed in Examples <a href="#onedie1" data-reference-type="ref" data-reference="onedie1">[onedie1]</a> and <a href="#onedie2" data-reference-type="ref" data-reference="onedie2">[onedie2]</a> and let <span class="math inline">\(\Omega\)</span> denote the sample space of the experiment.</p>
+<p>For <span class="math inline">\(A \subset \Omega\)</span>, let <span class="math inline">\(\P(A) = |A|/6\)</span>, the number of elements in <span class="math inline">\(A\)</span>, divided by <span class="math inline">\(6\)</span>.</p>
+<p>E.g., the probability of rolling an even number is <span class="math inline">\(1/2\)</span> and the probability of rolling a number greater than or equal to <span class="math inline">\(5\)</span> is <span class="math inline">\(1/3\)</span>.</p>
+</div>
+<p>Note that, when an event consists of a single basic outcome <span class="math inline">\(\omega\)</span>, we will write the probability of the event as <span class="math inline">\(\P(\omega)\)</span>, rather than as <span class="math inline">\(\P(\left\{ \omega \right\})\)</span>, which is technically correct (because the argument of the probability function should be a set).</p>
+<p>For instance, in the previous example, the probability of rolling a <span class="math inline">\(6\)</span> will be written as <span class="math inline">\(\P(6)\)</span> instead of as <span class="math inline">\(\P(\{ 6 \})\)</span>.</p>
+<p>When <span class="math inline">\(\Omega\)</span> is a countable set, then, by properties (P2) and (P3), the probability of any event is given by the sum of the probabilities of the basic outcomes corresponding to the event: <span class="math display">\[\P(A) = \sum_{\omega \in A} \P( \omega).\]</span></p>
+<div class="example">
+<p><span id="binom_ex" data-label="binom_ex"></span> Consider an experiment with sample space <span class="math display">\[\Omega = \left\{(0, 0), \ (1, 0), \  (0, 1), \ (1, 1) \right\}.\]</span></p>
+<p>For <span class="math inline">\(\omega = (x_1, x_2) \in \Omega\)</span>, take <span class="math display">\[\begin{aligned}
+\P(\omega) &amp;= \theta^{x_1} (1-\theta)^{1-x_1} \theta^{x_2} (1-\theta)^{1-x_2} \\
+&amp;= \theta^{x_1 + x_2} (1-\theta)^{2 - x_1 - x_2}
+\end{aligned}\]</span> where <span class="math inline">\(0 &lt; \theta &lt; 1\)</span> is a given constant.</p>
+<p>Thus, the four elements of <span class="math inline">\(\Omega\)</span> have probabilities <span class="math inline">\((1-\theta)^2, \theta(1-\theta), \theta(1-\theta), \theta^2\)</span>, respectively.</p>
+<p>Let <span class="math inline">\(A\)</span> denote the event that exactly <span class="math inline">\(1\)</span> one is observed; then <span class="math display">\[A = \left\{ (0, 1), \ (1, 0) \right\}.\]</span> It follows that the probability of <span class="math inline">\(A\)</span> is the sum of the probabilities of the two basic outcomes in <span class="math inline">\(A\)</span>: <span class="math display">\[\P(A) = \P\left( (1, 0) \cup (0, 1) \right) = \P\left((1, 0) \right) + \P\left( (0, 1) \right) = \theta(1-\theta) + \theta(1-\theta) = 2\theta(1-\theta).\]</span></p>
+</div>
+<section id="some-implications-of-p1-p3" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="some-implications-of-p1-p3">Some implications of (P1) – (P3)</h3>
+<p>There are a number of straightforward consequences of properties (P1)-(P3). For instance, because <span class="math inline">\(\Omega \cup \emptyset = \Omega\)</span> and <span class="math inline">\(\Omega \cap \emptyset = \emptyset\)</span>, by (P2) <span class="math display">\[\P(\Omega) = \P(\Omega) + \P(\emptyset);\]</span> it follows that <span class="math inline">\(\P(\emptyset) = 0\)</span>.</p>
+<p>Let <span class="math inline">\(A^c\)</span> denote the complement of an set <span class="math inline">\(A\subset \Omega\)</span>. Then <span class="math inline">\(A \cup A^c = \Omega\)</span> and <span class="math inline">\(A \cap A^c = \emptyset\)</span>. It follows from (P2) that <span class="math display">\[\P(\Omega) = \P(A) + \P(A^c);\]</span> it now follows from (P1) that <span class="math display">\[\P(A^c) = 1 - \P(A).\]</span></p>
+<p>Suppose that <span class="math inline">\(A_1\)</span> and <span class="math inline">\(A_2\)</span> are subsets of <span class="math inline">\(\Omega\)</span> that are not necessarily disjoint. Then <span class="math display">\[\P(A_1 \cup A_2) =\P(A_1) + \P(A_2) - \P(A_1 \cap
+A_2).\]</span></p>
+<p>This important result is a little more difficult to prove than the others we have considered. First note that <span class="math inline">\(A_1 \cup A_2\)</span> can be written as the union of three sets, <span class="math inline">\(A_1 \cap A_2\)</span>, <span class="math inline">\(A_1 \cap A_2^c\)</span>, and <span class="math inline">\(A_1^c \cap A_2\)</span>. Furthermore, these three sets are disjoint. An example of this fact is given in the Venn diagram in Figure <a href="#venn" data-reference-type="ref" data-reference="venn">1.4</a>. In that diagram, the blue region is <span class="math inline">\(A_1 \cap A_2^c\)</span>, the yellow region is <span class="math inline">\(A_1^c \cap A_2\)</span>, and the brown region is <span class="math inline">\(A_1 \cap A_2\)</span>; combining these three regions forms <span class="math inline">\(A_1 \cup A_2\)</span>.</p>
+<div id="venn" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><embed src="vplot.pdf" class="img-fluid" style="width:75.0%"></p>
+<figcaption>Venn Diagram Used to Illustrate <span class="math inline">\(A_1 \cup A_2 = (A_1 \cap A_2) \cup (A_1 \cap A_2^c) \cup
+(A_1^c \cap A_2)\)</span></figcaption>
+</figure>
+</div>
+<p>From the Venn diagram we can also see that <span class="math display">\[A_1 = (A_1 \cap A_2^c) \cup (A_1 \cap A_2) \ \ \text{ and } \ \
+A_2 = (A_1^c \cap A_2) \cup (A_1 \cap A_2).\]</span></p>
+<p>It follows from two applications of (P2) that <span class="math display">\[\label{probeq1}
+\P(A_1 \cup A_2) = \P(A_1 \cap A_2) + \P(A_1 \cap A_2^c) + \P(A_1^c \cap A_2)\]</span> and also that <span class="math display">\[\P(A_1) = \P(A_1 \cap A_2^c) + \P(A_1 \cap A_2) \ \ \text{ and } \ \
+\P(A_2) = \P(A_1^c \cap A_2) + \P(A_1 \cap A_2).\]</span></p>
+<p>From the last two equations, we see that <span class="math display">\[\P(A_1 \cap A_2^c) = \P(A_1) - \P(A_1 \cap A_2) \ \ \text{ and } \ \
+\P(A_1^c \cap A_2) = \P(A_2) - \P(A_1 \cap A_2).\]</span> Substituting these expressions into the right-hand side of equation <a href="#probeq1" data-reference-type="eqref" data-reference="probeq1">[probeq1]</a>, it follows that <span class="math display">\[\begin{aligned}
+\P(A_1 \cup A_2) &amp;= \P(A_1 \cap A_2) + \P(A_1) - \P(A_1 \cap A_2) + \P(A_2) - \P(A_1 \cap A_2) \\
+&amp;= \P(A_1) + \P(A_2) - \P(A_1 \cap A_2).
+\end{aligned}\]</span></p>
+<div class="example">
+<p>Consider an experiment with sample space <span class="math inline">\(\Omega\)</span> and events <span class="math inline">\(A_1, A_2\)</span>. Let <span class="math inline">\(A_1 \setminus A_2\)</span> denote the elements of <span class="math inline">\(A_1\)</span> that are not in <span class="math inline">\(A_2\)</span>.</p>
+<p>Suppose that <span class="math inline">\(A_2\subset A_1\)</span>. Then <span class="math display">\[\P(A_1 \setminus A_2) = \P(A_1) - \P(A_2).\]</span></p>
+<p>In general, <span class="math display">\[A_1 = (A_1 \cap A_2) \cup (A_1 \cap A_2^c) =
+(A_1 \cap A_2) \cup (A_1 \setminus A_2).\]</span> Note that <span class="math display">\[A_1\cap A_2 \ \ \text{ and } \ \ A_1 \cap A_2^c\]</span> are disjoint and that <span class="math display">\[A_1 \cap A_2^c = A_1 \setminus A_2.\]</span> Hence, <span class="math display">\[\P(A_1) = \P(A_1 \cap A_2) + \P(A_1 \setminus A_2)\]</span> so that <span class="math display">\[\P(A_1 \setminus A_2) = \P(A_1) - \P(A_1 \cap A_2).\]</span></p>
+</div>
+</section>
+<section id="interpretation-of-probability" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="interpretation-of-probability">Interpretation of probability</h3>
+<p>Although we have described the properties of a probability function, nothing has been said about what the probability function is measuring. In a mathematical sense, that is irrelevant – a probability function is defined by its properties and any function satisfying those properties can be used to calculate a “probability".</p>
+<p>However, in order to better understand the mathematical results, and to develop some intuition regarding probability theory, it is useful to have some notion of what is meant by “probability". Several different interpretations of probability are used in applications. The most common, and the one we will use here, is the interpretation of probability as a”limiting relative frequency".</p>
+<p>Consider an experiment with sample space <span class="math inline">\(\Omega\)</span> and let <span class="math inline">\(A\)</span> denote an event. According to the limiting relative frequency interpretation of probability, the statement that <span class="math inline">\(A\)</span> has probability <span class="math inline">\(0.4\)</span> (for example), means that if the experiment is repeated a large number of times then in about <span class="math inline">\(40\%\)</span> of those experiments the event <span class="math inline">\(A\)</span> will occur.</p>
+<p>More formally, let <span class="math inline">\(N_n(A)\)</span> denote the number of times the event <span class="math inline">\(A\)</span> occurs in <span class="math inline">\(n\)</span> repetitions of the experiment. Then <span class="math display">\[\P(A) = \lim_{n\to\infty} \frac{N_n(A)}{n};\]</span> the right-hand side of this expression is often described as a “limiting relative frequency".</p>
+</section>
+</section>
+<section id="sampling-from-a-finite-population" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="sampling-from-a-finite-population"><span class="header-section-number">1.4</span> Sampling from a Finite Population</h2>
+<p>A particularly simple, but useful, case occurs when the sample space of the experiment, <span class="math inline">\(\Omega\)</span>, is a finite set and each <span class="math inline">\(\omega\in\Omega\)</span> has the same probability.</p>
+<p>Write <span class="math display">\[\Omega = \left\{ \omega_1, \omega_2, \ldots, \omega_m \right\};\]</span> note that any subset of <span class="math inline">\(\Omega\)</span> can be written as the union of sets of the form <span class="math inline">\(\{ \omega_j \}\)</span>, which are disjoint. Let <span class="math inline">\(c = \P(\omega_j)\)</span> denote the common value of the probability of each element of <span class="math inline">\(\Omega\)</span>. Then, because <span class="math inline">\(\P(\Omega) = 1\)</span> and <span class="math display">\[\P(\Omega) = \P(\omega_1) + \P(\omega_2) + \cdots +  \P(\omega_m) = m c\]</span> we must have <span class="math inline">\(c = 1/|\Omega|\)</span> where <span class="math inline">\(|\Omega|\)</span> denotes the cardinality of <span class="math inline">\(\Omega\)</span>, that is, the number of elements in <span class="math inline">\(\Omega\)</span>.</p>
+<p>Furthermore, for any <span class="math inline">\(A \subset \Omega\)</span>, <span class="math display">\[\P(A) = \sum_{\omega\in A} \P(\omega) =  {|A| \over |\Omega|}.\]</span> Thus, the problem of determining <span class="math inline">\(\P(A)\)</span> is essentially the problem of counting the number of elements in the set <span class="math inline">\(A\)</span> and the number of elements in <span class="math inline">\(\Omega\)</span>. The subfield of mathematics concerned with counting the number of elements in a set is known as <em>combinatorics</em>.</p>
+<p>In some cases, such as the one in the following example, the counting needed is relatively straightforward.</p>
+<div class="example">
+<p><span id="dice1" data-label="dice1"></span></p>
+<p>Consider the experiment of rolling <span class="math inline">\(2\)</span> dice, one at a time. The sample space of the experiment can be written <span class="math display">\[\Omega =  \left\{ (1, 1), (1, 2), \ldots, (1, 6), (2, 1), \ldots, (2, 6), \ldots, (6, 1), \ldots, (6, 6) \right\}\]</span> so that it has <span class="math inline">\(36\)</span> elements. Suppose the dice are “fair", in the sense that each element of <span class="math inline">\(\Omega\)</span> is equally likely.</p>
+<p>Let <span class="math inline">\(A\)</span> denote the event that result of the dice rolling is “doubles", i.e., the two numbers rolled are equal, and suppose that we are interested in the probability of <span class="math inline">\(A\)</span>.</p>
+<p>As noted previously, the sample space <span class="math inline">\(\Omega\)</span> has <span class="math inline">\(36\)</span> elements. The event <span class="math inline">\(A\)</span> has <span class="math inline">\(6\)</span> elements, <span class="math inline">\((1, 1), (2, 2), \ldots, (6, 6)\)</span>. Thus, the probability of rolling doubles is <span class="math inline">\(6/36 = 1/6\)</span>.</p>
+</div>
+<p>In other cases, the counting needed is more complicated and it is useful to apply one of the many well-known results that are used to solve such counting problems. Here we consider only a few simple ones.</p>
+<section id="counting-principle" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="counting-principle">Counting principle</h3>
+<p>Many results in combinatorics are based on the <em>counting principle</em>. Let <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> denote finite sets and let <span class="math inline">\(A\times B\)</span> denote the Cartesian product of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, that is, the set of the form <span class="math display">\[A\times B = \left\{ (a, b): \ a\in A, \ b\in B \right\}.\]</span> Then <span class="math display">\[|A\times B |= |A| \ |B|.\]</span></p>
+<p>Thus, if a task can be completed in <span class="math inline">\(r\)</span> stages and there are <span class="math inline">\(n_j\)</span> ways to complete the <span class="math inline">\(j\)</span>th stage, <span class="math inline">\(j=1, 2, \ldots, r\)</span>, then there are <span class="math display">\[n_1\times n_2 \times \cdots \times n_r\]</span> ways to complete the task.</p>
+</section>
+<section id="permutations-and-combinations" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="permutations-and-combinations">Permutations and combinations</h3>
+<p>A <em>permutation</em> of <span class="math inline">\(n\)</span> distinct objects is an ordering of them.</p>
+<div class="example">
+<p>The possible permutations of <span class="math inline">\(a, b, c\)</span> are <span class="math display">\[abc, \ bac, \ cab, \ acb, \ bca, \ cba.\]</span></p>
+</div>
+<p>The number of permutations of <span class="math inline">\(n\)</span> distinct objects can be found using the counting principle, breaking the problem into stages. Note that there are <span class="math inline">\(n\)</span> ways to choose the first object, <span class="math inline">\(n-1\)</span> ways to choose the second object, and so on, until there is only <span class="math inline">\(1\)</span> way to choose the last object. Hence, there are <span class="math display">\[n\cdot (n-1) \cdots (2)\cdot (1) = n!\]</span> ways to order the <span class="math inline">\(n\)</span> objects. That is, there are <span class="math inline">\(n!\)</span> possible permutations of <span class="math inline">\(n\)</span> distinct objects.</p>
+<p>In some cases, we might be interested in ordered <em>samples</em> from a given set.</p>
+<div class="example">
+<p>The possible ordered samples of size <span class="math inline">\(2\)</span> from the set <span class="math inline">\(\{a, b, c \}\)</span> are <span class="math display">\[(a, b),\ (a, c),\  (b, a),\  (b, c), \ (c, a), \ (c, b).\]</span></p>
+</div>
+<p>The number of possible ordered samples of size <span class="math inline">\(k\)</span> from a set of <span class="math inline">\(n\)</span> distinct elements can be found using the counting principle. There are <span class="math inline">\(n\)</span> ways to choose the first element, <span class="math inline">\(n-1\)</span> ways to choose the second element, and so on. However, in contrast to permutations, here we stop selecting elements after the <span class="math inline">\(k\)</span>th selection. Therefore, there <span class="math display">\[n (n-1) \cdots (n-k+1)\]</span> ordered samples of size <span class="math inline">\(k\)</span> from a set of <span class="math inline">\(n\)</span> elements; note there are <span class="math inline">\(k\)</span> terms in this product. The expression <span class="math inline">\(n(n-1)\cdots (n-k+1)\)</span> is often denoted by <span class="math inline">\((n)_k\)</span>; it can also be written as <span class="math display">\[(n)_k = \frac{n!}{(n-k)!}.\]</span></p>
+<div class="example">
+<p><span id="urn0" data-label="urn0"></span> Consider an urn containing <span class="math inline">\(5\)</span> balls, <span class="math inline">\(2\)</span> of which are black and <span class="math inline">\(3\)</span> of which are red. Suppose that <span class="math inline">\(2\)</span> balls are randomly selected from the urn, without replacement; that is, after the first ball is selected, it is not returned to the urn for the second selection. Thus, there are <span class="math inline">\((5)_2 = 5(4) = 20\)</span> basic outcomes in <span class="math inline">\(\Omega\)</span>; “randomly selected" means that any ordered pair of <span class="math inline">\(2\)</span> balls is equally likely to be selected.</p>
+<p>Let <span class="math inline">\(A\)</span> denote the event that a red ball is selected followed by a black ball. Find <span class="math inline">\(\P(A)\)</span>. Because each basic outcome is assumed to have the same probability, <span class="math display">\[\P(A) = \frac{|A|}{|\Omega|}.\]</span> Thus, we need to count the number of basic outcomes in of <span class="math inline">\(A\)</span>.</p>
+<p>To find the number of basic outcomes in <span class="math inline">\(A\)</span>, we use the facts that there are <span class="math inline">\(3\)</span> ways to choose the first (red) ball and <span class="math inline">\(2\)</span> ways to choose the second (black) ball. Thus, there are <span class="math inline">\((3)_2=3(2) = 6\)</span> basic outcomes in <span class="math inline">\(A\)</span>. It follows that <span class="math display">\[\P(A) = \frac{6}{20} = \frac{3}{10}.\]</span></p>
+</div>
+<p>Now suppose that we are interested in the possible <em>combinations</em> of <span class="math inline">\(k\)</span> objects chosen from a set of <span class="math inline">\(n\)</span> distinct objects. When considering combinations, the order of the objects is irrelevant; we are interested only in the set of <span class="math inline">\(k\)</span> objects.</p>
+<div class="example">
+<p>The possible combinations of <span class="math inline">\(2\)</span> elements chosen from the set <span class="math inline">\(\{a, b, c \}\)</span> are given by <span class="math display">\[\{a, b \}, \ \{a, c \}, \ \{b, c \}.\]</span></p>
+</div>
+<p>The number of possible combinations of <span class="math inline">\(k\)</span> objects chosen from a set of <span class="math inline">\(n\)</span> distinct objects is denoted by <span class="math display">\[{n \choose k},\]</span> read as “<span class="math inline">\(n\)</span> choose <span class="math inline">\(k\)</span>".</p>
+<p>To find an expression for <span class="math inline">\(n\)</span> choose <span class="math inline">\(k\)</span>, consider choosing an <strong>ordered</strong> sample of size <span class="math inline">\(k\)</span> from <span class="math inline">\(n\)</span> distinct elements.</p>
+<p>This can be done in two steps:</p>
+<ol type="1">
+<li><p>choose <span class="math inline">\(k\)</span> elements from <span class="math inline">\(n\)</span></p></li>
+<li><p>order the <span class="math inline">\(k\)</span> elements</p></li>
+</ol>
+<p>We know that</p>
+<ul>
+<li><p>there are <span class="math inline">\((n)_k\)</span> ordered samples of size <span class="math inline">\(k\)</span> from <span class="math inline">\(n\)</span> distinct elements</p></li>
+<li><p>there are <span class="math inline">\(n\)</span> choose <span class="math inline">\(k\)</span> ways to choose <span class="math inline">\(k\)</span> elements from <span class="math inline">\(n\)</span></p></li>
+<li><p>there are <span class="math inline">\(k!\)</span> ways to order <span class="math inline">\(k\)</span> elements</p></li>
+</ul>
+<p>Therefore, we must have <span class="math display">\[(n)_k = {n \choose k}\, k!\]</span> so that <span class="math display">\[{n \choose k} =  \frac{(n)_k}{k!} = \frac{n!}{k!\, (n-k)!}.\]</span></p>
+<p>Terms of the form <span class="math inline">\({n \choose k}\)</span> are often called the <em>binomial coefficients</em>, because of the binomial formula: <span class="math display">\[(x+y)^n = \sum_{j=0}^n {n \choose j} x^j y^{n-j}\]</span> for all real numbers <span class="math inline">\(x, y\)</span> and all positive integers <span class="math inline">\(n\)</span>.</p>
+<div class="example">
+<p>Consider the framework of Example <a href="#urn0" data-reference-type="ref" data-reference="urn0">[urn0]</a>: there is an urn with <span class="math inline">\(2\)</span> black balls and <span class="math inline">\(3\)</span> red balls and <span class="math inline">\(2\)</span> balls are randomly selected from the urn. Let <span class="math inline">\(B\)</span> denote the event that <span class="math inline">\(2\)</span> red balls are selected. Find <span class="math inline">\(\P(B)\)</span>.</p>
+<p>The basic outcomes here are the sets of two balls selected from the urn. Because each basic outcome is assumed to have the same probability, <span class="math display">\[\P(B) = \frac{|B|}{|\Omega|}.\]</span></p>
+<p>The number of elements in <span class="math inline">\(\Omega\)</span> is the number of ways to select <span class="math inline">\(2\)</span> balls from the set of <span class="math inline">\(5\)</span>, given by <span class="math display">\[{5 \choose 2} = 10.\]</span> The number of elements in <span class="math inline">\(B\)</span> is the number of ways to choose <span class="math inline">\(2\)</span> red balls from the set of <span class="math inline">\(3\)</span> red balls, given by <span class="math display">\[{3 \choose 2} = 3.\]</span> Thus, <span class="math inline">\(\P(B) = 3/10\)</span>.</p>
+</div>
+<div class="example">
+<p>Suppose that <span class="math inline">\(5\)</span> cards are dealt from a well-shuffled deck of playing cards. Recall that, in such a deck, there are <span class="math inline">\(52\)</span> cards and each card falls into one of four suits (<span class="math inline">\(13\)</span> cards in each suit).</p>
+<p>What is the probability that all <span class="math inline">\(5\)</span> cards are of the same suit (i.e., a “flush", in poker)?</p>
+<p>There are <span class="math display">\[{52 \choose 5}\]</span> ways to choose <span class="math inline">\(5\)</span> cards from a deck of <span class="math inline">\(52\)</span>. To find the number of ways in which <span class="math inline">\(5\)</span> cards can be chosen from one suit, we can use the counting principle: there are <span class="math inline">\(4\)</span> ways to choose the suit and, given the suit, there are <span class="math display">\[{13 \choose 5}\]</span> ways to choose the <span class="math inline">\(5\)</span> cards from the suit. Therefore, there are <span class="math display">\[4 {13 \choose 5}\]</span> ways to choose <span class="math inline">\(5\)</span> cards from one suit.</p>
+<p>It follows that the probability of being dealt <span class="math inline">\(5\)</span> cards from one suit is <span class="math display">\[\begin{aligned}
+\frac{4 {13 \choose 5}}{{52 \choose 5}} &amp;= \frac{4 \frac{13!}{8!\, 5!}}{\frac{52!}{47!\, 5!} }\\
+&amp;= 4 \frac{(13)(12)(11)(10)(9)}{(52)(51)(50)(49)(48)}  \\
+&amp;= 0.00198.
+\end{aligned}\]</span></p>
+</div>
+<p>In some cases, it is easier to find the probability of an event <span class="math inline">\(A\)</span> by finding the probability of <span class="math inline">\(A^c\)</span> and using the fact that <span class="math inline">\(\P(A) = 1 - \P(A^c)\)</span>. In fact, this simple result often converts a complicated problem into a relatively easy one.</p>
+<div class="example">
+<p>Suppose that <span class="math inline">\(n\)</span> cards are dealt from a well-shuffled deck of playing cards. What is the probability that at least <span class="math inline">\(1\)</span> face card is drawn?</p>
+<p>We can calculate the probability of being dealt at least one face card by calculating the probability of being dealt no face cards and then subtracting that result from 1.</p>
+<p>In a standard deck of cards, there are <span class="math inline">\(12\)</span> face cards and <span class="math inline">\(40\)</span> non-face cards.</p>
+<p>To be dealt <span class="math inline">\(n\)</span> non-face cards, <span class="math inline">\(n\)</span> cards must be chosen from the <span class="math inline">\(40\)</span> non-face cards. There are <span class="math display">\[{40 \choose n}\]</span> ways to do this. Since there are <span class="math display">\[{52 \choose n}\]</span> ways to choose <span class="math inline">\(n\)</span> cards from the entire deck, the probability of being dealt no face cards is <span class="math display">\[{40 \choose n} \over {52 \choose n}\]</span> and, hence, the probability of being dealt at least one face card is <span class="math display">\[1 - {{40 \choose n} \over {52 \choose n}} = 1 - {40\cdot 39 \cdots (40-n+1) \over 52\cdot 51 \cdots (52-n+1)}.\]</span> This result holds for <span class="math inline">\(n\leq 40\)</span>; otherwise the probability is <span class="math inline">\(0\)</span>.</p>
+</div>
+</section>
+</section>
+<section id="conditional-probability" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="conditional-probability"><span class="header-section-number">1.5</span> Conditional Probability</h2>
+<p>Consider the dice-rolling experiment discussed in Example <a href="#dice1" data-reference-type="ref" data-reference="dice1">[dice1]</a>: two dice are rolled, one at a time. The sample space of the experiment, <span class="math inline">\(\Omega\)</span>, has <span class="math inline">\(36\)</span> elements, <span class="math display">\[\Omega =  \left\{ (1, 1), (1, 2), \ldots,  (1, 6), (2, 1), \ldots, (2, 6), \ldots, (6, 1), \ldots, (6, 6) \right\}\]</span> and each element of <span class="math inline">\(\Omega\)</span> is equally likely.</p>
+<p>Let <span class="math inline">\(A\)</span> denote the event result of the experiment includes at least <span class="math inline">\(1\)</span> six; then <span class="math display">\[A = \left\{ (1, 6), (2, 6), (3, 6), (4, 6), (5, 6), (6, 1), (6, 2), (6, 3), (6, 4), (6, 5), (6, 6) \right\},\]</span> which has <span class="math inline">\(11\)</span> elements. Hence, <span class="math inline">\(\P(A)  = 11/36\)</span>.</p>
+<p>Now suppose that we know that the sum of the dice is at least <span class="math inline">\(10\)</span>. Based on this information, what is the probability that the result includes at least <span class="math inline">\(1\)</span> six?</p>
+<p>Note that this probability cannot be described in terms of a single event, because it includes the condition that the sum of the dice is at least <span class="math inline">\(10\)</span>. It is an example of a <em>conditional probability</em>.</p>
+<p>Let <span class="math inline">\(B\)</span> denote the event that the sum of the dice is at least <span class="math inline">\(10\)</span>; then <span class="math display">\[B = \left\{ (4, 6), (5, 5), (5, 6), (6, 4), (6, 5), (6, 6) \right\}.\]</span> We want to find <span class="math inline">\(\P(A\, |\, B)\)</span>, read as the “conditional probability of <span class="math inline">\(A\)</span> given <span class="math inline">\(B\)</span>". It is the probability that we roll at least <span class="math inline">\(1\)</span> six <strong>given that</strong> the sum of the dice is at least <span class="math inline">\(10\)</span>.</p>
+<p>There are <span class="math inline">\(6\)</span> elements in <span class="math inline">\(B\)</span>; for <span class="math inline">\(5\)</span> of these, there is at least one six. Therefore, it is reasonable to expect that <span class="math inline">\(\P(A\, |\, B) = 5/6\)</span>.</p>
+<p>This is, in fact, correct. The general formula for a conditional probability is <span class="math display">\[\P(A\, |\, B) = \frac{\P(A \cap B)}{\P(B)},\]</span> provided that <span class="math inline">\(\P(B) &gt; 0\)</span>. Note that <span class="math inline">\(A\cap B\)</span> represents the part of <span class="math inline">\(A\)</span> that satisfies the condition <span class="math inline">\(B\)</span>.</p>
+<p>In the example, <span class="math display">\[A \cap B = \left\{ (4, 6), (5, 6), (6, 4), (6, 5), (6, 6) \right\}\]</span> so that <span class="math inline">\(\P(A \cap B)  = 5/36\)</span>. Using the fact that <span class="math inline">\(\P(B) = 6/36\)</span> yields the answer given above.</p>
+<p>Conditional probabilities are useful because they allow us to incorporate additional information into the probability calculation.</p>
+<p>Note that, for a given event <span class="math inline">\(B\)</span> with <span class="math inline">\(\P(B)&gt;0\)</span>, the function <span class="math inline">\(Q\)</span> defined on subsets of <span class="math inline">\(\Omega\)</span> and given by <span class="math display">\[\mbox{Q}(A) = \P(A\, | \, B)\]</span> is a probability function on <span class="math inline">\(\Omega\)</span>, in the sense that it satisfies all the properties of a probability function, such as <span class="math display">\[\P(A^c\, | \, B) = 1 - \P(A\, | \, B)\]</span> and <span class="math display">\[\P(A_1 \cup A_2\, |\, B) = \P(A_1\, |\, B) + \P(A_2\, |\, B) - \P(A_1 \cap A_2\, | \, B).\]</span></p>
+<div class="example">
+<p>Consider an urn with <span class="math inline">\(2\)</span> red balls and <span class="math inline">\(w\)</span> white balls for some <span class="math inline">\(w\geq 2\)</span>. Suppose that <span class="math inline">\(2\)</span> balls are randomly selected from the urn. Given that the balls are the same color, what is the probability that they are red?</p>
+<p>Define two events, <span class="math inline">\(A\)</span>, the event that both balls are red and <span class="math inline">\(B\)</span>, the event that the balls are the same color. Hence, we want to determine <span class="math inline">\(\P(A\, |\, B)\)</span>.</p>
+<p>There are <span class="math display">\[{2 + w \choose 2}\]</span> ways to choose <span class="math inline">\(2\)</span> balls from the urn, which contains <span class="math inline">\(2+w\)</span> balls. There is <span class="math inline">\(1\)</span> way to choose <span class="math inline">\(2\)</span> red balls and <span class="math display">\[{w \choose 2}\]</span> ways to choose <span class="math inline">\(2\)</span> white balls. Hence, <span class="math display">\[\P(B) = \frac{1 + {w \choose 2}}{{2 + w \choose 2}} = \frac{w(w-1) + 2}{(w+2)(w+1)}\]</span> and <span class="math display">\[\P(B) = \frac{1}{{2 + w \choose 2}} = \frac{2}{(w+2)(w+1)}.\]</span></p>
+<p>Note that, because <span class="math inline">\(A\subset B\)</span>, <span class="math inline">\(A \cup B = A\)</span>. It follows that <span class="math display">\[\begin{aligned}
+\P(A\, |\, B) &amp;= \frac{\P(A \cap B)}{\P(B)} = \frac{\P(A)}{\P(B)} \\
+&amp;= \frac{ \frac{2}{(w+2)(w+1)} }{ \frac{w(w-1) + 2}{(w+2)(w+1)}} \\
+&amp;= \frac{2}{w(w-1) + 2}.
+\end{aligned}\]</span></p>
+</div>
+<section id="multiplication-law" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="multiplication-law">Multiplication law</h3>
+<p>Rewriting the expression for conditional probability yields the <em>multiplication law</em> for probabilities: for events <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math display">\[\P(A \cap B) = \P(B\, | \, A)\P(A) = \P(A\, | \, B)\P(B).\]</span></p>
+<div class="example">
+<p><span id="urn1" data-label="urn1"></span> Consider an urn with <span class="math inline">\(r\)</span> red balls and <span class="math inline">\(b\)</span> black balls, where <span class="math inline">\(r\)</span> and <span class="math inline">\(b\)</span> are positive integers. Suppose that <span class="math inline">\(2\)</span> balls are randomly selected from the urn, one at a time. What is the probability that the first ball is red and the second ball is black?</p>
+<p>Define two events, <span class="math inline">\(A\)</span>, the event that the first ball is red and <span class="math inline">\(B\)</span>, the event that the second ball is black. We want <span class="math inline">\(\P(A \cap B)\)</span>.</p>
+<p>This is a case in which the expression <span class="math inline">\(\P(B\, |\, A)\P(A)\)</span> may be a convenient way to calculate <span class="math inline">\(\P(A \cap B)\)</span>: the probability that the first ball is red is easy to determine, <span class="math display">\[\P(A) = \frac{r}{r + b},\]</span> and, given the result on the first ball, the probability that the second ball is black is also easy to determine.</p>
+<p>Specifically, if the first ball is red, that leaves <span class="math inline">\(r-1\)</span> red balls and <span class="math inline">\(b\)</span> black balls in the urn. Hence, <span class="math display">\[\P(B\, | \, A) = \frac{b}{r -1 + b}.\]</span> It follows that <span class="math display">\[\P(A\cap B) = \frac{r}{r+b}\, \frac{b}{r-1 + b}.\]</span></p>
+</div>
+</section>
+<section id="independent-events" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="independent-events">Independent events</h3>
+<p>Roughly speaking, events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are said to be <em>independent</em> if the occurrence of one event does not affect the probability of the other, in the sense that <span class="math display">\[\P(A\, | \, B) = \P(A)\  \text{ and } \ \P(B\, | \, A) = \P(B).\]</span> Using the multiplication law, these can be written <span class="math display">\[\P(A \cap B)= \P(A) \P(B),\]</span> which is taken as the definition of independence.</p>
+<div class="example">
+<p>Consider the example of rolling two fair dice, one at a time. Let <span class="math inline">\(A\)</span> denote the event that result includes at least <span class="math inline">\(1\)</span> six and <span class="math inline">\(B\)</span> denote the event that the sum is at least <span class="math inline">\(10\)</span>. Then, as we have seen in the example at the beginning of this section, <span class="math inline">\(\P(A) = 11/36\)</span>, <span class="math inline">\(\P(B) = 6/36\)</span>, and <span class="math inline">\(\P(A \cap B) = 5/36\)</span>. Thus, because <span class="math display">\[\frac{5}{36}\neq \frac{11}{36} \frac{6}{36},\]</span> <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are not independent events. That is, knowing that the sum is of the dice is at least <span class="math inline">\(10\)</span> affects the probability that the result includes at least <span class="math inline">\(1\)</span> six. Or, alternatively, knowing that the result includes at least <span class="math inline">\(1\)</span> six affects the probablity that the sum is at least <span class="math inline">\(10\)</span>.</p>
+<p>Now consider a third event, <span class="math inline">\(C\)</span>, which denotes the event that the first die is a <span class="math inline">\(4\)</span>: <span class="math display">\[C = \left\{ (4, 1), (4, 2), (4, 3), (4, 4), (4, 5), (4, 6) \right).\]</span> Hence <span class="math inline">\(\P(C) = 1/6\)</span>.</p>
+<p>Note that <span class="math display">\[A \cap C = \left\{ (4, 6) \right\} \ \ \text{ and } \ \ B \cap C = \left\{ (4, 6) \right\}.\]</span> Hence, both <span class="math inline">\(\P(A \cap C)\)</span> and <span class="math inline">\(\P(B \cap C)\)</span> are <span class="math inline">\(1/36\)</span>. Because <span class="math display">\[\frac{1}{36} \neq \frac{11}{36} \frac{1}{6},\]</span> it follows that <span class="math inline">\(A\)</span> and <span class="math inline">\(C\)</span> are not independent. However, <span class="math display">\[\P(B \cap C) = \frac{1}{36} = \frac{6}{36} \frac{1}{6} = \P(B)\P(C)\]</span> so that <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> are independent events.</p>
+<p>Thus, knowing that the first die is a <span class="math inline">\(4\)</span> does not affect the probability that the sum is at least <span class="math inline">\(10\)</span>. Note that <span class="math inline">\(1/6\)</span> of the results in which the first die is a <span class="math inline">\(4\)</span> have a sum of at least <span class="math inline">\(10\)</span> and <span class="math inline">\(1/6\)</span> of all results have a sum of at least <span class="math inline">\(10\)</span>.</p>
+<p>On the other hand, knowing that the first die is a <span class="math inline">\(4\)</span> changes the probability that the result includes at least one <span class="math inline">\(6\)</span> from the unconditional probability of <span class="math inline">\(11/36\)</span> to the conditional probability of <span class="math display">\[\P(A\, |\, C)  = \frac{\P(A \cap C)}{\P(C)} = \frac{1/36}{1/6} = \frac{1}{6}.\]</span></p>
+</div>
+<p>The concept of independence can be extended to an arbitrary number of events. First consider three events, <span class="math inline">\(A_1, A_2, A_3\)</span>. These events are said to be independent if <span class="math display">\[\P(A_1 \cap A_2 \cap A_3) = \P(A_1) \P(A_2) \P(A_3), \ \ P(A_1 \cap A_2) = \P(A_1)\P(A_2),\]</span> <span class="math display">\[\ \ P(A_1 \cap A_3) = \P(A_1) \P(A_3)
+\ \ \text{ and } \ \ P(A_2 \cap A_3) = \P(A_2) \P(A_3).\]</span></p>
+<p>More generally, a set of <span class="math inline">\(n\)</span> events <span class="math inline">\(A_1, A_2, \ldots A_n\)</span> is independent if the probability of the intersection of any subset of the events is the product of the probabilities of the events in the subset. That is, for any integer <span class="math inline">\(k\)</span>, <span class="math inline">\(1 \leq k \leq n\)</span> and indices <span class="math inline">\(1 \leq i_1 &lt; i_2 &lt; \cdots &lt; i_k \leq n\)</span>, <span class="math display">\[\P(A_{i_1} \cap A_{i_2} \cap \cdots \cap A_{i_k}) = \P(A_{i_1}) \cdots \P(A_{i_k}).\]</span></p>
+<div class="example">
+<p>(Bernoulli trials) Consider an experiment with a sample space consisting of two basic outcomes, <span class="math inline">\(\omega_1\)</span> and <span class="math inline">\(\omega_2\)</span>. Then there are four possible events, <span class="math inline">\(\emptyset\)</span>, <span class="math inline">\(\Omega= \{ \omega_1, \omega_2 \}\)</span>, <span class="math inline">\(\{\omega_1 \}\)</span>, and <span class="math inline">\(\{\omega_2 \}\)</span>. Thus, the probability function can be described by a single number, <span class="math inline">\(\P(\{ \omega_1 \})\)</span>; it follows that <span class="math inline">\(\P(\{ \omega_2 \})  = 1 - \P(\{ \omega_1 \})\)</span>. An experiment of this form is known as a <em>Bernoulli trial</em>.</p>
+<p>Now consider an experiment consisting of <span class="math inline">\(n\)</span> independent replications of the experiment. The sample space for this second experiment is given by <span class="math display">\[\Omega_n = \Omega \times \Omega \times \cdots \times \Omega.\]</span> Thus, an element of <span class="math inline">\(\Omega_n\)</span> can be written <span class="math inline">\((\omega_{i_1}, \omega_{i_2}, \ldots \omega_{i_n})\)</span>, where <span class="math inline">\(i_1, i_2, \ldots, i_n\)</span> each take values in the set <span class="math inline">\(\{1, 2 \}\)</span>.</p>
+<p>Let <span class="math inline">\(\P_n\)</span> denote the probability function of the experiment. The term “independent replications" refers to the fact that <span class="math display">\[\P_n\left(\{ (\omega_{i_1}, \ldots, \omega_{i_n}) \} \right) =
+\P( \{ \omega_{i_1} \}) \P(\{ \omega_{i_2} \}) \cdots \P( \{ \omega_{i_n} \}).\]</span> The experiment with sample space <span class="math inline">\(\Omega_n\)</span> and probability function <span class="math inline">\(\P_n\)</span> is known as a <em>sequence of Bernoulli trials</em>.</p>
+<p>This is a generalization of the scenario considered in Example <a href="#binom_ex" data-reference-type="ref" data-reference="binom_ex">[binom_ex]</a>, in which <span class="math inline">\(n=2\)</span> and <span class="math inline">\(\omega_1\)</span> and <span class="math inline">\(\omega_2\)</span> were denoted by <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>, respectively.</p>
+</div>
+</section>
+<section id="the-partition-theorem" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="the-partition-theorem">The partition theorem</h3>
+<p>Consider an experiment with sample space <span class="math inline">\(\Omega\)</span>. A <em>partition</em> of <span class="math inline">\(\Omega\)</span> is a collection of disjoint subsets of <span class="math inline">\(\Omega\)</span>, <span class="math inline">\(\{ A_1, A_2, \ldots \}\)</span> such that <span class="math display">\[\bigcup_i A_i \equiv A_1 \cup A_2 \cup \cdots = \Omega.\]</span> Such a partition can be either finite or infinite.</p>
+<p>Note that any set <span class="math inline">\(B\subset \Omega\)</span> can be written <span class="math display">\[B = B\cap \Omega = B \cap \left( \bigcup_i A_i \right) = \bigcup_i B\cap A_i ;\]</span> furthermore, <span class="math display">\[B\cap A_1,\,  B\cap A_2, \,  \ldots\]</span> are disjoint. It follows that <span class="math display">\[\label{part1}
+\P(B) = \sum_i \P(B \cap A_i).\]</span></p>
+<p>Furthermore, if <span class="math inline">\(\P(A_i) &gt; 0\)</span> for all <span class="math inline">\(i\)</span>, then <span class="math display">\[\label{part2}
+\P(B) = \sum_i \P(B\, |\, A_i) \P(A_i).\]</span></p>
+<p>The results given in <a href="#part1" data-reference-type="eqref" data-reference="part1">[part1]</a> and <a href="#part2" data-reference-type="eqref" data-reference="part2">[part2]</a> are known as the <em>partition theorem</em>; the term <em>law of total probability</em> is also used.</p>
+<div class="example">
+<p>Consider an urn with <span class="math inline">\(r\)</span> red balls and <span class="math inline">\(b\)</span> black balls. Suppose that <span class="math inline">\(2\)</span> balls are randomly selected from the urn, one at a time. What is the probability that the second ball is black?</p>
+<p>We analyzed this experiment in Example <a href="#urn1" data-reference-type="ref" data-reference="urn1">[urn1]</a>. There we saw that the probability that the second ball is black is easy to calculate if we know the result of the first ball. This suggests that it may be convenient to use the partition theorem.</p>
+<p>Define two events, <span class="math inline">\(A\)</span>, the event that the first ball is red and <span class="math inline">\(B\)</span>, the event that the second ball is black. We have seen that <span class="math display">\[\P(A) = \frac{r}{r + b} \ \text{ and } \ \  \P(B\, | \, A) = \frac{b}{r -1 + b}.\]</span> The same basic argument can be used to find <span class="math inline">\(\P(B\, |\, A^c)\)</span>: if <span class="math inline">\(A^c\)</span> occurs, that is, if the first ball is black, then, when the second ball is chosen there are <span class="math inline">\(r\)</span> red balls and <span class="math inline">\(b-1\)</span> black balls in the urn so that <span class="math display">\[\P(B\, |\, A^c) = \frac{b-1}{r+b-1}.\]</span></p>
+<p>Hence, we can use the partition theorem with <span class="math inline">\(A_1 = A\)</span> and <span class="math inline">\(A_2 = A^c\)</span>: <span class="math display">\[\begin{aligned}
+\P(B) &amp;= \P(B\, |\, A) \P(A) + \P(B\, |\, A^c)\P(A^c) \\ &amp;= \frac{b}{r-1+b}\, \frac{r}{r+b} + \frac{b-1}{r-1+b}\, \frac{b}{r+b} \\
+&amp;=\frac{br + (b-1)b}{(r+b)(r+b-1)} \\
+&amp;= \frac{b}{r+b}.
+\end{aligned}\]</span></p>
+</div>
+</section>
+<section id="bayes-theorem" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="bayes-theorem">Bayes’ Theorem</h3>
+<p>Consider an experiment and let <span class="math inline">\(A, B\)</span> be events. In some cases, information is available regarding <span class="math inline">\(\P(A\, |\, B)\)</span> but we are interested in <span class="math inline">\(\P(B\, |\, A)\)</span>. Fortunately, the two conditional probabilities are related through <span class="math inline">\(\P(A\cap B)\)</span>: <span class="math display">\[\P(A\cap B) =  \P(A\, |\, B) \P(B)  = \P(B\, |\, A)  \P(A).\]</span> It follows that <span class="math display">\[\P(B\, |\, A)  = \frac{\P(A\, |\, B) \P(B)}{\P(A)},\]</span> provided that <span class="math inline">\(\P(A)&gt;0\)</span>. This result is known as <em>Bayes’ Theorem</em>.</p>
+<p>Bayes’ Theorem is often used in conjuction with the partition theorem so that, for example, <span class="math display">\[\P(B\, |\, A)  = \frac{\P(A\, |\, B) \P(B)}{\P(A\, |\, B)\P(B) + \P(A\, |\, B^c)\P(B^c)}.\]</span> More generally, if <span class="math inline">\(B_1, B_2, \ldots,\)</span> is a partition of <span class="math inline">\(\Omega\)</span>, then <span class="math display">\[\P(B_j\, |\, A)  = \frac{\P(A\, |\, B_j) \P(B_j)}{\sum_i \P(A\, |\, B_i)\P(B_i)}.\]</span></p>
+<p>A classic example of the use of Bayes’ Theorem is in the analysis of a diagnostic test.</p>
+<div class="example">
+<p>Consider a medical diagnostic test for some specified disease. Suppose it is known that</p>
+<ol type="1">
+<li><p><span class="math inline">\(5\%\)</span> of all patients who take the test have the disease</p></li>
+<li><p>the <em>specificity</em> of the test is <span class="math inline">\(0.99\)</span>. That is, a patient known to not have the disease has a <span class="math inline">\(99\%\)</span> chance of a negative test</p></li>
+<li><p>the <em>sensitivity</em> of the test is <span class="math inline">\(0.98\)</span>. That is, a patient known to have the disease has a <span class="math inline">\(98\%\)</span> chance of a positive test</p></li>
+</ol>
+<p>If a particular patient has a positive result on the test, what is the probability that the patient has the disease?</p>
+<p>Define two events, <span class="math inline">\(A\)</span>, the event that the patient has the disease and <span class="math inline">\(B\)</span>, the event that the patient’s test is positive. The facts (1) - (3) given above can be rewritten in probability notation:</p>
+<ol type="1">
+<li><p><span class="math inline">\(\P(A) = 0.05\)</span></p></li>
+<li><p><span class="math inline">\(\P(B^c \, | \, A^c) = 0.99\)</span></p></li>
+<li><p><span class="math inline">\(\P(B\, | \, A) = 0.98\)</span></p></li>
+</ol>
+<p>We want to find <span class="math inline">\(\P(A\, | \, B)\)</span>.</p>
+<p>Using Bayes’ Theorem, together with the partition theorem, <span class="math display">\[\begin{aligned}
+\P(A\, |\, B)  &amp;= \frac{\P(B\, |\, A) \P(A)}{\P(B\, |\, A)\P(A) + \P(B\, |\, A^c)\P(A^c)} \\
+&amp;= \frac{ (0.98)(0.05)}{(0.98)(0.05) + (0.01)(0.95)} \\
+&amp;= 0.838.
+\end{aligned}\]</span></p>
+</div>
+<div class="example">
+<p>Consider an urn with <span class="math inline">\(3\)</span> red balls and <span class="math inline">\(2\)</span> black balls and consider the experiment in which two balls are chosen from the urn without replacement. Let <span class="math inline">\(A\)</span> denote the event that the first ball selected is a red ball and let <span class="math inline">\(B\)</span> denote the event that the second ball selected is a red ball. Find <span class="math inline">\(\P(A\, |\, B)\)</span>.</p>
+<p>In this example, probabilities that are conditonal on <span class="math inline">\(A\)</span>, that is, conditional on the outcome of the first ball, are relatively easy to calculate. For instance, if the first ball is red, then the probability that the second ball is red is <span class="math inline">\(2/4 = 1/2\)</span>; if the first ball is black, then the probability that the second ball is red is <span class="math inline">\(3/4\)</span>. Thus, <span class="math display">\[\P(B\, |\, A) = 1/2 \ \ \text{ and } \ \ \P(B\, |\, A^c) = 3/4\]</span> and, using the fact that <span class="math inline">\(\P(A) = 3/5\)</span>, it follows from the law of total probability that <span class="math display">\[\P(B) = \P(B\, |\, A) \P(A) + \P(B\, |\, A^c)\P(A^c) = \frac{1}{2}\frac{3}{5} + \frac{3}{4}\frac{2}{5} = \frac{3}{5}.\]</span></p>
+<p>To find <span class="math inline">\(\P(A\, |\, B)\)</span> we can use Bayes’ Theorem: <span class="math display">\[\P(A\, |\, B) = \frac{\P(B\, |\, A) \P(A)}{\P(B)} = \frac{(1/2)(3/5)}{3/5} = \frac{1}{2}.\]</span></p>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Preface">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./summary.html" class="pagination-link" aria-label="Summary">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
