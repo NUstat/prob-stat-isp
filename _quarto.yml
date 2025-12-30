@@ -2,9 +2,13 @@ project:
   type: book
 
 book:
-  title: "prob-stat-isp"
-  author: "Norah Jones"
-  date: "12/30/2025"
+  title: "Probability and Statistics for ISP"
+  subtitle: "Course Notes for Statistics 383"
+  author: T. A. Severini
+  editor: Arend M Kuyper
+  downloads: [pdf]
+  date: today
+  date-format: iso
   chapters:
     - index.qmd
     - intro.qmd
