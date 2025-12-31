@@ -1,0 +1,1253 @@
+# Random Variables {#sec-chap2}
+
+::: {when-format="html"}
+
+{{< include test.qmd >}}
+
+:::
+
+## Introduction
+
+Consider an experiment with sample space $\Omega$ and let $\omega$
+denote an outcome of the experiment so that $\omega\in\Omega$. In many
+applications we are concerned primarily with certain numerical
+characteristics of $\omega$, rather than with $\omega$ itself. A *random
+variable* is a function that takes an element of $\Omega$ and returns a
+real number.
+
+More formally, define a function $X: \Omega\to \X$, where $\X$ is a
+subset of $\Re$, denote a random variable; the set $\X$ is called the
+*range* of $X$ or, sometimes, the *sample space* of $X$. For a given
+outcome $\omega\in \Omega$, the corresponding value of $X$ is
+$x=X(\omega)$.
+
+Probabilities regarding $X$ may be obtained from the probability
+function $\P$ for the original experiment. Let $\P_X$ denote a function
+such that for any set $A\subset \X$, $\P_X(A)$ denotes the probability
+that $X\in A$. Then $\P_X$ is a probability function defined on subsets
+of $\X$ and
+$$\P_X(A) = \P\big(\{ \omega\in\Omega: X(\omega)\in A \}\big).$$ Here
+$$\{ \omega\in\Omega: X(\omega)\in A \}$$ is the set of all basic
+outcomes $\omega$ such that the corresponding value of the random
+variable $X$, $X(\omega)$, is in the set $A$.
+
+Note that, because $P_X$ defines a probability function on the subsets
+of $\X$, it must satisfy conditions (P1) - (P3). Also, it is often
+convenient to proceed as if probability function $\P_X$ is defined on
+the entire space $\Re$. Then the probability of any subset of $\X^c$ is
+$0$ and, for any set $A \subset \Re$,
+$$\P_X(A) \equiv \Pr(X\in A) = \Pr(X \in A\cap \X) .$$
+
+We will generally use a less formal notation in which $\Pr(X\in A)$
+denotes $\P_X(A)$. For instance, the probability that $X\leq 1$ may be
+written as either $\Pr(X\leq 1)$ or $\P_X\left( (-\infty, 1]\right)$.
+
+::: example
+Consider an experiment with two possible outcomes, $\omega_1, \omega_2$;
+recall that such an experiment is called a Bernoulli trial. Hence,
+$\Omega = \{ \omega_1, \omega_2\}$.
+
+Define a function $X$ on a $\Omega$, i.e., a random variable, by
+$$X(\omega) = \begin{cases} 1 & \text{ if } \omega = \omega_1 \\
+                                          0 & \text{ if } \omega = \omega_2. 
+\end{cases}$$ Thus, the range of $X$ is $\{0, 1 \}$.
+
+Let $\theta = \P(\{ \omega_1 \})$. Then
+$$\Pr(X = 1) = \theta \ \ \text{ and } \ \ \Pr(X = 0) = 1 - \theta.$$
+
+A random variable with these properties is said to be a *Bernoulli
+random variable*.
+:::
+
+::: example
+[]{#binom_ex2 label="binom_ex2"}
+
+Consider an experiment with sample space
+$$\Omega = \{ x\in \Re^n: x = (x_1, \ldots, x_n), x_j = 0 \ \hbox{ or } 1, \ \ 
+j=1, \ldots, n \}$$ so that an element of $\Omega$ is a vector of ones
+and zeros.
+
+For $\omega = (x_1, \ldots, x_n) \in \Omega$, take
+$$\P(\omega)  = \prod_{j=1}^n \theta^{x_j} (1-\theta)^{1-x_j}$$ where
+$0 < \theta < 1$ is a given constant.
+
+For an element $\omega\in\Omega$, define
+$$X(\omega) = \sum_{j=1}^n x_j$$ so that $X(\omega)$ is the number of
+ones in $\omega$.
+
+Then $$\Pr(X = 0) = \P((0, 0, \ldots, 0)) = (1-\theta)^n,$$
+$$\Pr(X = 1) = \P((1, 0, \ldots, 0)) + \P((0, 1, 0, \ldots, 0)) + \cdots 
++ \P((0, 0, \ldots, 0, 1)) = n \theta (1-\theta)^{n-1}.$$ More
+generally,
+$$\Pr(X = x) = {n \choose x} \theta^x (1-\theta)^{n-x}, \ \ x=0, 1, \ldots, n;$$
+to show this, note that each basic outcome $\omega = (x_1, \ldots, x_n)$
+such that $\sum_{j=1}^n x_j = x$ has probability
+$\theta^x (1-\theta)^{n-x}$ and there are $${n \choose x}$$ basic
+outcomes with $\sum_{j=1}^n x_j = x$.
+
+$X$ is said to have a *binomial distribution* with parameters $n$ and
+$\theta$.
+:::
+
+::: example
+Consider the experiment with sample space $\Omega = (0, 1)$ and
+probability function $\P(\cdot)$ such that
+$$\P(A) = \int_A dx, \ \ A\subset (0, 1).$$
+
+Define a random variable $X$ by
+$$X(\omega) = \omega, \ \ 0 < \omega < 1.$$ Then, for any
+$A\subset (0, 1)$, $$\Pr(X\in A) = \int_A dt.$$
+
+As discussed above, we may take the range of $X$ to be $\Re$. Then, for
+any subset $A\in \Re$, $$\Pr(X\in A) = \int_{A \cap (0, 1)} dt.$$ For
+instance, $$\Pr(0.6 < X < 2) = \int_{0.6}^1 dx = 0.4.$$
+:::
+
+Note that, in the previous example, we could have simply defined the
+random variable $X$ to have probability function given by
+$$\Pr(X\in A) = \int_{A \cap (0, 1)} dt, \ \ A\subset \Re$$ without
+referring to an underlying experiment.
+
+In this course, we will usually define random variables in that way --
+without first constructing an experiment. However, it is sometimes
+important to keep in mind that a random variable is a real-valued
+function defined on the sample space $\Omega$ of some experiment.
+
+## Distribution Functions
+
+Consider a random variable $X$. The properties of $X$ are described by
+its probability function $\P_X$, which gives the probability that
+$X\in A$ for any set $A\subset \Re$.
+
+However, it is often convenient to specify the distribution of a random
+variable by considering $\Pr(X\in A)$ for a more limited class of sets
+$A$. That is, we do not need to specify $\Pr(X \in A)$ for **all**
+subsets of $\Re$ in order to describe the properties of $X$; using a
+smaller class of subsets of $\Re$ in this context leads to a
+simplification of the probability theory for random variables.
+
+For instance, consider sets of the form $(-\infty, x]$, for $x\in \Re$,
+so that $$\Pr(X \in (-\infty, x]) = \Pr(X \leq x).$$ The *distribution
+function* of the distribution of $X$ or, simply, the distribution
+function of $X$, is the function $F\equiv F_X: \Re\to [0, 1]$ given by
+$$F(x) = \Pr(X \leq x), \ \ -\infty < x < \infty.$$
+
+::: example
+[]{#uniform_ex label="uniform_ex"}
+
+Suppose that $X$ is a random variable such that
+$$\Pr(X\in A) = \int_{A\cap (0, 1)}  \ dx, \ \ A\subset \Re;$$ $X$ is
+said to have a uniform distribution on $(0, 1)$.
+
+The distribution function of this distribution is given by
+$$F(x) = \Pr\{ X \in (-\infty, x] \}=\int_{(-\infty, x]\cap (0, 1)} dt = 
+\begin{cases}0 & \text{ if } x \leq 0 \\
+       x & \text{ if } 0 < x \leq 1 \\
+       1 & \text{ if } x > 1 .
+\end{cases}$$ Figure [1.1](#uni_plot){reference-type="ref"
+reference="uni_plot"} gives a plot of $F$.
+:::
+
+![Distribution Function of the Uniform Distribution on
+$(0, 1)$](fig2.383.pdf){#uni_plot width="75%"}
+
+::: example
+[]{#binom_ex3 label="binom_ex3"}
+
+Let $X$ denote a random variable with a binomial distribution with
+parameters $n$ and $\theta$, as described in Example
+[\[binom_ex2\]](#binom_ex2){reference-type="ref" reference="binom_ex2"}.
+Then
+$$\Pr(X = x) = {n\choose x} \theta^x (1-\theta)^{n-x}, \ \ x=0, 1, \ldots, n$$
+and, hence, the distribution function of $X$ is
+$$F(x) = \sum_{j=0, 1, \ldots; j\leq x} {n \choose j} \theta^j 
+(1-\theta)^{n-j}.$$ Thus, $F$ is a step function, with jumps at
+$0, 1, 2, \ldots, n$.
+
+For instance, suppose that $X$ has a binomial distribution with
+parameters $n=2$ and $\theta = 1/4$. Then
+$$\Pr(X = 0) ={2 \choose 0} \left(\frac{1}{4}\right)^0 \left(\frac{3}{4}\right)^2 = \frac{9}{16},$$
+$$\Pr(X = 1) = {2 \choose 1} \left(\frac{1}{4}\right)^1 \left(\frac{3}{4}\right)^1 = \frac{6}{16},$$
+and, by subtraction, $\Pr(X = 2) = 1/16$.
+
+It follows that, for $x < 0$, $\Pr(X \leq x) = 0$, for $0\leq x < 1$,
+$$\Pr(X \leq x) = \Pr(X = 0) = \frac{9}{16},$$ for $1 \leq x < 2$,
+$$\Pr(X \leq x) = \Pr(X = 0 \cup X=1) = \Pr(X=0) + \Pr(X = 1) = \frac{15}{16},$$
+and for $x\geq 2$, $\Pr(X \leq x) = 1$.
+
+Hence, the distribution function of $X$ is given by $$F(x) =  
+\begin{cases}0 & \text{ if } x < 0 \\
+       \frac{9}{16} & \text{ if } 0 \leq x < 1 \\
+       \frac{15}{16} & \text{ if } 1 \leq x < 2 \\
+       1 & \text{ if } x \geq 2 .
+\end{cases}$$ Figure [1.2](#binom_plot){reference-type="ref"
+reference="binom_plot"} gives a plot of $F$.
+:::
+
+![Distribution Function of the Binomial Distribution with Parameters
+$n=2$ and $\theta = 1/4$](fig1.383.pdf){#binom_plot width="75%"}
+
+Clearly, there are some basic properties which any distribution function
+$F$ must possess; these are given as properties (DF1)--(DF3) below.
+Furthermore, if a function $F:\Re\mapsto [0, 1]$ satisfies (DF1)--(DF3),
+then there exists a random variable $X$ such that $F$ is the
+distribution function of $X$.
+
+1.  $\lim_{x\to\infty} F(x) = 1$; $\lim_{x\to -\infty} F(x) = 0$
+
+2.  If $x_1 < x_2$ then $F(x_1) \leq F(x_2)$
+
+3.  $\lim_{h\to 0^+} F(x+h) = F(x)$
+
+To see why (DF1) must hold, note that, for any $x$, $F(x)$ is a
+probability, $F$ must take values in $[0, 1]$ and, as $x$ approaches
+$\infty$,
+$$\Pr(X \leq x) \ \ \text{ approaches } \ \ \Pr(X < \infty)  = 1.$$
+Similarly, $\Pr(X \leq x)$ must approach $0$ as $x\to-\infty$.
+
+For $h>0$ $$\begin{aligned}
+F(x+h)&= 
+\Pr(X \leq x+h)\\ &= \Pr(X \leq x \cup x < X \leq x+h)\\
+&= \Pr(X \leq x) + \Pr(x < X \leq x+h) \\
+&= F(x) + \Pr(x < X \leq x+h) \\
+\geq F(x); 
+\end{aligned}$$ hence, $F$ must be a nondecreasing function, as stated
+in (DF2).
+
+A distribution function is not necessarily a continuous function;
+however, according to (DF3) (which will not be proven here), a
+distribution function is *right-continuous*. Note that the notation
+$h\to 0^+$ refers to a sequence of positive numbers that approaches $0$;
+hence, $x+h > x$ and $x+h \to x$ as $h\to 0^+$.
+
+An example of the right-continuity property of distribution functions is
+given in Figure [1.2](#binom_plot){reference-type="ref"
+reference="binom_plot"}. Clearly, the distribution function in that
+figure is not continuous -- there are jumps at $x=0, 1$, and $2$.
+However, it is right-continuous at those points. For instance, consider
+the limit of $F(x)$ as $x$ approaches $2$ from above. For all
+$x \geq 2$, $F(x) = 1$ so that $$\lim_{h\to 0^+} F(2+h) = 1 = F(2).$$
+
+On the other hand, for all $1\leq x< 2$, $F(x) = 15/16$ so that as $x$
+approaches $2$ from below the limit is $15/16$:
+$$\lim_{h\to 0^-} F(2+h) = 15/16.$$ It follows that $F(x)$ is not
+left-continuous at $x=2$.
+
+::: example
+Let $F_1$ and $F_2$ denote distribution functions for some random
+variables. Is the function given by $$F(x) = F_1(x) F_2(x),  \ x\in\Re$$
+also a distribution function?
+
+Recall that that $F$ is a distribution function if it satisfies
+conditions (DF1) through (DF3).
+
+Consider $F(x) = F_1(x) F_2(x)$. Clearly,
+$$\lim_{x\to\infty} F_1(x) F_2(x) = \lim_{x\to\infty} F_1(x) \ \lim_{x\to\infty} 
+F_2(x) = 1$$ and
+$$\lim_{x\to -\infty} F_1(x) F_2(x) = \lim_{x\to\-\infty} F_1(x) \ 
+\lim_{x\to -\infty} F_2(x) = 0,$$ establishing (DF1). Similarly,
+$$\lim_{h\to 0^+} F_1(x+h) F_2(x+h) = \lim_{h\to 0^+} F_1(x+h) \ \lim_{h\to 0} 
+F_2(x+h) = F_1(x) F_2(x),$$ verifying (DF3). Because
+$F_1(x_1) \leq F_1(x_2)$ and $F_2(x_1) \leq F_2(x_2)$ for $x_1 < x_2$,
+it follows that $F_1(x_1) F_2(x_1) \leq F_1(x_2) F_2(x_2)$, establishing
+(DF2). Hence, $F$ is a distribution function.
+:::
+
+Because of properties (DF1) and (DF2), when giving the form of a
+distribution function, it is convenient to only give the value of the
+function in the range of $x$ for which $F(x)$ varies between $0$ and
+$1$. For instance, in the uniform distribution example, in which
+$$F(x) = \Pr\{ X \in (-\infty, x] \}=\int_{(-\infty, x]\cap (0, 1)} dx = 
+\begin{cases}0 & \text{ if } x \leq 0 \\
+       x & \text{ if } 0 < x \leq 1 \\
+       1 & \text{ if } x > 1 
+\end{cases}$$ we could say that $F(x) = x$, $0 \leq
+ x \leq 1$; in this case it is understood that $F(x) = 0$ for $x< 0$ and
+$F(x) = 1$ for $x>1$.
+
+A distribution function $F$ gives the probability of sets of the form
+$(-\infty, x]$. However, it can also be used to give the probability of
+an bounded interval of the form $(x_1, x_2]$ where $x_1 < x_2$.
+
+Note that $$(-\infty, x_1] \cup (x_1, x_2] = (-\infty, x_2];$$
+furthermore, $(-\infty, x_1]$ and $(x_1, x_2]$ are disjoint subsets of
+$\Re$. It follows that
+$$\Pr(X \in (-\infty, x_2]) = \Pr(X \in (-\infty, x_1]) + \Pr(X \in (x_1, x_2]).$$
+Because
+$$\Pr(X \in (-\infty, x_2]) = F(x_2)  \ \ \text{ and } \ \  \Pr(X \in (-\infty, x_1]) = F(x_1),$$
+it follows that $$\Pr(X \in (x_1, x_2]) = F(x_2) - F(x_1).$$
+
+Thus, we have the following useful result. Let $X$ denote a random
+variable with distribution function $F$; Then, for $x_1 < x_2$,
+$$\Pr( x_1 < X \leq x_2) = F(x_2) - F(x_1).$$
+
+::: example
+Let $X$ denote a random variable with distribution function
+$$F(x) = x^2(3 - 2x), \ \ 0 < x < 1.$$
+
+Then
+$$\Pr(0.2 < X \leq 0.5) = F(0.5) - F(0.2) = (0.5)^2(3 - 2(0.5)) - (0.2)^2(3 - 2(0.2)) = 0.3960$$
+and
+$$\Pr(X > 0.8) = \Pr(0.8 < X \leq \infty) = 1 - F(0.8) = 1 - (0.8)^2(3 - 2(0.8)) = 0.1040.$$
+:::
+
+Another important property of distribution functions is that the
+distribution function of a random variable completely characterizes its
+distribution: two random variables with the same distribution function
+have the same probability distribution.
+
+Let $X_1$ and $X_2$ denote random variables and let $F_j$ denote the
+distribution function of $X_j$, $j=1, 2$.
+
+If $$F_1(x) = F_2(x) \ \ \text{ for all } \ \ -\infty < x < \infty,$$
+then
+$$\Pr(X_1 \in A) = \Pr(X_2 \in A) \ \ \text{ for any set} \ \ A\subset \Re.$$
+
+A proof this result requires sophisticated mathematical techniques and
+is beyond the scope of this course. However, it is not difficult to give
+an informal explanation of why we expect such a result to hold.
+
+The goal is to show that, if $X_1$ and $X_2$ have the same distribution
+function (denoted by $F$), then, for 'any' set $A\subset \Re$,
+$$\Pr(X_1\in A) = \Pr(X_2\in A).$$ First suppose that $A$ is an interval
+of the form $(a_0, a_1]$. Then
+$$\Pr(X_j \in A) = F(a_1) - F(a_0), \ \ j=1, 2$$ so that
+$\Pr(X_1 \in A) = \Pr(X_2 \in A)$. The same is true for $A^c$. Now
+consider a second interval $B=(b_0, b_1]$. Then
+$$A\cap B = \begin{cases} \emptyset & \text{ if } b_0 > a_1 \text{ or } a_0 > b_1 \\
+                    B & \text{ if } a_0 \leq b_0 < b_1 \leq a_1 \\ 
+                    A & \text{ if } b_0 \leq a_0 < a_1 \leq b_1 \\
+                    (a_0, b_1] & \text{ if } b_1 \leq a_1 \text{ and } b_0 \leq a_0 \\
+                    (b_0, a_1] & \text{ if }  a_1 \leq b_1 \text{ and } a_0 \leq b_0 
+\end{cases}.$$ In each case, $A\cap B$ is an interval and, hence,
+$\Pr(X_j \in A\cap B)$ and $\Pr(X_j \in A \cup B)$ do not depend on
+$j=1,2$. The same approach can be used for any finite intersection of
+intervals.
+
+Also note that, because $$(A \cup B)^c = A^c \cap B^c$$ and, if
+$\Pr(X_j \in (A\cup B)^c)$ does not depend on $j$ then
+$\Pr(X_j \in (A\cup B))$ does not depend on $j$, the same type of result
+holds for any finite union of intervals and for any finite combination
+of unions and intersections of intervals.
+
+Hence, if $X_1$ and $X_2$ have the same distribution function, then
+$$\Pr(X_1 \in A) = \Pr(X_2 \in A)$$ for any set $A\subset \Re$ that can
+be written in terms of a finite number of intervals of the form $(a, b]$
+using unions and intersections. The mathematical challenge is to extend
+the result to 'any' subset of $\Re$.
+
+## Discrete Distributions
+
+Let $X$ denote a random variable with range $\X$. Suppose that $\X$ is a
+countable set, that is, it is either a finite set of the form
+$$\X = \left\{ x_1, x_2, \ldots, x_m \right\}$$ or it is an infinite set
+of the form $$\X = \left\{ x_1, x_2, \ldots, \right\}$$ where
+$x_1, x_2, \ldots$ are real numbers. In this case, we say that $X$ has a
+*discrete distribution* or is a *discrete random variable*. We can
+assume that the elements $x_1, x_2, \ldots$ of $\X$ are ordered so that
+$$x_1 < x_2 < \cdots.$$
+
+Define a function $p:\Re\to [0, 1]$ by $$p(x) = \Pr(X = x).$$ The
+function $p$ is called the *mass function* of the distribution; the term
+*frequency function* is also used. Note that we assume that $p$ is
+defined for all $-\infty < x < \infty$; if $x\notin \X$, then
+$p(x) = 0$.
+
+Clearly, because probabilities are nonnegative, $p(x)\geq 0$ for all
+$x$. Furthermore, if $\X$ is finite, with $m$ elements
+$$\label{mass_sum1}
+ \sum_{j=1}^m p(x_j) = 1;$$ if $\X$ is a countably infinite set, then
+$$\label{mass_sum2}
+\sum_{j=1}^\infty p(x_j) = 1.$$
+
+These results follow from the fact that (in the finite $\X$ case), we
+can write $$\X = \cup_{j=1}^m \{ x_j \}$$ where the sets
+$\{x_1 \}, \{x_2 \}, \ldots$ are disjoint. Then $$\begin{aligned}
+ \Pr(X \in \X) &= \sum_{j=1}^m \Pr(X \in \{x_j \}) = \sum_{j=1}^m \Pr(X = x_j) \\
+&= \sum_{j=1}^m p(x_j).
+\end{aligned}$$ The result
+[\[mass_sum1\]](#mass_sum1){reference-type="eqref"
+reference="mass_sum1"} now follows from $\Pr(X \in \X) = 1$;
+[\[mass_sum2\]](#mass_sum2){reference-type="eqref"
+reference="mass_sum2"} follows from a similar argument.
+
+Consider $\Pr(X \in A)$ where $A\subset \Re$. Note that
+$$\Pr(X \in A) = \Pr(X \in A \cap \X)$$ and that
+$$A \cap \X = \{x \in \X: x \in A\}$$ so that
+$$\Pr(X \in A) = \sum_{j: x_j\in A} p(x_j).$$
+
+In particular, the distribution function of a discrete random variable
+is discontinuous, with jumps at each value in its range. Let $X$ be a
+discrete random variable with mass function $p(\cdot)$ and range $\X$
+with elements $x_j$. Then the distribution function of $X$ is given by
+$$F(x) = \sum_{j: x_j\leq x} p(x).$$
+
+For instance, suppose that $x_1 \leq x < x_2$. Then $F(x) = p(x_1)$;
+however, $F(x_2) = p(x_1)+p(x_2)$ so that $F(x)$ has a jump at $x=x_2$.
+Thus, $F$ is a step function with jumps at each $x_j$. We have already
+seen one instance of this property, in the binomial distribution
+discussed in Example [\[binom_ex3\]](#binom_ex3){reference-type="ref"
+reference="binom_ex3"}; see Figure
+[1.2](#binom_plot){reference-type="ref" reference="binom_plot"}.
+
+The converse is also true. That is, if a distribution function $F$ is a
+step function, with jumps at $x_1, x_2, \ldots$, then the distribution
+is discrete with range $\X = \{x_1, x_2, \ldots \}$ and mass function
+$p(\cdot)$, where $p(x_j)$ is the size of the jump of $F$ at $x_j$.
+
+::: example
+Let $X$ denote a random variable with range $\X = \{1, 2, \ldots, m \}$
+for some $m=1, 2, \ldots$, and let
+$$\theta_j = \Pr(X = j), \ \ j=1, \ldots, m.$$ Therefore, $\theta_j$ are
+nonnegative, and sum to $1$;
+$\theta_1 + \theta_2 + \cdots + \theta_m = 1$.
+
+The distribution function of $X$ is given by
+$$F(x) = \begin{cases} 0 & \text{ if } x < 1 \\ 
+\theta_1 & \text{ if } 1 \leq x < 2 \\ 
+\theta_1 + \theta_2 & \text{ if } 2 \leq x < 3 \\
+\vdots \\ 
+\theta_1 + \cdots + \theta_{m-1} & \text{ if } m-1 \leq x < m \\ 
+1 & \text{ if } m \leq x \\
+\end{cases}.$$
+:::
+
+::: example
+[]{#binom_ex4 label="binom_ex4"}
+
+Let $X$ denote the random variable defined in Example
+[\[binom_ex3\]](#binom_ex3){reference-type="ref" reference="binom_ex3"}.
+Then $\X = \{0, 1, \ldots, n \}$ and
+$$\Pr(X = x) = {n \choose x} \theta^x (1-\theta)^{n-x}, \ \ x=0, 1, \ldots, 
+n;$$ here $0 < \theta < 1$ is a constant.
+
+Then $X$ is a discrete random variable with mass function
+$$p(x) = {n \choose x} \theta^x (1-\theta)^{n-x}, \ \ x=0, 1, \ldots, n.$$
+:::
+
+::: example
+Let $X$ denote a random variable with range $\X = \{1, 2, \ldots\}$ and
+mass function
+$$p(x) = \left( \frac{1}{2} \right)^x, \ \ x=1, 2, \ldots.$$ Note that
+$$\sum_{x=1}^\infty \left( \frac{1}{2} \right)^x =1.$$
+
+For a positive integer $m$,
+$$\Pr(X \leq m) = \sum_{x=1}^m \left( \frac{1}{2} \right)^x = \frac{1/2 - (1/2)^{m+1}}{1 - 1/2}
+= 1 - \left( \frac{1}{2}\right)^{m}.$$ Therefore, the distribution
+function of $X$ is given by
+$$F(x) = 1 - \left(\frac{1}{2}\right)^m \ \ \text{ for } \ \ m \leq x < m+1.$$
+:::
+
+::: example
+Let $X$ denote a random variable with a discrete distribution with mass
+function $$p_X(x) = \theta ( 1- \theta)^{x-1}, \ \ x=1, 2, \ldots,$$
+where $0 < \theta < 1$. Consider the probability that $X$ is even, as a
+function of $\theta$.
+
+Note that the event that $X$ is even is given by $\{2, 4, \ldots \}$. It
+follows that the probability that $X$ is even is
+$$\Pr\left( X\in \{2, 4, \ldots \} \right) = \sum_{x=1}^\infty p_X(2x) = 
+\frac{\theta}{1-\theta} \sum_{x=1}^\infty (1 - \theta)^{2x}.$$
+
+We know that, for $0 < p < 1$,
+$$\sum_{j=1}^\infty p^j = \frac{p}{1-p};$$ it follows that
+$$\sum_{x=1}^\infty (1 - \theta)^{2x} =\frac{(1- \theta)^2}{1 - (1-\theta)^2}.$$
+
+Therefore, the probability that $X$ is even is
+$$\frac{\theta}{1-\theta} \frac{(1-\theta)^2}{1 - (1-\theta)^2} = \frac{\theta(1-\theta)}{2\theta - \theta^2} = \frac{1 - \theta}{2 - \theta}.$$
+:::
+
+## Continuous Distributions {#den_sec}
+
+Consider a random variable $X$ with distribution function $F$ and range
+$\X$. Suppose there exists a function $p:\Re\to\Re$ such that
+$$\label{cont_dist}
+ F(x)  = \int_{-\infty}^x p(t) dt, \ \ -\infty < x < \infty .$$ The
+function $p$ is called the *density function* of the distribution or,
+more simply, of $X$.
+
+Because an integral is a continuous function of its limits, the
+distribution function $F$ must be a continuous function. Hence, when
+[\[cont_dist\]](#cont_dist){reference-type="eqref"
+reference="cont_dist"} holds, we say that the distribution of $X$ is an
+*continuous distribution*; alternatively, we say that $X$ is an
+*continuous random variable*.
+
+Because $F$ is non-decreasing, $p$ can be assumed to be non-negative and
+because the limit of $F(x)$ as $x\to\infty$ is $1$, we must have
+$$\intii p(x) dx = 1.$$
+
+Thus, if $p$ is a nonnegative function satisfying $$\intii p(x) dx = 1$$
+then $p$ is a density function of a continuous distribution and there
+exists a continuous random variable with $p$ as its density function.
+That is, a continuous distribution can be specified by giving its
+density function.
+
+::: example
+[]{#uni_ex_den label="uni_ex_den"}
+
+Let $X$ denote a random variable with the uniform distribution on
+$(0, 1)$, as defined in Example
+[\[uni_ex\]](#uni_ex){reference-type="ref" reference="uni_ex"}. In
+Example [\[uniform_ex\]](#uniform_ex){reference-type="ref"
+reference="uniform_ex"} it is shown that the distribution function of
+this distribution is given by
+$$F(x) = \Pr\{ X \in (-\infty, x] \}=\int_{(-\infty, x]\cap (0, 1)} dt = 
+\begin{cases}0 & \text{ if } x \leq 0 \\
+       x & \text{ if } 0 < x \leq 1 \\
+       1 & \text{ if } x > 1 .
+\end{cases}$$
+
+Define a function $p$ by
+$$p(x) = \begin{cases}1 & \text{ if } 0 \leq x \leq 1 \\
+0 & \text{ otherwise} 
+\end{cases};$$ then
+$$F(x) = \int_0^x p(t) dt, \ \ -\infty < x < \infty.$$
+
+It follows that $X$ has an continuous distribution with density function
+$p$.
+:::
+
+::: example
+Let $F$ denote a distribution function for a random variable with a
+continuous distributions and let $p$ denote the corresponding density
+function.
+
+Is $\alpha p(\alpha x)$, where $\alpha>0$, also the density function for
+a random variable with a continuous distribution?
+
+Note that, for $\alpha>0$, $\alpha p(\alpha x)$ is nonnegative and
+$$\int_{-\infty}^\infty \alpha p(\alpha x) dx = \int_{-\infty}^\infty p(x)dx = 1;$$
+hence, $\alpha p(\alpha x)$ is a density function.
+:::
+
+For a random variable $X$ with distribution function $F$, we have seen
+that $$\Pr(x_1 < X \leq x_2) = F(x_2) - F(x_1).$$
+
+Therefore, if $X$ has a continuous distribution with density $p$, it
+follows that the density satisfies $$\begin{aligned}
+\Pr(x_1 < X \leq x_2) &= \int_{-\infty}^{x_2} p(t)\, dt - \int_{-\infty}^{x_1} p(t)\, dt \\
+&= \int_{x_1}^{x_2} p(t)\, dt.
+\end{aligned}$$
+
+It is important to note that there is a slight technical complication to
+the definition of a density function of a continuous distribution: it is
+not uniquely defined. Consider two nonnegative functions $p_1$ and
+$p_2$, such that $$\label{eq_den}
+ p_1(x) = p_2(x) \ \ \text{ for all }\ x \text{ except } \tilde{x}_1, \tilde{x}_2, \ldots .$$
+If $$F(x) = \int_{-\infty}^x p_1(t) dt, \ \ -\infty < x < \infty,$$ then
+$$F(x) = \int_{-\infty}^x p_2(t) dt, \ \ -\infty < x < \infty.$$
+
+The reason for this is that changing the value of a function at a single
+point (or at a few isolated points) does not change the value of the
+integral. In this case, either $p_1$ or $p_2$ may be taken as the
+density function of the distribution. Generally, we use the simplest
+version of the density.
+
+When a condition holds for all $x$, except for $x$ in a countable set as
+in [\[eq_den\]](#eq_den){reference-type="eqref" reference="eq_den"}, we
+say that the condition hold for *almost all* $x$. Thus,
+[\[eq_den\]](#eq_den){reference-type="eqref" reference="eq_den"} could
+be written $$p_1(x) = p_2(x) \ \ \text{ for almost all }  \ x .$$
+
+In spite of the nonuniqueness of the density function of a distribution,
+we will refer to "the\" density function of the distribution, with the
+understanding that density functions could be changed slightly without
+changing the distribution.
+
+::: example
+Let $X$ denote a random variable with the uniform distribution on
+$(0, 1)$. In Example [\[uni_ex_den\]](#uni_ex_den){reference-type="ref"
+reference="uni_ex_den"} it is shown that $X$ has an continuous
+distribution with density function
+$$p(x) = \begin{cases}1 & \text{ if } 0 \leq x \leq 1 \\
+0 & \text{ otherwise} 
+\end{cases}.$$
+
+Note that the density function of $X$ may also be taken to be
+$$p_1(x) = \begin{cases}1 & \text{ if } 0 < x  <  1 \\
+0 & \text{ otherwise}
+\end{cases}.$$
+
+That is, $$F(x) = \int_0^x p_1(t) dt, \ \ -\infty < x < \infty$$ as
+well.
+:::
+
+In giving expressions for density functions, it is often convenient to
+give the value of the density function, $p(x)$, only for those values of
+$x$ for which the value is nonzero. For instance, in the previous
+example, the density function might be given as $p(x) = 1$, $0 < x < 1$.
+This statement implies that for $x\geq 1$ or $x\leq 0$, $p(x) = 0$.
+
+The following theorem shows how the density function and distribution
+are related for continuous distributions; it is essentially the
+fundamental theorem of calculus, which relates differentiation and
+integration.
+
+::: theorem
+[]{#fund_theorem label="fund_theorem"}
+
+Let $F$ denote the distribution function of a distribution on $\Re$.
+
+Suppose that $F$ is continuous and there exists a function $p$ such that
+$$F'(x) = p(x) \ \ \hbox{ for almost all} \ \ x.$$ Then $p$ is the
+density function corresponding to $F$.
+:::
+
+::: example
+Let $X$ denote a random variable with distribution function
+$$F(x) = x^2(3 - 2x), \ \ 0 < x < 1.$$ Note that $F$ is continuous and
+$$F'(x) = \begin{cases}6 (x - x^2) & \text{ if } 0 < x < 1 \\
+                                   0 & \text{ otherwise}
+\end{cases}.$$
+
+It follows that the distribution is continuous with density function
+$$p(x) = 6 (x - x^2), \ \ 0 < x < 1.$$
+:::
+
+::: example
+Let $X$ denote a random variable with distribution function
+$$F(x) = 1 - \exp(-x), \ \ x>0.$$ Note that $F$ is a continuous function
+but that $F'(x)$ does not exist at $x=0$:
+$$\lim_{h\to 0^+} \frac{F(h) - F(0)}{h} = \lim_{h\to 0^+} \frac{1 - \exp(-h)}{h} = 1$$
+while
+$$\lim_{h\to 0^-} \frac{F(h) - F(0)}{h} = \lim_{h\to 0^-} \frac{0}{h} = 0.$$
+
+For $x \neq 0$, $$F'(x) = \begin{cases} 0 & \text{ if } x<0 \\
+                                 \exp(-x) & \text{ if } x>0
+\end{cases}.$$ Hence, the density of the distribution can be taken to be
+$\exp(-x)$, $x>0$.
+:::
+
+### Interpretation of a density function {#interpretation-of-a-density-function .unnumbered}
+
+By the properties of integrals, if $X$ has a continuous distribution
+with density $p$, then, for small $\epsilon>0$,
+$$\Pr(x_0 - \epsilon/2 < X < x_0 + \epsilon/2) = \int_{x_0-\epsilon/2}^{x_0 + \epsilon/2} p(x) 
+dx \doteq p(x_0)\epsilon.$$
+
+Hence, $p(x)$ can be viewed as being proportional to the probability
+that $X$ lies in a small interval containing $x$; it is important to
+note that such an interpretation only gives an intuitive meaning to the
+density function and cannot be used in formal arguments. It follows that
+the density function gives an indication of the relative likelihood of
+different possible values of $X$.
+
+When working with continuous distributions, density functions are
+usually more informative than distribution functions for assessing the
+basic properties of a probability distribution. Of course,
+mathematically speaking, this statement is nonsense since the
+distribution function completely characterizes a probability
+distribution. However, for understanding the basic properties of the
+distribution of random variable, the density function is often more
+useful than the distribution function.
+
+::: example
+[]{#df_den_ex label="df_den_ex"}
+
+Consider a continuous distribution with distribution function
+$$F(x) = (5 - 2x)(x-1)^2, \  1 < x < 2$$ and density function
+$$p(x) = 6 (2-x)(x-1), \ \  1 < x < 2.$$
+
+Figure [1.3](#df_den_plot){reference-type="ref" reference="df_den_plot"}
+gives a plot of $F$ and $p$. Based on the plot of $p$ it is clear that
+the most likely value of $X$ is $3/2$ and, for $z < 1/2$, $X = 3/2 - z$
+and $X =3/2 + z$ are equally likely; these facts are difficult to
+discern from the plot of, or the expression for, the distribution
+function.
+:::
+
+![Density and Distribution Functions in Example
+[\[df_den_ex\]](#df_den_ex){reference-type="ref"
+reference="df_den_ex"}](fig3.383.pdf){#df_den_plot width="75%"}
+
+### A paradox with continuous random variables? {#a-paradox-with-continuous-random-variables .unnumbered}
+
+Let $Y$ denote random variable with a continuous distribution with
+distribution function $F$ and density function $p$ and for a given real
+number $y$ consider $\Pr(Y = y)$. Note that for any $\epsilon>0$,
+$$\Pr(Y = y) \leq \Pr\left( Y\in (y-\epsilon, y]\right) = \Pr(y -\epsilon < Y \leq y) = F(y) - F(y-\epsilon)$$
+and, hence,
+$$\Pr(Y = y) \leq \lim_{\epsilon \to 0^+} \left(F(y) - F(y - \epsilon) \right) .$$
+Because the distribution function of a continuous random variable is a
+continuous function, the right-hand side of this expression is $0$. That
+is, $$\Pr( Y = y) = 0.$$
+
+Because $y$ is arbitrary we have the interesting result that, for a
+continuous random variable $Y$,
+$$\Pr(Y = y) = 0 \ \ \text{ for all } \ \ y\in\Re.$$ That is, although
+$Y$ takes values in $\Re$, for all values of $y$ in $\Re$,
+$\Pr(Y = y) = 0$.
+
+One explanation for this apparent paradox is based on the limiting
+relative frequency interpretation of probability, as discussed in
+Section [\[prob_fcns\]](#prob_fcns){reference-type="ref"
+reference="prob_fcns"}. According to that interpretation,
+$\Pr(Y = y) = 0$ does not mean that $Y = y$ is absolutely impossible.
+What it means is that, if $N_n(y)$ is the number of times that $Y=y$
+occurs in $n$ repetitions of the experiment, then
+$$\frac{N_n(y)}{n} \to 0 \ \ \text{ as } \ \ n\to \infty.$$ Thus,
+$Y = y$ **might** occur, but it does not occur very often.
+
+A useful implication of this result is that, for a continuous random
+variable $Y$,
+$$\Pr(Y \leq y) = \Pr(Y < y \cup Y=y) = \Pr(Y < y) + \Pr(Y = y) = \Pr(Y < y);$$
+similarly, $$\Pr(Y \geq y) = \Pr(Y > y).$$
+
+## Expectation {#expect}
+
+Let $X$ denote a random variable with distribution function $F$. The
+expected value of $X$, denoted by $\E(X)$, is a summary of the
+distribution of $X$; it represents a type of "average value\" of $X$.
+The expected value $\E(X)$ is often described as the "mean of $X$\" or
+as the "mean of the distribution.\"
+
+If $X$ has a discrete distribution, taking the values $x_1, x_2, \ldots$
+with mass function $p$, then $$\E(X) = \sum_{j} x_j\ p(x_j);$$ this can
+also be written $$\E(X)  =\sum_{x\in\X} x\, p(x).$$ If $X$ has a
+continuous distribution with density $p$, then
+$$\E(X) = \intii x\ p(x) dx.$$
+
+::: example
+Let $X$ denote a random variable with a discrete distribution with range
+$\{0, 1, 2 \}$ and mass function $p$ given by
+$$p(x) = \begin{cases} \frac{1}{2} & \text{ if } \ x=0 \\
+\frac{1}{4} & \text{ if } \ x=1 \\
+\frac{1}{4} & \text{ if } \ x=2 
+\end{cases}.$$
+
+Then
+$$\E(X) = 0\left( \frac{1}{2}\right) + 1 \left( \frac{1}{4} \right) + 2 \left( \frac{1}{4}\right) = \frac{3}{4}.$$
+:::
+
+::: example
+[]{#binom_ex5 label="binom_ex5"} Let $X$ denote a random variable with a
+binomial distribution with parameters $n$ and $\theta$, as described in
+Example 1.4. Then $X$ is a discrete random variable with mass function
+$$p(x) = {n \choose x} \theta^x (1-\theta)^{n-x}, \ \ \ x=0, \ldots, n$$
+so that
+$$\E(X) = \sum_{j=0}^n j {n \choose j} \theta^j (1-\theta)^{n-j}.$$
+
+Note that
+$$j {n \choose j} = \frac{n!}{(j-1)! (n-j)!} = n {n-1 \choose j-1}.$$
+Therefore, $$\begin{aligned}
+\sum_{j=0}^n j {n \choose j} \theta^j (1-\theta)^{n-j} &=
+\sum_{j=1}^n j {n \choose j} \theta^j (1-\theta)^{n-j} \\
+&= n\theta \sum_{j=1}^n  {n-1 \choose j-1} \theta^{j-1} (1-\theta)^{n-j}\\
+&= n\theta \sum_{j-1=0}^{n-1}  {n-1 \choose j-1} \theta^{j-1} (1-\theta)^{n-1-(j-1)}\\
+&= n\theta \sum_{k=0}^{n-1}{n-1 \choose k}\theta^k (1-\theta)^{n-1-k}.
+\end{aligned}$$
+
+Note that the terms in the sum
+$$\sum_{k=0}^{n-1}{n-1 \choose k}\theta^k (1-\theta)^{n-1-k}$$ are the
+values of the mass function of the binomial distribution with parameters
+$n-1$ and $\theta$, evaluated at $0, 1, \ldots, n-1$. It follows that
+$$\sum_{k=0}^{n-1}{n-1 \choose k}\theta^k (1-\theta)^{n-1-k} = 1$$ and,
+hence, $$\E(X) = n\theta.$$
+:::
+
+::: example
+Let $X$ denote a random variable with a continuous distribution with
+density function $$p(x) = \frac{2}{x^3}, \ \  x\geq 1.$$
+
+Then $$\E(X) = \int_1^\infty x \frac{2}{x^{3}} dx =  \int_1^\infty 
+\frac{2}{x^{2}} dx = -\frac{2}{x}\Bigm|_{1}^\infty = 2.$$
+:::
+
+::: example
+Let $X$ denote a random variable with a continuous distribution with
+density function $$p(x) = 20 x^3 (1-x), \ \ 0 < x < 1.$$
+
+Then
+$$\E(X) = \int_0^1 x\, 20 x^3 (1-x) dx = 20 \int_0^1 (x^4 - x^5) dx = 20 \frac{1}{30} = \frac{2}{3}.$$
+:::
+
+### Expected value of a non-negative random variable {#expected-value-of-a-non-negative-random-variable .unnumbered}
+
+Let $X$ denote a random variable satisfying $\P(X\geq 0) = 1$. Then
+$\E(X) \geq 0$.
+
+To see why this holds, consider the case in which $X$ has a continuous
+distribution with density function $p$. Because $\P(X\geq 0) = 1$, we
+may assume that $p(x) = 0$ for all $x\leq 0$. It follows that
+$$\E(X) = \int_0^\infty x\, p(x) dx$$ and, because $p(x)\geq 0$ for all
+$x$, the integrand $x\, p(x) \geq 0$ for all $x>0$. Hence, $\E(X)$
+cannot be negative.
+
+A similar argument holds for a discrete random variable.
+
+### Existence of an expected value {#existence-of-an-expected-value .unnumbered}
+
+There are three possibilities for an expected value $\E(X)$:
+$\E(X) < \infty$, $\E(X) = \infty$, or $\E(X)$ might not exist. In
+general, $\E(X)$ fails to exist if the corresponding sum or integral
+used in its definition fails to exists.
+
+If $X$ is nonnegative, then $\E(X)$ always exists, although we may have
+$\E(X) = \infty$. If $X$ is discrete, $\E(X)$ exists and is finite
+provided that $$\sum_{j} |x_j| \ p(x_j) < \infty;$$ if $X$ is
+continuous, $\E(X)$ exists and is finite provided that
+$$\intii |x|\ p(x) dx < \infty.$$
+
+::: example
+Let $X$ denote a random variable with a continuous distribution with
+density function $$p(x) = \frac{1}{x^2}, \ \  x\geq 1.$$
+
+Then $$\E(X) = \int_1^\infty x \frac{1}{x^{2}} dx = \int_1^\infty 
+\frac{1}{x} dx = \log(x) \Bigm|_{1}^\infty = \infty.$$
+:::
+
+::: example
+Let $X$ denote a random variable with a continuous distribution with
+density function
+$$p(x) = \frac{1}{\pi (1 + x^2)}, \ \  -\infty < x < \infty;$$ this is a
+*standard Cauchy distribution*. If $\E(X)$ exists, it must be equal to
+$$\begin{aligned}
+ \int_{-\infty}^\infty \frac{x}{\pi(1 + x^2)} dx &= 
+\int_0^\infty \frac{x}{ 
+\pi(1 + x^2)} dx + \int_{-\infty}^0 \frac{x}{\pi(1 + x^2)} dx \\
+&= \int_0^\infty \frac{x}{ 
+\pi(1 + x^2)} dx - \int_0^\infty \frac{x}{\pi(1 + x^2)} dx. 
+\end{aligned}$$ Because
+$$\int_0^\infty {x \over \pi(1 + x^2)} dx = \infty,$$
+$$\int_{-\infty}^\infty \frac{x}{\pi(1 + x^2)} dx = \infty - \infty;$$
+it follows that $\E(X)$ does not exist.
+:::
+
+## Expectation of a Function of a Random Variable
+
+Let $X$ denote a random variable and let $g$ denote a real-valued
+function defined on the range of $X$. Define $Y= g(X)$ and consider
+$\E(Y)$.
+
+### Discrete distributions {#discrete-distributions-1 .unnumbered}
+
+Consider the case in which $X$ has a discrete distribution. The
+following simple example illustrates the basic argument used in this
+case.
+
+::: example
+Let $X$ denote a discrete random variable with range $\X = \{-1, 0, 1\}$
+and mass function $p_X$ with $p_X(-1) = 0.1$, $p_X(0) = 0.6$, and
+$p_X(1) = 0.3$. Let $Y = X^2$. Then $Y$ is a discrete random variable
+with range $\{0, 1\}$ and mass function $p_Y$ with
+$$p_Y(0) =\Pr(Y = 0) = \Pr(X^2=0) = \Pr(X = 0) = 0.6$$ and
+$$p_Y(1) = \Pr(Y = 1) =  \Pr(X^2 = 1) = \Pr(X = 1 \cup X=-1) = \Pr(X=1) + \Pr(X=-1) = 0.4.$$
+Then $$\E(Y) = \sum_y y p_Y(y) = 0(0.6) + 1(0.4) = 0.4.$$
+
+As shown above, $p_Y(0) = 0.6$ arises from the fact that $x^2=0$ only if
+$x=0$ and $p_Y(1) = 0.4$ arises from the fact that there are two
+elements of $\X$ that yield the value $1$ for $Y$: $-1$ and $1$, with
+probabilities $0.1$ and $0.3$, respectively.
+
+Hence, we can write
+$$\E(Y) = (0)^2 p_X(0) + (-1)^2 p_X(-1) + (1)^2 p_X(1);$$ that is,
+$$\E(Y) = \sum_x x^2 p_X(x) .$$ Alternatively, we can write
+$$\E(X^2) = \sum_x x^2 p_X(x)$$ to avoid the need to define $Y$.
+:::
+
+This result holds in general:
+$$\E\left( g(X) \right) = \sum_{x\in \X} g(x) p_X(x).$$ The proof
+follows the argument given in the example. Let $Y = g(X)$, let $p_Y$
+denote the mass function $Y$ and let $\Y$ denote its range. Then
+$$\E(Y) = \sum_{y\in \Y} y \ p_Y(y).$$ Note that
+$$p_Y(y) = \Pr(Y = y) = \Pr( X\in \{x\in\X: g(x) = y \}) = \sum_{x\in\X: g(x) = y} p_X(x).$$
+Hence, $$\E(Y) = \sum_{y\in\Y} \sum_{x\in\X: g(x)=y} y\, p_X(x) = 
+ \sum_{y\in\Y} \sum_{x: g(x)=y}  g(x) p_X(x).$$ Because every $x$ value
+in the range of $X$ leads to some value $y$ in the range of $Y$, the
+summation $$\sum_{y\in\Y} \sum_{x\in\X: g(x) = y}$$ includes every value
+of $x$; thus, $$\E(Y) = \sum_{x\in\X}  g(x) p_X(x).$$
+
+::: example
+[]{#uni_int label="uni_int"} Let $X$ denote a discrete random variable
+with range $\X = \{1, 2, \ldots, m \}$ for some positive integer $m$ and
+mass function $p$ satisfying
+$$p(1) = p(2) = \cdots = p(m) = \frac{1}{m};$$ because all elements of
+$\X$ have the same probability, this is often referred to as the
+*uniform distribution on $\X$*.
+
+Then, using the well-known result for the sum of first $m$ positive
+integers,
+$$\E(X) = \sum_{j=1}^m j \frac{1}{m} = \frac{1}{m}\sum_{j=1}^m j = \frac{1}{m}\frac{m(m+1)}{2} =\frac{m+1}{2}.$$
+Similarly,
+$$\E(X^2) = \frac{1}{m} \sum_{j=1}^m j^2 = \frac{1}{m} \frac{m(m+1)(2m+1)}{6}
+= \frac{(m+1)(2m+1)}{6},$$ using the formula for the sum of the first
+$m$ squared positive integers.
+:::
+
+### Continuous distributions {#continuous-distributions .unnumbered}
+
+Now consider the case in which $X$ has a continuous distribution with
+density $p_X$ and $g$ is a function on the range of $\X$. Then, by
+analogy with the discrete case,
+$$\E\left(g(X)\right) = \intii g(x) p_X(x) dx.$$ A formal proof of this
+result can be based on a general form of the change-of-variable formula
+for integration and is beyond the scope of this course.
+
+Note that it causes no problem if $g(x)$ is undefined for $x \in A$ for
+some set $A$ such that $\Pr(X\in A)=0$; this set can simply be omitted
+when computing the expected value.
+
+::: example
+Let $X$ denote a random variable with a continuous distribution with
+density function $$p_X(x) = 3 x^2, \ \ 0 < x < 1$$ and consider
+$\E\left(X^{-1} \right)$. Then
+$$\E\left(X^{-1} \right) = \int_0^1 \frac{1}{x} 3 x^2\, dx = 3 \int_0^1 x\, dx = \frac{3}{2}.$$
+:::
+
+::: example
+[]{#stdexp label="stdexp"}
+
+Let $X$ denote a random variable with a continuous distribution with
+density function $$p_X(x) = \exp( -x ), \ \ \ 0 < x < \infty.$$
+
+Consider the expected value of $X^r$ where $r$ is a positive integer.
+Then $$\label{exp_mom}
+ \E(X^r) = \int_0^\infty x^r \exp(-x) dx;$$ this is simply an expression
+for the well-known gamma function evaluated at $r+1$, $\Gamma(r+1)$.
+
+The gamma function is given by
+$$\Gamma(z) = \int_0^\infty t^{z-1} \exp(-t) dt, \ \  z>0.$$ It has the
+properties that $\Gamma(1) = 1$ and $$\Gamma(z+1) = z\Gamma(z).$$
+
+Hence, if $r$ is a positive integer, as in the present example,
+$\Gamma(r+1) = r!$. It follows that $$\E(X^r) = r! ;$$ this result can
+also from successive applications of integration-by-parts in evaluating
+the integral in [\[exp_mom\]](#exp_mom){reference-type="eqref"
+reference="exp_mom"}.
+:::
+
+Expected values of the form $\E(X^r)$ for $r=1, 2, \ldots$ are called
+the *moments* of the distribution or the moments of $X$. Moments will be
+discussed in detail in Chapter 4.
+
+### Expectations of linear functions and sums {#expectations-of-linear-functions-and-sums .unnumbered}
+
+Suppose that $X$ is a random variable, which may be either discrete or
+continuous.
+
+If $g$ is a linear function of the form $g(x) = ax + b$, for some
+constants $a, b$, then $\E\left(g(X) \right)$ can be obtained directly
+from $\\E(X)$: $$\E(aX + b) = a \E(X) + b.$$ This result follows
+directly from the properties of the sum or integral defining the
+expectation. In particular, the expectation of a constant is simply the
+constant: $\E(b) = b$.
+
+::: example
+Let $X$ denote the random variable with range $\{1, 2, \ldots, m\}$ and
+mass function
+$$p_X(x) = \frac{1}{m} \ \ \text{ for }  \ \ x=1, 2, \ldots, m.$$ Note
+this random variable was considered in Example
+[\[uni_int\]](#uni_int){reference-type="ref" reference="uni_int"}, where
+it was shown that $\E(X) = (m+1)/2$.
+
+Let $Y = (X - 1)/m$. Then the range of $Y$ is
+$\{0, 1/m, \ldots, (m-1)/m\}$ and, for $y$ in this set, the mass
+function of $Y$ is given by $$p_Y(y) = \Pr(Y = y) = 1/m.$$ It follows
+that
+$$\E(Y) = \frac{1}{m}\E(X) - \frac{1}{m} = \frac{m+1}{2m} - \frac{1}{m} = \frac{1}{2} - \frac{1}{2m}.$$
+
+This result could also be found directly by computing the sum
+$$\sum_{y=0, 1/m, \ldots, (m-1)/m}{\hspace{-30pt} y\, p_Y(y)} = \sum_{j=0}^{m-1} \frac{j}{m}\frac{1}{m}.$$
+:::
+
+Suppose that the function $g$ can be written as a sum of functions
+$g_1, g_2, \ldots, g_m$; that is,
+$$g(x) = g_1(x) + g_2(x) + \cdots + g_m(x).$$ Then
+$$\E\left(g(X)\right) =  \E\left( g_1(X) + \cdots + g_m(X)\right)  = \E\left( g_1(X) \right) + \cdots + \E\left( g_m(X) \right) .$$
+As with the previous result, this result follows from the properties of
+the sums and integrals.
+
+::: example
+Let $X$ denote a random variable with a continuous distribution with
+density function $$p(x)  = \exp(-x), \ \ x>0.$$ Find
+$\E\left( \cosh(X/2) \right)$, where $\cosh(x)$ is the hyperbolic cosine
+function, given by $$\cosh(x)= \frac{ \exp(x) + \exp(-x)}{2}.$$
+
+Using the properties of the expectations of linear functions and sums,
+$$\begin{aligned}
+ \E\left( \cosh(X/2) \right) &= \E\left( \frac{ \exp(X/2) + \exp(-X/2)}{2} \right) \\
+&= \frac{1}{2}  \E\left( \exp(X/2) + \exp(-X/2) \right) \\
+&= \frac{1}{2} \left( \E\left( \exp(X/2)\right) + \E\left(\exp(-X/2) \right) \right) . 
+\end{aligned}$$
+
+Note that
+$$\E\left( \exp(X/2) \right) = \int_0^\infty \exp(x/2) \exp(-x) dx = \int_0^\infty \exp(-x/2) dx = 2$$
+and
+$$\E\left( \exp(-X/2) \right) = \int_0^\infty \exp(-x/2) \exp(-x) dx = \int_0^\infty \exp(-3x/2) dx = \frac{2}{3}.$$
+It follows that
+$$\E\left( \cosh(X/2) \right) = \frac{1}{2} \left( 2 + \frac{2}{3}\right) = \frac{4}{3}.$$
+:::
+
+### Relationship between expectation and probability {#relationship-between-expectation-and-probability .unnumbered}
+
+As might be expected, there is a close relationship between the
+expectation of functions of a random variable and its probability
+function.
+
+For a set $A\subset \Re$, define the *indicator function* of $A$ by
+$$I_A(x) = \begin{cases} 1 & \text{ if } x\in A \\
+                                      0 & \text{ if } x\notin A
+\end{cases}.$$
+
+Let $X$ denote a random variable; then $I_A(X)$ is a random variable
+that takes two values $1$, with probability $\Pr(X \in A)$ and $0$, with
+probability $\Pr(X \notin A)$. It follows that
+$$\E\left( I_A(X) \right) = 1\cdot \Pr(X\in A) + 0 \cdot \Pr(X \notin A) = \Pr( X\in A).$$
+That is, probability is just a special case of expectation.
+
+Suppose that $X$ has a continuous distribution with density $p$. Then,
+using an integral to compute an expected value,
+$$\Pr(X \in A) = \E(I_A(X)) = \intii I_A(x) p(x)\, dx.$$ Because
+$I_A(x)$ is $1$ if $x\in A$ and $0$ otherwise,
+$$\intii I_A(x) p(x)\, dx = \int_A p(x)\ dx,$$ where $$\int_A$$ denotes
+integration over the set $A$. Thus, $$\Pr(X \in A) = \int_A p(x)\ dx,$$
+generalizing the expression for the distribution function,
+$$\Pr(X \leq x) \equiv \Pr(X \in (-\infty, x]) = \int_{-\infty}^x p(x)\, dx.$$
+
+### A useful inequality {#a-useful-inequality .unnumbered}
+
+Suppose that $X$ is a nonnegative random variable: $\Pr(X \geq 0) = 1$.
+Then $\E(X) \geq 0$ and $\E(X) = 0$ if and only if $\Pr(X  = 0) = 1$.
+
+This property suggests that if, for a nonnegative random variable $X$,
+$\E(X)$ is close to $0$, then $X$ must be close to $0$ with high
+probability. The following result, known as *Markov's inequality* gives
+a bound on $\Pr(X \geq c)$ in terms of $\E(X)$.
+
+::: theorem
+[]{#markov label="markov"} Let $X$ denote a nonnegative random variable.
+For any $c > 0$, $$\Pr( X \geq c ) \leq \frac{\E(X)}{c}.$$
+:::
+
+::: proof
+*Proof.* Fix $c>0$. Let $A = [c, \infty)$ and and let $I_A(\cdot)$
+denote the indicator function of the set $A$.
+
+Consider the function $$z - c I_A(z).$$ Note that, if $z \geq c$, then
+$I_A(z) = 1$ so that $$z - c I_A(z) = z-c \geq 0.$$ If $0 \leq z < c$,
+then $I_A(z) = 0$ so that $$z - c I_A(z) = z \geq 0.$$ It follows that,
+for $z\geq 0$, $$z - c I_A(z) \geq 0.$$
+
+Let $X$ denote a nonnegative random variable. Then $$X - c I_A(X)$$ is
+also a non-negative random variable and, hence,
+$$\E(X - cI_A(X)) = \E(X) - c \E(I_A(X)) \geq 0.$$ Using properties of
+indicator functions, it follows that
+$$\E(X) \geq c \E\left( I_A(X) \right) = c \Pr( X \geq c)$$ or
+$$\Pr(X \geq c) \leq \frac{\E(X)}{c}.$$ ◻
+:::
+
+::: example
+[]{#Markov_ex label="Markov_ex"} Let $X$ denote a continuous random
+variable with density $$p_X(x) =  2/x^3, \ \ x>1;$$ we have seen that
+$\E(X) = 2$.
+
+According to Markov's inequality,
+$$\Pr(X \geq c)  \leq \frac{2}{c} \ \ \text{ for }\ \ c>0.$$
+
+For this distribution, we can calculate $\Pr(X \geq c)$ exactly: for
+$c>1$,
+$$\Pr(X \geq c) = \int_c^\infty \frac{2}{x^3} dx = \frac{2}{c^2}.$$
+
+For instance, for $c=10$, the bound based on Markov's inequality is
+$0.2$, while the true probability is $0.02$.
+:::
+
+Markov's inequality is most useful when $\E(X)$ is easy to determine but
+$\Pr(X \geq c)$ is not. If $X$ is not necessarily nonnegative, then
+Markov's inequality can be applied to $|X|$ so that
+$$\Pr(|X| \geq c) \leq \frac{\E(|X|)}{c}.$$
+
+If $g$ is a nonnegative, strictly increasing, function, then
+$$\Pr(X \geq c) = \Pr(g(X) \geq g(c)) \leq \frac{\E\left( g(X) \right)}{g(c)}.$$
+
+::: example
+Let $X$ denote a continuous random variable with density
+$$p_X(x) =  2/x^3, \ \ x>1,$$ as in Example
+[\[Markov_ex\]](#Markov_ex){reference-type="ref" reference="Markov_ex"}.
+
+Note that, for $r<2$, $$\begin{aligned}
+ \E(X^r) &= \int_1^\infty x^r \frac{2}{x^3} dx\\  &= 2 \int_1^\infty \frac{1}{x^{3-r}} dx \\
+&= \frac{1}{2-r}. 
+\end{aligned}$$
+
+Then, for $c>0$ and $0 < r<2$,
+$$\Pr(X \geq c) = \Pr( X^r \geq c^r) \leq \frac{ \E\left( X^r \right)}{c^r} = \frac{1}{(2-r)c^r}.$$
+
+For instance, for $r=3/2$ and $c=10$, this bound is about $0.063$, while
+the true probability is $0.02$.
+:::
+
+## Some Commonly-Used Families of Distributions
+
+Although a mass or density function can take virtually any form --
+subject to the requirements that it is nonnegative and it either sums or
+integrates to $1$ -- there are certain families of distributions that
+are often used in applications.
+
+We have already seen one of these, the binomial distribution, studied in
+Examples [\[binom_ex2\]](#binom_ex2){reference-type="ref"
+reference="binom_ex2"}, [\[binom_ex3\]](#binom_ex3){reference-type="ref"
+reference="binom_ex3"}, [\[binom_ex4\]](#binom_ex4){reference-type="ref"
+reference="binom_ex4"}, and
+[\[binom_ex5\]](#binom_ex5){reference-type="ref" reference="binom_ex5"}.
+Recall the binomial distribution is a discrete distribution with range
+$\X = \{0, 1, \ldots, n \}$ and mass function
+$$p(x) = {n \choose x} \theta^x (1-\theta)^{n-x}, \ \ x=0, 1, \ldots, n.$$
+Here $n$ and $\theta$ are parameters; $n$ is a positive integer and
+$\theta$ is a real number in the interval $(0, 1)$.
+
+Thus, every choice of parameter values represents a different
+distribution; however, because the distributions for different parameter
+values tend to have similar properties, it is convenient to consider
+them together. The set of possible parameter values is known as the
+*parameter space* for the family.
+
+In this section, we consider a few commonly-used families of
+distribution; others will be introduced as needed throughout the course.
+
+### Gamma distributions {#gamma-distributions .unnumbered}
+
+A random variable $X$ is said to have a *gamma distribution* with
+parameters $\alpha$ and $\beta$ if it has a continuous distribution with
+density function of the form $$\label{gamma_orig}
+ p(x) = \frac{1}{\Gamma(\alpha) \beta^\alpha} x^{\alpha - 1} \exp(- x/\beta), \ \ x>0$$
+where $\alpha>0$ and $\beta>0$.
+
+Here $\Gamma(\cdot)$ is the gamma function, discussed in Example
+[\[stdexp\]](#stdexp){reference-type="ref" reference="stdexp"}. Recall
+that $\Gamma(z)$ is defined for $z>0$ and the gamma function has the
+properties that $\Gamma(1) = 1$ and $$\Gamma(z+1) = z\Gamma(z).$$ Hence,
+if $r$ is a positive integer, $\Gamma(r+1) = r!$.
+
+The gamma distribution illustrates a very useful property of parametric
+families of density functions. Because we know that a density function
+must integrate to $1$, the form of the density function gives us an
+integral identity: $$\label{gamma_ident}
+ \int_0^\infty x^{\alpha - 1} \exp(- x/\beta) dx = \Gamma(\alpha) \beta^\alpha \ \text{ for all }\ \  \alpha>0, \ \ 
+\beta>0.$$
+
+It often happens that the integral identity based on a given density
+function is useful for performing calculations related to that density.
+For instance, suppose that $X$ has a gamma distribution with parameters
+$\alpha$ and $\beta$. Then
+$$\E(X) = \int_0^\infty x \frac{1}{\Gamma(\alpha) \beta^\alpha} x^{\alpha - 1} \exp(- x/\beta) dx.$$
+Note that the integrand in this expression is of a form closely related
+to that of a gamma density:
+$$\int_0^\infty x \frac{1}{\Gamma(\alpha) \beta^\alpha} x^{\alpha - 1} \exp(- x/\beta) dx = 
+ \int_0^\infty \frac{1}{\Gamma(\alpha) \beta^\alpha} x^{\alpha} \exp(- x/\beta) dx.$$
+Using the identity
+[\[gamma_ident\]](#gamma_ident){reference-type="eqref"
+reference="gamma_ident"}, $$\begin{aligned}
+ \int_0^\infty \frac{1}{\Gamma(\alpha) \beta^\alpha} x^{\alpha} \exp(- x/\beta) dx
+&=  \frac{1}{\Gamma(\alpha) \beta^\alpha}  \int_0^\infty  x^{\alpha} \exp(- x/\beta) dx\\
+&= \frac{1}{\Gamma(\alpha) \beta^\alpha}  \Gamma(\alpha+1) \beta^{\alpha+1} \\
+&= \frac{\Gamma(\alpha+1)}{\Gamma(\alpha)} \beta.
+\end{aligned}$$ Using the reproductive property of the gamma function,
+$\Gamma(\alpha+1) = \alpha\Gamma(\alpha)$, so that
+$$\E(X) = \alpha\beta.$$
+
+Often, the density functions of the family of gamma distributions are
+taken to be of the form $$\label{gamma_alt}
+p(x) = \frac{\beta^{\alpha}}{\Gamma(\alpha)} x^{\alpha - 1} \exp(- \beta x), \ \ x>0$$
+where $\alpha>0$ and $\beta>0$. Note that the density functions given in
+equation [\[gamma_orig\]](#gamma_orig){reference-type="eqref"
+reference="gamma_orig"} and those given in
+[\[gamma_alt\]](#gamma_alt){reference-type="eqref"
+reference="gamma_alt"} describe the same family of distributions.
+
+For example, the density function
+$$p(x) = \frac{1}{\Gamma(3) 2^3} x^{2} \exp(- x/2)$$ is of the form
+given by equation [\[gamma_orig\]](#gamma_orig){reference-type="eqref"
+reference="gamma_orig"} with $\alpha = 3$ and $\beta = 2$ and it is also
+of the form given by equation
+[\[gamma_alt\]](#gamma_alt){reference-type="eqref"
+reference="gamma_alt"} with $\alpha = 3$ and $\beta = 1/2$.
+
+In the alternative parameterization given by
+[\[gamma_alt\]](#gamma_alt){reference-type="eqref"
+reference="gamma_alt"}, $$\E(X) = \frac{\alpha}{\beta}.$$
+
+Because both forms of the density function are routinely used, when
+using results regarding the gamma distribution, it is important to keep
+track of which form of the density function is under consideration.
+
+### Exponential distribution {#exponential-distribution .unnumbered}
+
+A special case of the gamma distribution is the *exponential
+distribution*, which is a gamma distribution with parameter $\alpha$
+taken to be $1$. Often (but not always), the parameter $\beta$ of the
+gamma distribution is written in terms of $\lambda =1/\beta$, so that a
+random variable $X$ is said to have an exponential distribution with
+parameter $\lambda$ if it has a continuous distribution with density
+function of the form $$p(x) = \lambda \exp(-\lambda x), \ \ x>0$$ where
+$\lambda>0$.
+
+A *standard* exponential distribution has $\lambda = 1$; thus, the
+density of the standard exponential distribution is $\exp(-x), x>0$.
+
+### Gaussian distribution {#gaussian-distribution .unnumbered}
+
+A random variable $X$ is said to have a *Gaussian distribution* with
+parameters $\mu$ and $\sigma^2$ if it has a continuous distribution with
+density function of the form
+$$p(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left( - \frac{1}{2\sigma^2}(x - \mu)^2 \right), \ \ 
+-\infty < x < \infty$$ where $-\infty < \mu < \infty$ and $\sigma^2>0$.
+Note that $\sigma = \sqrt{\sigma^2}$ is sometimes used in place of
+$\sigma^2$ as a parameter; then $\sigma>0$. Note that the family of
+distributions does not change when this switch is made. The Gaussian
+distribution (also called the *normal distribution*) is the most
+commonly-used distribution in statistics.
+
+The *standard Gaussian distribution* is the Gaussian distribution with
+parameter values $\mu = 0$ and $\sigma^2 = 1$; that is, the standard
+Gaussian distribution has density function
+$$\frac{1}{\sqrt{2\pi}} \exp\left( - \frac{1}{2}x^2 \right), \ \ 
+-\infty < x < \infty.$$
+
+The density function of the Gaussian distribution is often described as
+being a "bell-shaped curve\"; see Figure
+[1.4](#gauss_fig1){reference-type="ref" reference="gauss_fig1"} for a
+plot of the standard Gaussian density.
+
+![Density Function of the Standard Gaussian
+Distribution](stdgauss.pdf){#gauss_fig1 width="75%"}
+
+An important property of the standard Gaussian density is that it is
+symmetric about $0$; this can be seen from the form of the density given
+previously, as well as from the plot of the density in Figure
+[1.4](#gauss_fig1){reference-type="ref" reference="gauss_fig1"}. One
+consequence of this property is that, if $X$ has a standard Gaussian
+distribution, then $$\Pr(X > c) = \Pr(X < -c)$$ for any real number $c$.
+This is illustrated in Figure [1.5](#gauss_fig2){reference-type="ref"
+reference="gauss_fig2"} for the case $c=1$.
+
+For the general Gaussian distribution, with parameter $\mu$ and
+$\sigma$, the density function is symmetric about $x=\mu$, so that
+$$\Pr(X > \mu + c) = \Pr(X < \mu - c)$$ for any real number $c$.
+
+### Poisson distribution {#poisson-distribution .unnumbered}
+
+A random variable $X$ is said to have a *Poisson distribution* with
+parameter $\lambda$ if it has a discrete distribution with range
+$\X = \{0, 1, 2, \ldots\}$ and mass function
+$$p(x) = \frac{\lambda^x \exp(-\lambda)}{x!}, \ \ x=0, 1, 2, \ldots$$
+where $\lambda>0$.
+
+Just as the density function of a continuous distribution gives an
+integral identity, the mass function of discrete distribution gives an
+identity for a certain type of sum. For the Poisson distribution, this
+identity states that
+$$\sum_{x=0}^\infty \frac{\lambda^x \exp(-\lambda)}{x!} = 1$$ or,
+equivalently,
+$$\sum_{x=0}^\infty \frac{\lambda^x }{x!} = \exp(\lambda), \ \ \text{ for all }\ \ \lambda>0.$$
+
+### Distribution table {#distribution-table .unnumbered}
+
+The final page of this chapter contains a table of some commonly-used
+distributions. Note that the variance and the "mgf" (i.e., the
+moment-generating function) of a distribution will be discussed later in
+the course.
+
+![Comparison of Probabilities for the Standard Gaussian
+Distribution](gausscomp.pdf){#gauss_fig2 width="75%"}

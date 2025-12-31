@@ -1,0 +1,2595 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrreprt}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{bookmark}{}{\usepackage{bookmark}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\usepackage{amsthm}
+\theoremstyle{remark}
+\AtBeginDocument{\renewcommand*{\proofname}{Proof}}
+\newtheorem*{remark}{Remark}
+\newtheorem*{solution}{Solution}
+\newtheorem{refremark}{Remark}[chapter]
+\newtheorem{refsolution}{Solution}[chapter]
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Probability and Statistics for ISP},
+  pdfauthor={T. A. Severini},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{Probability and Statistics for ISP}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Course Notes for Statistics 383}
+\author{T. A. Severini}
+\date{2025-12-31}
+\begin{document}
+\maketitle
+
+\renewcommand*\contentsname{Table of contents}
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+
+\bookmarksetup{startatroot}
+
+\chapter*{Preface}\label{preface}
+\addcontentsline{toc}{chapter}{Preface}
+
+\markboth{Preface}{Preface}
+
+This is a Quarto book.
+
+To learn more about Quarto books visit
+\url{https://quarto.org/docs/books}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1} \SpecialCharTok{+} \DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 2
+\end{verbatim}
+
+\bookmarksetup{startatroot}
+
+\chapter{Probability}\label{sec-chap1}
+
+\newcommand{\cip}{\xrightarrow[]{p}}
+\renewcommand{\P}{\mbox{P}}
+\newcommand{\E}{\mbox{E}}
+\newcommand{\Fhat}{\hat{F}}
+\newcommand{\intii}{\int_{-\infty}^\infty}
+\newcommand{\Ybar}{\bar{Y}}
+\newcommand{\Var}{\mbox{Var}}
+\newcommand{\lam}{\lambda}
+\newcommand{\Ph}{\widehat{\mbox{P}}}
+\newcommand{\I}{\mbox{I}}
+\newcommand{\cid}{\xrightarrow[]{D}}
+
+\newcommand{\bfmu}{\bm{\mu}}  
+\newcommand{\bfw}{\bm{w}}
+\newcommand{\bfR}{\bm{R}}
+\newcommand{\bfone}{\bm{1}}
+\newcommand{\bfx}{\bm{x}}
+\newcommand{\bfy}{\bm{y}}
+\newcommand{\bfz}{\bm{z}}
+\newcommand{\bfV}{\bm{\mathcal{V}}}
+\newcommand{\bfVm}{\bm{V}}
+\newcommand{\bfq}{\bm{q}}
+\newcommand{\bfC}{\bm{C}}
+\newcommand{\bfI}{\bm{I}}
+\newcommand{\bfdelta}{\bm{\delta}}
+\newcommand{\bfbeta}{\bm{\beta}}
+\newcommand{\bfS}{\bm{S}}
+\newcommand{\bfalpha}{\bm{\alpha}}
+\newcommand{\bfepsilon}{\bm{\epsilonilon}}
+\newcommand{\bfd}{\bm{d}}
+\newcommand{\bfSigma}{\bm{\Sigma}}
+\newcommand{\tbfSigma}{\tilde{\bfSigma}}
+\newcommand{\bfzero}{\bm{0}}
+\newcommand{\bfA}{\bm{A}}
+\newcommand{\bfa}{\bm{a}}
+\newcommand{\bfB}{\bm{B}}
+\newcommand{\bfh}{\bm{h}}
+\newcommand{\bfv}{\bm{v}}
+\newcommand{\bfX}{\bm{X}}
+\newcommand{\bfu}{\bm{u}}
+\newcommand{\bfg}{\bm{g}}
+\newcommand{\bfb}{\bm{b}}
+\newcommand{\muhat}{\hat{\mu}}
+\newcommand{\bfM}{\bm{M}}
+\newcommand{\bfGamma}{\bm{\Gamma}}
+
+\newcommand{\p}{{q}}
+\newcommand{\bfF}{\bm{F}}
+\newcommand{\phat}{\hat{p}}
+\newcommand{\that}{\hat{\theta}}
+\newcommand{\bbar}{\bar{b}}
+\newcommand{\mhat}{\hat{m}}
+\newcommand{\knumer}{\frac{1}{nh} \sum_{j=1}^n K(\frac{x - X_j}{h})Y_j }
+\newcommand{\given}{{\ | \ }}
+\newcommand{\fhat}{\hat{f}}
+\newcommand{\Cov}{\mbox{Cov}}
+\newcommand{\dmX}{\mathbb{{X}}}
+\newcommand{\covS}{\mathbb{S}}
+\newcommand{\bfe}{\bm{e}}
+\newcommand{\bfell}{\bm{\ell}}
+\newcommand{\bfY}{\bm{Y}}
+\newcommand{\bfL}{\bm{L}}
+\newcommand{\bfPsi}{\bm{\Psi}}
+\newcommand{\bfQ}{\bm{Q}}
+\newcommand{\bfT}{\bm{T}}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Y}{\mathcal{Y}}
+\newcommand{\xbar}{\bar{x}}
+
+\newcommand{\theto}{\theta_0}
+
+\newcommand{\bfZ}{\bm{Z}}
+\newcommand{\bfP}{\bm{P}}
+\newcommand{\bfD}{\bm{D}}
+\newcommand{\bfO}{\bm{O}}
+\newcommand{\bfLambda}{\bm{\Lambda}}
+\newcommand{\bfc}{\bm{c}}
+\newcommand{\bfE}{\bm{E}}
+\newcommand{\bfU}{\bm{U}}
+\newcommand{\bff}{\bm{f}}
+\newcommand{\bfH}{\bm{H}}
+\newcommand{\Xbar}{\bar{X}}
+
+\newcommand{\ybar}{\bar{y}}
+
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\calY}{\mathcal{Y}}
+\newcommand{\calX}{\mathcal{X}}
+\newcommand{\calR}{\mathcal{R}}
+\newcommand\BB{\rule[-1ex]{0pt}{0pt}}  
+\newcommand{\psihat}{{\widehat{\psi}}}
+\newcommand{\thetast}{\theta^*}
+\newcommand{\thetst}{\theta^*}
+
+\newcommand\T{\rule{0pt}{2.6ex}}       
+\newcommand\B{\rule[-1ex]{0pt}{0pt}}
+
+\section{Experiments}\label{experiments}
+
+The starting point for probability theory is the concept of an
+\emph{experiment}. The term experiment may actually refer to a physical
+experiment in the usual sense, but more generally we will refer to
+something as an experiment when it has the following properties:
+
+\begin{itemize}
+\item
+  There is a well-defined set of possible outcomes of the experiment;
+\item
+  Each time the experiment is performed exactly one of the possible
+  outcomes occurs;
+\item
+  The outcome that occurs is governed by some chance mechanism.
+\end{itemize}
+
+Let \(\Omega\) denote the \emph{sample space} of the experiment, the set
+of possible outcomes of the experiment; the term \emph{outcome space} is
+also used. We will refer to the elements of \(\Omega\) as \emph{basic
+outcomes} and use the symbol \(\omega\) to denote a generic basic
+outcome.
+
+\phantomsection\label{onedie1}{} Consider the experiment in which we
+roll a die. Then \[\Omega  = \left\{1, 2, 3, 4, 5, 6 \right\}\] where,
+for example, \(1\) denotes the outcome that we roll a \(1\).
+
+Consider the experiment in which we choose a number from the interval
+\((0, 1)\). Then \(\Omega = (0, 1)\).
+
+\phantomsection\label{urn3}{} Suppose that we have an urn that contains
+three balls, two red balls and one black ball. Consider the experiment
+in which we successively choose two balls from the urn, that is, the
+balls are chosen in such a way that we know which ball was chosen first.
+
+Then the sample space for the experiment can be written
+\[\Omega = \left\{ (R, R), \ (R, B), \ (B, R) \right\},\] where, for
+example, \((R, B)\) means that the first ball selected is red and the
+second ball selected is black.
+
+Now suppose that the order in which the balls were selected is not
+recorded. Then the sample space of the experiment is given by
+\[\Omega = \left\{ \{R, R\}, \ \{R, B\} \right\},\] where, for example,
+\(\{R, B\}\) means that one red ball is selected and one black ball is
+selected.
+
+\section{Events}\label{events}
+
+Consider an experiment with sample space \(\Omega\). A subset \(A\) of
+\(\Omega\) is called an \emph{event}. Let \(A\) be an event. Then, for
+each \(\omega\in\Omega\), either \(\omega\in A\) or \(\omega\notin A\).
+That is, when the experiment is performed, either \(A\) occurs (the
+observed outcome is in \(A\)) or it doesn't occur (the observed outcome
+is not in \(A\)).
+
+\phantomsection\label{onedie2}{} Consider the experiment in which we
+roll a die. Then \[A = \left\{2, 4, 6 \right\}\] is the event that we
+roll an even number.
+
+The event that we roll a number less than or equal to \(3\) is given by
+\[B = \left\{1, 2, 3 \right\}.\]
+
+The event that we roll a \(5\) is given by \[C = \left\{ 5 \right\}.\]
+
+The event that we do not roll an even number, that is, that we roll an
+odd number is given by \(A^c\), the complement of \(A\). Thus,
+\[A^c = \left\{1, 3, 5 \right\}.\]
+
+Consider the experiment in which two balls are drawn successively from
+an urn containing two red balls and one black ball; the sample space for
+this experiment is given in Example \hyperref[urn3]{{[}urn3{]}}.
+
+Let \(A\) denote the event that exactly one red ball is selected. Then
+\[A  = \left\{ (R, B), \ (B, R) \right\}.\]
+
+Because events are defined in terms of sets, sets play a central role in
+probability theory. Here are few basic properties. Let \(A, B, C\) be
+subsets of a sample space \(\Omega\); that is, let \(A, B, C\) be
+events. Recall that \(A \cup B\), the \emph{union} of \(A\) and \(B\),
+is the set consisting of all elements that are either in \(A\), in
+\(B\), or in both \(A\) and \(B\); \(A\cap B\), the \emph{intersection}
+of \(A\) and \(B\), is the set consisting of all elements that are in
+both \(A\) and \(B\). Then
+
+\begin{itemize}
+\item
+  \((A \cup B)\cap C = (A \cap C) \cup (B \cap C)\)
+\item
+  \((A \cap B) \cup C = (A \cup C) \cap (B \cup C)\)
+\item
+  \((A\cup B)^c = A^c \cap B^c\)
+\item
+  \((A \cap B)^c = A^c \cup B^c\).
+\end{itemize}
+
+If these properties are unfamiliar, you can show why they hold using
+Venn diagrams. E.g., consider \((A \cup B)^c = A^c \cap B^c\). Figures
+\hyperref[DeMorg1]{1.1} -- \hyperref[DeMorg3]{1.3} contain Venn diagrams
+of \((A\cup B)^c\), \(A^c\), and \(B^c\), respectively. From these
+diagrams, we can see that \((A \cup B)^c = A^c \cap B^c\).
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth,height=\textheight,keepaspectratio]{demorgan1.pdf}
+
+}
+
+\caption{\((A \cup B)^c\)}
+
+\end{figure}%
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth,height=\textheight,keepaspectratio]{demorgan2new.pdf}
+
+}
+
+\caption{\(A^c\)}
+
+\end{figure}%
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth,height=\textheight,keepaspectratio]{demorgan3.pdf}
+
+}
+
+\caption{\(B^c\)}
+
+\end{figure}%
+
+\section{Probability Functions}\label{prob_fcns}
+
+Consider an experiment with sample space \(\Omega\); recall that the
+outcome of an experiment depends on some ``chance mechanism". It follows
+that whether or not an event \(A\) occurs depends on that chance
+mechanism and we use probability theory to describe the likelihood that
+a given event occurs.
+
+Therefore, associated with each event \(A\) is a probability
+\(\mbox{P}(A)\). Here \(\mbox{P}\) is a function defined on subsets of
+\(\Omega\) and taking values in the interval \([0, 1]\). The function
+\(\mbox{P}\) is required to have certain properties:
+
+\begin{itemize}
+\item
+  \(\mbox{P}(\Omega) = 1\)
+\item
+  If \(A\) and \(B\) are disjoint subsets of \(\Omega\), that is,
+  \(A\cap B = \emptyset\), then
+  \(\mbox{P}(A \cup B) = \mbox{P}(A) + \mbox{P}(B)\).
+\item
+  If \(A_1, A_2, \ldots,\) are disjoint subsets of \(\Omega\), then
+  \[\mbox{P}( \cup_{n=1}^\infty A_n) = \sum_{n=1}^\infty \mbox{P}(A_n).\]
+\end{itemize}
+
+Note that when subsets of \(\Omega\) are disjoint, the corresponding
+events are said to be \emph{mutually exclusive}.
+
+\phantomsection\label{uni_ex}{} Suppose that \(\Omega = (0, 1)\) and
+suppose that the probability of any interval in \(\Omega\) is the length
+of the interval. More generally, we may take the probability of a subset
+\(A\) of \(\Omega\) to be \[\mbox{P}(A) = \int_{A} dx.\]
+
+For example, \[\mbox{P}\left( (0.2, 0.7) \right) = 0.5.\]
+
+Consider the experiment of rolling one die, as discussed in Examples
+\hyperref[onedie1]{{[}onedie1{]}} and \hyperref[onedie2]{{[}onedie2{]}}
+and let \(\Omega\) denote the sample space of the experiment.
+
+For \(A \subset \Omega\), let \(\mbox{P}(A) = |A|/6\), the number of
+elements in \(A\), divided by \(6\).
+
+E.g., the probability of rolling an even number is \(1/2\) and the
+probability of rolling a number greater than or equal to \(5\) is
+\(1/3\).
+
+Note that, when an event consists of a single basic outcome \(\omega\),
+we will write the probability of the event as \(\mbox{P}(\omega)\),
+rather than as \(\mbox{P}(\left\{ \omega \right\})\), which is
+technically correct (because the argument of the probability function
+should be a set).
+
+For instance, in the previous example, the probability of rolling a
+\(6\) will be written as \(\mbox{P}(6)\) instead of as
+\(\mbox{P}(\{ 6 \})\).
+
+When \(\Omega\) is a countable set, then, by properties (P2) and (P3),
+the probability of any event is given by the sum of the probabilities of
+the basic outcomes corresponding to the event:
+\[\mbox{P}(A) = \sum_{\omega \in A} \mbox{P}( \omega).\]
+
+\phantomsection\label{binom_ex}{} Consider an experiment with sample
+space
+\[\Omega = \left\{(0, 0), \ (1, 0), \  (0, 1), \ (1, 1) \right\}.\]
+
+For \(\omega = (x_1, x_2) \in \Omega\), take \[\begin{aligned}
+\mbox{P}(\omega) &= \theta^{x_1} (1-\theta)^{1-x_1} \theta^{x_2} (1-\theta)^{1-x_2} \\
+&= \theta^{x_1 + x_2} (1-\theta)^{2 - x_1 - x_2}
+\end{aligned}\] where \(0 < \theta < 1\) is a given constant.
+
+Thus, the four elements of \(\Omega\) have probabilities
+\((1-\theta)^2, \theta(1-\theta), \theta(1-\theta), \theta^2\),
+respectively.
+
+Let \(A\) denote the event that exactly \(1\) one is observed; then
+\[A = \left\{ (0, 1), \ (1, 0) \right\}.\] It follows that the
+probability of \(A\) is the sum of the probabilities of the two basic
+outcomes in \(A\):
+\[\mbox{P}(A) = \mbox{P}\left( (1, 0) \cup (0, 1) \right) = \mbox{P}\left((1, 0) \right) + \mbox{P}\left( (0, 1) \right) = \theta(1-\theta) + \theta(1-\theta) = 2\theta(1-\theta).\]
+
+\subsection*{Some implications of (P1) --
+(P3)}\label{some-implications-of-p1-p3}
+\addcontentsline{toc}{subsection}{Some implications of (P1) -- (P3)}
+
+There are a number of straightforward consequences of properties
+(P1)-(P3). For instance, because \(\Omega \cup \emptyset = \Omega\) and
+\(\Omega \cap \emptyset = \emptyset\), by (P2)
+\[\mbox{P}(\Omega) = \mbox{P}(\Omega) + \mbox{P}(\emptyset);\] it
+follows that \(\mbox{P}(\emptyset) = 0\).
+
+Let \(A^c\) denote the complement of an set \(A\subset \Omega\). Then
+\(A \cup A^c = \Omega\) and \(A \cap A^c = \emptyset\). It follows from
+(P2) that \[\mbox{P}(\Omega) = \mbox{P}(A) + \mbox{P}(A^c);\] it now
+follows from (P1) that \[\mbox{P}(A^c) = 1 - \mbox{P}(A).\]
+
+Suppose that \(A_1\) and \(A_2\) are subsets of \(\Omega\) that are not
+necessarily disjoint. Then
+\[\mbox{P}(A_1 \cup A_2) =\mbox{P}(A_1) + \mbox{P}(A_2) - \mbox{P}(A_1 \cap 
+A_2).\]
+
+This important result is a little more difficult to prove than the
+others we have considered. First note that \(A_1 \cup A_2\) can be
+written as the union of three sets, \(A_1 \cap A_2\),
+\(A_1 \cap A_2^c\), and \(A_1^c \cap A_2\). Furthermore, these three
+sets are disjoint. An example of this fact is given in the Venn diagram
+in Figure \hyperref[venn]{1.4}. In that diagram, the blue region is
+\(A_1 \cap A_2^c\), the yellow region is \(A_1^c \cap A_2\), and the
+brown region is \(A_1 \cap A_2\); combining these three regions forms
+\(A_1 \cup A_2\).
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{vplot.pdf}
+
+}
+
+\caption{Venn Diagram Used to Illustrate
+\(A_1 \cup A_2 = (A_1 \cap A_2) \cup (A_1 \cap A_2^c) \cup
+(A_1^c \cap A_2)\)}
+
+\end{figure}%
+
+From the Venn diagram we can also see that
+\[A_1 = (A_1 \cap A_2^c) \cup (A_1 \cap A_2) \ \ \text{ and } \ \ 
+A_2 = (A_1^c \cap A_2) \cup (A_1 \cap A_2).\]
+
+It follows from two applications of (P2) that \[\label{probeq1}
+ \mbox{P}(A_1 \cup A_2) = \mbox{P}(A_1 \cap A_2) + \mbox{P}(A_1 \cap A_2^c) + \mbox{P}(A_1^c \cap A_2)\]
+and also that
+\[\mbox{P}(A_1) = \mbox{P}(A_1 \cap A_2^c) + \mbox{P}(A_1 \cap A_2) \ \ \text{ and } \ \ 
+\mbox{P}(A_2) = \mbox{P}(A_1^c \cap A_2) + \mbox{P}(A_1 \cap A_2).\]
+
+From the last two equations, we see that
+\[\mbox{P}(A_1 \cap A_2^c) = \mbox{P}(A_1) - \mbox{P}(A_1 \cap A_2) \ \ \text{ and } \ \ 
+\mbox{P}(A_1^c \cap A_2) = \mbox{P}(A_2) - \mbox{P}(A_1 \cap A_2).\]
+Substituting these expressions into the right-hand side of equation
+\hyperref[probeq1]{{[}probeq1{]}}, it follows that \[\begin{aligned}
+\mbox{P}(A_1 \cup A_2) &= \mbox{P}(A_1 \cap A_2) + \mbox{P}(A_1) - \mbox{P}(A_1 \cap A_2) + \mbox{P}(A_2) - \mbox{P}(A_1 \cap A_2) \\
+&= \mbox{P}(A_1) + \mbox{P}(A_2) - \mbox{P}(A_1 \cap A_2). 
+\end{aligned}\]
+
+Consider an experiment with sample space \(\Omega\) and events
+\(A_1, A_2\). Let \(A_1 \setminus A_2\) denote the elements of \(A_1\)
+that are not in \(A_2\).
+
+Suppose that \(A_2\subset A_1\). Then
+\[\mbox{P}(A_1 \setminus A_2) = \mbox{P}(A_1) - \mbox{P}(A_2).\]
+
+In general, \[A_1 = (A_1 \cap A_2) \cup (A_1 \cap A_2^c) = 
+(A_1 \cap A_2) \cup (A_1 \setminus A_2).\] Note that
+\[A_1\cap A_2 \ \ \text{ and } \ \ A_1 \cap A_2^c\] are disjoint and
+that \[A_1 \cap A_2^c = A_1 \setminus A_2.\] Hence,
+\[\mbox{P}(A_1) = \mbox{P}(A_1 \cap A_2) + \mbox{P}(A_1 \setminus A_2)\]
+so that
+\[\mbox{P}(A_1 \setminus A_2) = \mbox{P}(A_1) - \mbox{P}(A_1 \cap A_2).\]
+
+\subsection*{Interpretation of
+probability}\label{interpretation-of-probability}
+\addcontentsline{toc}{subsection}{Interpretation of probability}
+
+Although we have described the properties of a probability function,
+nothing has been said about what the probability function is measuring.
+In a mathematical sense, that is irrelevant -- a probability function is
+defined by its properties and any function satisfying those properties
+can be used to calculate a ``probability".
+
+However, in order to better understand the mathematical results, and to
+develop some intuition regarding probability theory, it is useful to
+have some notion of what is meant by ``probability". Several different
+interpretations of probability are used in applications. The most
+common, and the one we will use here, is the interpretation of
+probability as a''limiting relative frequency".
+
+Consider an experiment with sample space \(\Omega\) and let \(A\) denote
+an event. According to the limiting relative frequency interpretation of
+probability, the statement that \(A\) has probability \(0.4\) (for
+example), means that if the experiment is repeated a large number of
+times then in about \(40\%\) of those experiments the event \(A\) will
+occur.
+
+More formally, let \(N_n(A)\) denote the number of times the event \(A\)
+occurs in \(n\) repetitions of the experiment. Then
+\[\mbox{P}(A) = \lim_{n\to\infty} \frac{N_n(A)}{n};\] the right-hand
+side of this expression is often described as a ``limiting relative
+frequency".
+
+\section{Sampling from a Finite
+Population}\label{sampling-from-a-finite-population}
+
+A particularly simple, but useful, case occurs when the sample space of
+the experiment, \(\Omega\), is a finite set and each \(\omega\in\Omega\)
+has the same probability.
+
+Write
+\[\Omega = \left\{ \omega_1, \omega_2, \ldots, \omega_m \right\};\] note
+that any subset of \(\Omega\) can be written as the union of sets of the
+form \(\{ \omega_j \}\), which are disjoint. Let
+\(c = \mbox{P}(\omega_j)\) denote the common value of the probability of
+each element of \(\Omega\). Then, because \(\mbox{P}(\Omega) = 1\) and
+\[\mbox{P}(\Omega) = \mbox{P}(\omega_1) + \mbox{P}(\omega_2) + \cdots +  \mbox{P}(\omega_m) = m c\]
+we must have \(c = 1/|\Omega|\) where \(|\Omega|\) denotes the
+cardinality of \(\Omega\), that is, the number of elements in
+\(\Omega\).
+
+Furthermore, for any \(A \subset \Omega\),
+\[\mbox{P}(A) = \sum_{\omega\in A} \mbox{P}(\omega) =  {|A| \over |\Omega|}.\]
+Thus, the problem of determining \(\mbox{P}(A)\) is essentially the
+problem of counting the number of elements in the set \(A\) and the
+number of elements in \(\Omega\). The subfield of mathematics concerned
+with counting the number of elements in a set is known as
+\emph{combinatorics}.
+
+In some cases, such as the one in the following example, the counting
+needed is relatively straightforward.
+
+\phantomsection\label{dice1}{}
+
+Consider the experiment of rolling \(2\) dice, one at a time. The sample
+space of the experiment can be written
+\[\Omega =  \left\{ (1, 1), (1, 2), \ldots, (1, 6), (2, 1), \ldots, (2, 6), \ldots, (6, 1), \ldots, (6, 6) \right\}\]
+so that it has \(36\) elements. Suppose the dice are ``fair", in the
+sense that each element of \(\Omega\) is equally likely.
+
+Let \(A\) denote the event that result of the dice rolling is
+``doubles", i.e., the two numbers rolled are equal, and suppose that we
+are interested in the probability of \(A\).
+
+As noted previously, the sample space \(\Omega\) has \(36\) elements.
+The event \(A\) has \(6\) elements, \((1, 1), (2, 2), \ldots, (6, 6)\).
+Thus, the probability of rolling doubles is \(6/36 = 1/6\).
+
+In other cases, the counting needed is more complicated and it is useful
+to apply one of the many well-known results that are used to solve such
+counting problems. Here we consider only a few simple ones.
+
+\subsection*{Counting principle}\label{counting-principle}
+\addcontentsline{toc}{subsection}{Counting principle}
+
+Many results in combinatorics are based on the \emph{counting
+principle}. Let \(A\) and \(B\) denote finite sets and let \(A\times B\)
+denote the Cartesian product of \(A\) and \(B\), that is, the set of the
+form \[A\times B = \left\{ (a, b): \ a\in A, \ b\in B \right\}.\] Then
+\[|A\times B |= |A| \ |B|.\]
+
+Thus, if a task can be completed in \(r\) stages and there are \(n_j\)
+ways to complete the \(j\)th stage, \(j=1, 2, \ldots, r\), then there
+are \[n_1\times n_2 \times \cdots \times n_r\] ways to complete the
+task.
+
+\subsection*{Permutations and
+combinations}\label{permutations-and-combinations}
+\addcontentsline{toc}{subsection}{Permutations and combinations}
+
+A \emph{permutation} of \(n\) distinct objects is an ordering of them.
+
+The possible permutations of \(a, b, c\) are
+\[abc, \ bac, \ cab, \ acb, \ bca, \ cba.\]
+
+The number of permutations of \(n\) distinct objects can be found using
+the counting principle, breaking the problem into stages. Note that
+there are \(n\) ways to choose the first object, \(n-1\) ways to choose
+the second object, and so on, until there is only \(1\) way to choose
+the last object. Hence, there are
+\[n\cdot (n-1) \cdots (2)\cdot (1) = n!\] ways to order the \(n\)
+objects. That is, there are \(n!\) possible permutations of \(n\)
+distinct objects.
+
+In some cases, we might be interested in ordered \emph{samples} from a
+given set.
+
+The possible ordered samples of size \(2\) from the set \(\{a, b, c \}\)
+are \[(a, b),\ (a, c),\  (b, a),\  (b, c), \ (c, a), \ (c, b).\]
+
+The number of possible ordered samples of size \(k\) from a set of \(n\)
+distinct elements can be found using the counting principle. There are
+\(n\) ways to choose the first element, \(n-1\) ways to choose the
+second element, and so on. However, in contrast to permutations, here we
+stop selecting elements after the \(k\)th selection. Therefore, there
+\[n (n-1) \cdots (n-k+1)\] ordered samples of size \(k\) from a set of
+\(n\) elements; note there are \(k\) terms in this product. The
+expression \(n(n-1)\cdots (n-k+1)\) is often denoted by \((n)_k\); it
+can also be written as \[(n)_k = \frac{n!}{(n-k)!}.\]
+
+\phantomsection\label{urn0}{} Consider an urn containing \(5\) balls,
+\(2\) of which are black and \(3\) of which are red. Suppose that \(2\)
+balls are randomly selected from the urn, without replacement; that is,
+after the first ball is selected, it is not returned to the urn for the
+second selection. Thus, there are \((5)_2 = 5(4) = 20\) basic outcomes
+in \(\Omega\); ``randomly selected" means that any ordered pair of \(2\)
+balls is equally likely to be selected.
+
+Let \(A\) denote the event that a red ball is selected followed by a
+black ball. Find \(\mbox{P}(A)\). Because each basic outcome is assumed
+to have the same probability, \[\mbox{P}(A) = \frac{|A|}{|\Omega|}.\]
+Thus, we need to count the number of basic outcomes in of \(A\).
+
+To find the number of basic outcomes in \(A\), we use the facts that
+there are \(3\) ways to choose the first (red) ball and \(2\) ways to
+choose the second (black) ball. Thus, there are \((3)_2=3(2) = 6\) basic
+outcomes in \(A\). It follows that
+\[\mbox{P}(A) = \frac{6}{20} = \frac{3}{10}.\]
+
+Now suppose that we are interested in the possible \emph{combinations}
+of \(k\) objects chosen from a set of \(n\) distinct objects. When
+considering combinations, the order of the objects is irrelevant; we are
+interested only in the set of \(k\) objects.
+
+The possible combinations of \(2\) elements chosen from the set
+\(\{a, b, c \}\) are given by \[\{a, b \}, \ \{a, c \}, \ \{b, c \}.\]
+
+The number of possible combinations of \(k\) objects chosen from a set
+of \(n\) distinct objects is denoted by \[{n \choose k},\] read as
+``\(n\) choose \(k\)".
+
+To find an expression for \(n\) choose \(k\), consider choosing an
+\textbf{ordered} sample of size \(k\) from \(n\) distinct elements.
+
+This can be done in two steps:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  choose \(k\) elements from \(n\)
+\item
+  order the \(k\) elements
+\end{enumerate}
+
+We know that
+
+\begin{itemize}
+\item
+  there are \((n)_k\) ordered samples of size \(k\) from \(n\) distinct
+  elements
+\item
+  there are \(n\) choose \(k\) ways to choose \(k\) elements from \(n\)
+\item
+  there are \(k!\) ways to order \(k\) elements
+\end{itemize}
+
+Therefore, we must have \[(n)_k = {n \choose k}\, k!\] so that
+\[{n \choose k} =  \frac{(n)_k}{k!} = \frac{n!}{k!\, (n-k)!}.\]
+
+Terms of the form \({n \choose k}\) are often called the \emph{binomial
+coefficients}, because of the binomial formula:
+\[(x+y)^n = \sum_{j=0}^n {n \choose j} x^j y^{n-j}\] for all real
+numbers \(x, y\) and all positive integers \(n\).
+
+Consider the framework of Example \hyperref[urn0]{{[}urn0{]}}: there is
+an urn with \(2\) black balls and \(3\) red balls and \(2\) balls are
+randomly selected from the urn. Let \(B\) denote the event that \(2\)
+red balls are selected. Find \(\mbox{P}(B)\).
+
+The basic outcomes here are the sets of two balls selected from the urn.
+Because each basic outcome is assumed to have the same probability,
+\[\mbox{P}(B) = \frac{|B|}{|\Omega|}.\]
+
+The number of elements in \(\Omega\) is the number of ways to select
+\(2\) balls from the set of \(5\), given by \[{5 \choose 2} = 10.\] The
+number of elements in \(B\) is the number of ways to choose \(2\) red
+balls from the set of \(3\) red balls, given by \[{3 \choose 2} = 3.\]
+Thus, \(\mbox{P}(B) = 3/10\).
+
+Suppose that \(5\) cards are dealt from a well-shuffled deck of playing
+cards. Recall that, in such a deck, there are \(52\) cards and each card
+falls into one of four suits (\(13\) cards in each suit).
+
+What is the probability that all \(5\) cards are of the same suit (i.e.,
+a ``flush", in poker)?
+
+There are \[{52 \choose 5}\] ways to choose \(5\) cards from a deck of
+\(52\). To find the number of ways in which \(5\) cards can be chosen
+from one suit, we can use the counting principle: there are \(4\) ways
+to choose the suit and, given the suit, there are \[{13 \choose 5}\]
+ways to choose the \(5\) cards from the suit. Therefore, there are
+\[4 {13 \choose 5}\] ways to choose \(5\) cards from one suit.
+
+It follows that the probability of being dealt \(5\) cards from one suit
+is \[\begin{aligned}
+\frac{4 {13 \choose 5}}{{52 \choose 5}} &= \frac{4 \frac{13!}{8!\, 5!}}{\frac{52!}{47!\, 5!} }\\
+&= 4 \frac{(13)(12)(11)(10)(9)}{(52)(51)(50)(49)(48)}  \\
+&= 0.00198. 
+\end{aligned}\]
+
+In some cases, it is easier to find the probability of an event \(A\) by
+finding the probability of \(A^c\) and using the fact that
+\(\mbox{P}(A) = 1 - \mbox{P}(A^c)\). In fact, this simple result often
+converts a complicated problem into a relatively easy one.
+
+Suppose that \(n\) cards are dealt from a well-shuffled deck of playing
+cards. What is the probability that at least \(1\) face card is drawn?
+
+We can calculate the probability of being dealt at least one face card
+by calculating the probability of being dealt no face cards and then
+subtracting that result from 1.
+
+In a standard deck of cards, there are \(12\) face cards and \(40\)
+non-face cards.
+
+To be dealt \(n\) non-face cards, \(n\) cards must be chosen from the
+\(40\) non-face cards. There are \[{40 \choose n}\] ways to do this.
+Since there are \[{52 \choose n}\] ways to choose \(n\) cards from the
+entire deck, the probability of being dealt no face cards is
+\[{40 \choose n} \over {52 \choose n}\] and, hence, the probability of
+being dealt at least one face card is
+\[1 - {{40 \choose n} \over {52 \choose n}} = 1 - {40\cdot 39 \cdots (40-n+1) \over 52\cdot 51 \cdots (52-n+1)}.\]
+This result holds for \(n\leq 40\); otherwise the probability is \(0\).
+
+\section{Conditional Probability}\label{conditional-probability}
+
+Consider the dice-rolling experiment discussed in Example
+\hyperref[dice1]{{[}dice1{]}}: two dice are rolled, one at a time. The
+sample space of the experiment, \(\Omega\), has \(36\) elements,
+\[\Omega =  \left\{ (1, 1), (1, 2), \ldots,  (1, 6), (2, 1), \ldots, (2, 6), \ldots, (6, 1), \ldots, (6, 6) \right\}\]
+and each element of \(\Omega\) is equally likely.
+
+Let \(A\) denote the event result of the experiment includes at least
+\(1\) six; then
+\[A = \left\{ (1, 6), (2, 6), (3, 6), (4, 6), (5, 6), (6, 1), (6, 2), (6, 3), (6, 4), (6, 5), (6, 6) \right\},\]
+which has \(11\) elements. Hence, \(\mbox{P}(A)  = 11/36\).
+
+Now suppose that we know that the sum of the dice is at least \(10\).
+Based on this information, what is the probability that the result
+includes at least \(1\) six?
+
+Note that this probability cannot be described in terms of a single
+event, because it includes the condition that the sum of the dice is at
+least \(10\). It is an example of a \emph{conditional probability}.
+
+Let \(B\) denote the event that the sum of the dice is at least \(10\);
+then
+\[B = \left\{ (4, 6), (5, 5), (5, 6), (6, 4), (6, 5), (6, 6) \right\}.\]
+We want to find \(\mbox{P}(A\, |\, B)\), read as the ``conditional
+probability of \(A\) given \(B\)". It is the probability that we roll at
+least \(1\) six \textbf{given that} the sum of the dice is at least
+\(10\).
+
+There are \(6\) elements in \(B\); for \(5\) of these, there is at least
+one six. Therefore, it is reasonable to expect that
+\(\mbox{P}(A\, |\, B) = 5/6\).
+
+This is, in fact, correct. The general formula for a conditional
+probability is
+\[\mbox{P}(A\, |\, B) = \frac{\mbox{P}(A \cap B)}{\mbox{P}(B)},\]
+provided that \(\mbox{P}(B) > 0\). Note that \(A\cap B\) represents the
+part of \(A\) that satisfies the condition \(B\).
+
+In the example,
+\[A \cap B = \left\{ (4, 6), (5, 6), (6, 4), (6, 5), (6, 6) \right\}\]
+so that \(\mbox{P}(A \cap B)  = 5/36\). Using the fact that
+\(\mbox{P}(B) = 6/36\) yields the answer given above.
+
+Conditional probabilities are useful because they allow us to
+incorporate additional information into the probability calculation.
+
+Note that, for a given event \(B\) with \(\mbox{P}(B)>0\), the function
+\(Q\) defined on subsets of \(\Omega\) and given by
+\[\mbox{Q}(A) = \mbox{P}(A\, | \, B)\] is a probability function on
+\(\Omega\), in the sense that it satisfies all the properties of a
+probability function, such as
+\[\mbox{P}(A^c\, | \, B) = 1 - \mbox{P}(A\, | \, B)\] and
+\[\mbox{P}(A_1 \cup A_2\, |\, B) = \mbox{P}(A_1\, |\, B) + \mbox{P}(A_2\, |\, B) - \mbox{P}(A_1 \cap A_2\, | \, B).\]
+
+Consider an urn with \(2\) red balls and \(w\) white balls for some
+\(w\geq 2\). Suppose that \(2\) balls are randomly selected from the
+urn. Given that the balls are the same color, what is the probability
+that they are red?
+
+Define two events, \(A\), the event that both balls are red and \(B\),
+the event that the balls are the same color. Hence, we want to determine
+\(\mbox{P}(A\, |\, B)\).
+
+There are \[{2 + w \choose 2}\] ways to choose \(2\) balls from the urn,
+which contains \(2+w\) balls. There is \(1\) way to choose \(2\) red
+balls and \[{w \choose 2}\] ways to choose \(2\) white balls. Hence,
+\[\mbox{P}(B) = \frac{1 + {w \choose 2}}{{2 + w \choose 2}} = \frac{w(w-1) + 2}{(w+2)(w+1)}\]
+and
+\[\mbox{P}(B) = \frac{1}{{2 + w \choose 2}} = \frac{2}{(w+2)(w+1)}.\]
+
+Note that, because \(A\subset B\), \(A \cup B = A\). It follows that
+\[\begin{aligned}
+\mbox{P}(A\, |\, B) &= \frac{\mbox{P}(A \cap B)}{\mbox{P}(B)} = \frac{\mbox{P}(A)}{\mbox{P}(B)} \\
+&= \frac{ \frac{2}{(w+2)(w+1)} }{ \frac{w(w-1) + 2}{(w+2)(w+1)}} \\
+&= \frac{2}{w(w-1) + 2}. 
+\end{aligned}\]
+
+\subsection*{Multiplication law}\label{multiplication-law}
+\addcontentsline{toc}{subsection}{Multiplication law}
+
+Rewriting the expression for conditional probability yields the
+\emph{multiplication law} for probabilities: for events \(A\), \(B\),
+\[\mbox{P}(A \cap B) = \mbox{P}(B\, | \, A)\mbox{P}(A) = \mbox{P}(A\, | \, B)\mbox{P}(B).\]
+
+\phantomsection\label{urn1}{} Consider an urn with \(r\) red balls and
+\(b\) black balls, where \(r\) and \(b\) are positive integers. Suppose
+that \(2\) balls are randomly selected from the urn, one at a time. What
+is the probability that the first ball is red and the second ball is
+black?
+
+Define two events, \(A\), the event that the first ball is red and
+\(B\), the event that the second ball is black. We want
+\(\mbox{P}(A \cap B)\).
+
+This is a case in which the expression
+\(\mbox{P}(B\, |\, A)\mbox{P}(A)\) may be a convenient way to calculate
+\(\mbox{P}(A \cap B)\): the probability that the first ball is red is
+easy to determine, \[\mbox{P}(A) = \frac{r}{r + b},\] and, given the
+result on the first ball, the probability that the second ball is black
+is also easy to determine.
+
+Specifically, if the first ball is red, that leaves \(r-1\) red balls
+and \(b\) black balls in the urn. Hence,
+\[\mbox{P}(B\, | \, A) = \frac{b}{r -1 + b}.\] It follows that
+\[\mbox{P}(A\cap B) = \frac{r}{r+b}\, \frac{b}{r-1 + b}.\]
+
+\subsection*{Independent events}\label{independent-events}
+\addcontentsline{toc}{subsection}{Independent events}
+
+Roughly speaking, events \(A\) and \(B\) are said to be
+\emph{independent} if the occurrence of one event does not affect the
+probability of the other, in the sense that
+\[\mbox{P}(A\, | \, B) = \mbox{P}(A)\  \text{ and } \ \mbox{P}(B\, | \, A) = \mbox{P}(B).\]
+Using the multiplication law, these can be written
+\[\mbox{P}(A \cap B)= \mbox{P}(A) \mbox{P}(B),\] which is taken as the
+definition of independence.
+
+Consider the example of rolling two fair dice, one at a time. Let \(A\)
+denote the event that result includes at least \(1\) six and \(B\)
+denote the event that the sum is at least \(10\). Then, as we have seen
+in the example at the beginning of this section,
+\(\mbox{P}(A) = 11/36\), \(\mbox{P}(B) = 6/36\), and
+\(\mbox{P}(A \cap B) = 5/36\). Thus, because
+\[\frac{5}{36}\neq \frac{11}{36} \frac{6}{36},\] \(A\) and \(B\) are not
+independent events. That is, knowing that the sum is of the dice is at
+least \(10\) affects the probability that the result includes at least
+\(1\) six. Or, alternatively, knowing that the result includes at least
+\(1\) six affects the probablity that the sum is at least \(10\).
+
+Now consider a third event, \(C\), which denotes the event that the
+first die is a \(4\):
+\[C = \left\{ (4, 1), (4, 2), (4, 3), (4, 4), (4, 5), (4, 6) \right).\]
+Hence \(\mbox{P}(C) = 1/6\).
+
+Note that
+\[A \cap C = \left\{ (4, 6) \right\} \ \ \text{ and } \ \ B \cap C = \left\{ (4, 6) \right\}.\]
+Hence, both \(\mbox{P}(A \cap C)\) and \(\mbox{P}(B \cap C)\) are
+\(1/36\). Because \[\frac{1}{36} \neq \frac{11}{36} \frac{1}{6},\] it
+follows that \(A\) and \(C\) are not independent. However,
+\[\mbox{P}(B \cap C) = \frac{1}{36} = \frac{6}{36} \frac{1}{6} = \mbox{P}(B)\mbox{P}(C)\]
+so that \(B\) and \(C\) are independent events.
+
+Thus, knowing that the first die is a \(4\) does not affect the
+probability that the sum is at least \(10\). Note that \(1/6\) of the
+results in which the first die is a \(4\) have a sum of at least \(10\)
+and \(1/6\) of all results have a sum of at least \(10\).
+
+On the other hand, knowing that the first die is a \(4\) changes the
+probability that the result includes at least one \(6\) from the
+unconditional probability of \(11/36\) to the conditional probability of
+\[\mbox{P}(A\, |\, C)  = \frac{\mbox{P}(A \cap C)}{\mbox{P}(C)} = \frac{1/36}{1/6} = \frac{1}{6}.\]
+
+The concept of independence can be extended to an arbitrary number of
+events. First consider three events, \(A_1, A_2, A_3\). These events are
+said to be independent if
+\[\mbox{P}(A_1 \cap A_2 \cap A_3) = \mbox{P}(A_1) \mbox{P}(A_2) \mbox{P}(A_3), \ \ P(A_1 \cap A_2) = \mbox{P}(A_1)\mbox{P}(A_2),\]
+\[\ \ P(A_1 \cap A_3) = \mbox{P}(A_1) \mbox{P}(A_3) 
+\ \ \text{ and } \ \ P(A_2 \cap A_3) = \mbox{P}(A_2) \mbox{P}(A_3).\]
+
+More generally, a set of \(n\) events \(A_1, A_2, \ldots A_n\) is
+independent if the probability of the intersection of any subset of the
+events is the product of the probabilities of the events in the subset.
+That is, for any integer \(k\), \(1 \leq k \leq n\) and indices
+\(1 \leq i_1 < i_2 < \cdots < i_k \leq n\),
+\[\mbox{P}(A_{i_1} \cap A_{i_2} \cap \cdots \cap A_{i_k}) = \mbox{P}(A_{i_1}) \cdots \mbox{P}(A_{i_k}).\]
+
+(Bernoulli trials) Consider an experiment with a sample space consisting
+of two basic outcomes, \(\omega_1\) and \(\omega_2\). Then there are
+four possible events, \(\emptyset\),
+\(\Omega= \{ \omega_1, \omega_2 \}\), \(\{\omega_1 \}\), and
+\(\{\omega_2 \}\). Thus, the probability function can be described by a
+single number, \(\mbox{P}(\{ \omega_1 \})\); it follows that
+\(\mbox{P}(\{ \omega_2 \})  = 1 - \mbox{P}(\{ \omega_1 \})\). An
+experiment of this form is known as a \emph{Bernoulli trial}.
+
+Now consider an experiment consisting of \(n\) independent replications
+of the experiment. The sample space for this second experiment is given
+by \[\Omega_n = \Omega \times \Omega \times \cdots \times \Omega.\]
+Thus, an element of \(\Omega_n\) can be written
+\((\omega_{i_1}, \omega_{i_2}, \ldots \omega_{i_n})\), where
+\(i_1, i_2, \ldots, i_n\) each take values in the set \(\{1, 2 \}\).
+
+Let \(\mbox{P}_n\) denote the probability function of the experiment.
+The term ``independent replications" refers to the fact that
+\[\mbox{P}_n\left(\{ (\omega_{i_1}, \ldots, \omega_{i_n}) \} \right) =
+\mbox{P}( \{ \omega_{i_1} \}) \mbox{P}(\{ \omega_{i_2} \}) \cdots \mbox{P}( \{ \omega_{i_n} \}).\]
+The experiment with sample space \(\Omega_n\) and probability function
+\(\mbox{P}_n\) is known as a \emph{sequence of Bernoulli trials}.
+
+This is a generalization of the scenario considered in Example
+\hyperref[binom_ex]{{[}binom\_ex{]}}, in which \(n=2\) and \(\omega_1\)
+and \(\omega_2\) were denoted by \(0\) and \(1\), respectively.
+
+\subsection*{The partition theorem}\label{the-partition-theorem}
+\addcontentsline{toc}{subsection}{The partition theorem}
+
+Consider an experiment with sample space \(\Omega\). A \emph{partition}
+of \(\Omega\) is a collection of disjoint subsets of \(\Omega\),
+\(\{ A_1, A_2, \ldots \}\) such that
+\[\bigcup_i A_i \equiv A_1 \cup A_2 \cup \cdots = \Omega.\] Such a
+partition can be either finite or infinite.
+
+Note that any set \(B\subset \Omega\) can be written
+\[B = B\cap \Omega = B \cap \left( \bigcup_i A_i \right) = \bigcup_i B\cap A_i ;\]
+furthermore, \[B\cap A_1,\,  B\cap A_2, \,  \ldots\] are disjoint. It
+follows that \[\label{part1}
+ \mbox{P}(B) = \sum_i \mbox{P}(B \cap A_i).\]
+
+Furthermore, if \(\mbox{P}(A_i) > 0\) for all \(i\), then
+\[\label{part2}
+\mbox{P}(B) = \sum_i \mbox{P}(B\, |\, A_i) \mbox{P}(A_i).\]
+
+The results given in \hyperref[part1]{{[}part1{]}} and
+\hyperref[part2]{{[}part2{]}} are known as the \emph{partition theorem};
+the term \emph{law of total probability} is also used.
+
+Consider an urn with \(r\) red balls and \(b\) black balls. Suppose that
+\(2\) balls are randomly selected from the urn, one at a time. What is
+the probability that the second ball is black?
+
+We analyzed this experiment in Example \hyperref[urn1]{{[}urn1{]}}.
+There we saw that the probability that the second ball is black is easy
+to calculate if we know the result of the first ball. This suggests that
+it may be convenient to use the partition theorem.
+
+Define two events, \(A\), the event that the first ball is red and
+\(B\), the event that the second ball is black. We have seen that
+\[\mbox{P}(A) = \frac{r}{r + b} \ \text{ and } \ \  \mbox{P}(B\, | \, A) = \frac{b}{r -1 + b}.\]
+The same basic argument can be used to find \(\mbox{P}(B\, |\, A^c)\):
+if \(A^c\) occurs, that is, if the first ball is black, then, when the
+second ball is chosen there are \(r\) red balls and \(b-1\) black balls
+in the urn so that \[\mbox{P}(B\, |\, A^c) = \frac{b-1}{r+b-1}.\]
+
+Hence, we can use the partition theorem with \(A_1 = A\) and
+\(A_2 = A^c\): \[\begin{aligned}
+\mbox{P}(B) &= \mbox{P}(B\, |\, A) \mbox{P}(A) + \mbox{P}(B\, |\, A^c)\mbox{P}(A^c) \\ &= \frac{b}{r-1+b}\, \frac{r}{r+b} + \frac{b-1}{r-1+b}\, \frac{b}{r+b} \\
+&=\frac{br + (b-1)b}{(r+b)(r+b-1)} \\
+&= \frac{b}{r+b}. 
+\end{aligned}\]
+
+\subsection*{Bayes' Theorem}\label{bayes-theorem}
+\addcontentsline{toc}{subsection}{Bayes' Theorem}
+
+Consider an experiment and let \(A, B\) be events. In some cases,
+information is available regarding \(\mbox{P}(A\, |\, B)\) but we are
+interested in \(\mbox{P}(B\, |\, A)\). Fortunately, the two conditional
+probabilities are related through \(\mbox{P}(A\cap B)\):
+\[\mbox{P}(A\cap B) =  \mbox{P}(A\, |\, B) \mbox{P}(B)  = \mbox{P}(B\, |\, A)  \mbox{P}(A).\]
+It follows that
+\[\mbox{P}(B\, |\, A)  = \frac{\mbox{P}(A\, |\, B) \mbox{P}(B)}{\mbox{P}(A)},\]
+provided that \(\mbox{P}(A)>0\). This result is known as \emph{Bayes'
+Theorem}.
+
+Bayes' Theorem is often used in conjuction with the partition theorem so
+that, for example,
+\[\mbox{P}(B\, |\, A)  = \frac{\mbox{P}(A\, |\, B) \mbox{P}(B)}{\mbox{P}(A\, |\, B)\mbox{P}(B) + \mbox{P}(A\, |\, B^c)\mbox{P}(B^c)}.\]
+More generally, if \(B_1, B_2, \ldots,\) is a partition of \(\Omega\),
+then
+\[\mbox{P}(B_j\, |\, A)  = \frac{\mbox{P}(A\, |\, B_j) \mbox{P}(B_j)}{\sum_i \mbox{P}(A\, |\, B_i)\mbox{P}(B_i)}.\]
+
+A classic example of the use of Bayes' Theorem is in the analysis of a
+diagnostic test.
+
+Consider a medical diagnostic test for some specified disease. Suppose
+it is known that
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(5\%\) of all patients who take the test have the disease
+\item
+  the \emph{specificity} of the test is \(0.99\). That is, a patient
+  known to not have the disease has a \(99\%\) chance of a negative test
+\item
+  the \emph{sensitivity} of the test is \(0.98\). That is, a patient
+  known to have the disease has a \(98\%\) chance of a positive test
+\end{enumerate}
+
+If a particular patient has a positive result on the test, what is the
+probability that the patient has the disease?
+
+Define two events, \(A\), the event that the patient has the disease and
+\(B\), the event that the patient's test is positive. The facts (1) -
+(3) given above can be rewritten in probability notation:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(\mbox{P}(A) = 0.05\)
+\item
+  \(\mbox{P}(B^c \, | \, A^c) = 0.99\)
+\item
+  \(\mbox{P}(B\, | \, A) = 0.98\)
+\end{enumerate}
+
+We want to find \(\mbox{P}(A\, | \, B)\).
+
+Using Bayes' Theorem, together with the partition theorem,
+\[\begin{aligned}
+\mbox{P}(A\, |\, B)  &= \frac{\mbox{P}(B\, |\, A) \mbox{P}(A)}{\mbox{P}(B\, |\, A)\mbox{P}(A) + \mbox{P}(B\, |\, A^c)\mbox{P}(A^c)} \\
+&= \frac{ (0.98)(0.05)}{(0.98)(0.05) + (0.01)(0.95)} \\
+&= 0.838.
+\end{aligned}\]
+
+Consider an urn with \(3\) red balls and \(2\) black balls and consider
+the experiment in which two balls are chosen from the urn without
+replacement. Let \(A\) denote the event that the first ball selected is
+a red ball and let \(B\) denote the event that the second ball selected
+is a red ball. Find \(\mbox{P}(A\, |\, B)\).
+
+In this example, probabilities that are conditonal on \(A\), that is,
+conditional on the outcome of the first ball, are relatively easy to
+calculate. For instance, if the first ball is red, then the probability
+that the second ball is red is \(2/4 = 1/2\); if the first ball is
+black, then the probability that the second ball is red is \(3/4\).
+Thus,
+\[\mbox{P}(B\, |\, A) = 1/2 \ \ \text{ and } \ \ \mbox{P}(B\, |\, A^c) = 3/4\]
+and, using the fact that \(\mbox{P}(A) = 3/5\), it follows from the law
+of total probability that
+\[\mbox{P}(B) = \mbox{P}(B\, |\, A) \mbox{P}(A) + \mbox{P}(B\, |\, A^c)\mbox{P}(A^c) = \frac{1}{2}\frac{3}{5} + \frac{3}{4}\frac{2}{5} = \frac{3}{5}.\]
+
+To find \(\mbox{P}(A\, |\, B)\) we can use Bayes' Theorem:
+\[\mbox{P}(A\, |\, B) = \frac{\mbox{P}(B\, |\, A) \mbox{P}(A)}{\mbox{P}(B)} = \frac{(1/2)(3/5)}{3/5} = \frac{1}{2}.\]
+
+\bookmarksetup{startatroot}
+
+\chapter{Random Variables}\label{sec-chap2}
+
+\newcommand{\cip}{\xrightarrow[]{p}}
+\renewcommand{\P}{\mbox{P}}
+\newcommand{\E}{\mbox{E}}
+\newcommand{\Fhat}{\hat{F}}
+\newcommand{\intii}{\int_{-\infty}^\infty}
+\newcommand{\Ybar}{\bar{Y}}
+\newcommand{\Var}{\mbox{Var}}
+\newcommand{\lam}{\lambda}
+\newcommand{\Ph}{\widehat{\mbox{P}}}
+\newcommand{\I}{\mbox{I}}
+\newcommand{\cid}{\xrightarrow[]{D}}
+
+\newcommand{\bfmu}{\bm{\mu}}  
+\newcommand{\bfw}{\bm{w}}
+\newcommand{\bfR}{\bm{R}}
+\newcommand{\bfone}{\bm{1}}
+\newcommand{\bfx}{\bm{x}}
+\newcommand{\bfy}{\bm{y}}
+\newcommand{\bfz}{\bm{z}}
+\newcommand{\bfV}{\bm{\mathcal{V}}}
+\newcommand{\bfVm}{\bm{V}}
+\newcommand{\bfq}{\bm{q}}
+\newcommand{\bfC}{\bm{C}}
+\newcommand{\bfI}{\bm{I}}
+\newcommand{\bfdelta}{\bm{\delta}}
+\newcommand{\bfbeta}{\bm{\beta}}
+\newcommand{\bfS}{\bm{S}}
+\newcommand{\bfalpha}{\bm{\alpha}}
+\newcommand{\bfepsilon}{\bm{\epsilonilon}}
+\newcommand{\bfd}{\bm{d}}
+\newcommand{\bfSigma}{\bm{\Sigma}}
+\newcommand{\tbfSigma}{\tilde{\bfSigma}}
+\newcommand{\bfzero}{\bm{0}}
+\newcommand{\bfA}{\bm{A}}
+\newcommand{\bfa}{\bm{a}}
+\newcommand{\bfB}{\bm{B}}
+\newcommand{\bfh}{\bm{h}}
+\newcommand{\bfv}{\bm{v}}
+\newcommand{\bfX}{\bm{X}}
+\newcommand{\bfu}{\bm{u}}
+\newcommand{\bfg}{\bm{g}}
+\newcommand{\bfb}{\bm{b}}
+\newcommand{\muhat}{\hat{\mu}}
+\newcommand{\bfM}{\bm{M}}
+\newcommand{\bfGamma}{\bm{\Gamma}}
+
+\newcommand{\p}{{q}}
+\newcommand{\bfF}{\bm{F}}
+\newcommand{\phat}{\hat{p}}
+\newcommand{\that}{\hat{\theta}}
+\newcommand{\bbar}{\bar{b}}
+\newcommand{\mhat}{\hat{m}}
+\newcommand{\knumer}{\frac{1}{nh} \sum_{j=1}^n K(\frac{x - X_j}{h})Y_j }
+\newcommand{\given}{{\ | \ }}
+\newcommand{\fhat}{\hat{f}}
+\newcommand{\Cov}{\mbox{Cov}}
+\newcommand{\dmX}{\mathbb{{X}}}
+\newcommand{\covS}{\mathbb{S}}
+\newcommand{\bfe}{\bm{e}}
+\newcommand{\bfell}{\bm{\ell}}
+\newcommand{\bfY}{\bm{Y}}
+\newcommand{\bfL}{\bm{L}}
+\newcommand{\bfPsi}{\bm{\Psi}}
+\newcommand{\bfQ}{\bm{Q}}
+\newcommand{\bfT}{\bm{T}}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Y}{\mathcal{Y}}
+\newcommand{\xbar}{\bar{x}}
+
+\newcommand{\theto}{\theta_0}
+
+\newcommand{\bfZ}{\bm{Z}}
+\newcommand{\bfP}{\bm{P}}
+\newcommand{\bfD}{\bm{D}}
+\newcommand{\bfO}{\bm{O}}
+\newcommand{\bfLambda}{\bm{\Lambda}}
+\newcommand{\bfc}{\bm{c}}
+\newcommand{\bfE}{\bm{E}}
+\newcommand{\bfU}{\bm{U}}
+\newcommand{\bff}{\bm{f}}
+\newcommand{\bfH}{\bm{H}}
+\newcommand{\Xbar}{\bar{X}}
+
+\newcommand{\ybar}{\bar{y}}
+
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\calY}{\mathcal{Y}}
+\newcommand{\calX}{\mathcal{X}}
+\newcommand{\calR}{\mathcal{R}}
+\newcommand\BB{\rule[-1ex]{0pt}{0pt}}  
+\newcommand{\psihat}{{\widehat{\psi}}}
+\newcommand{\thetast}{\theta^*}
+\newcommand{\thetst}{\theta^*}
+
+\newcommand\T{\rule{0pt}{2.6ex}}       
+\newcommand\B{\rule[-1ex]{0pt}{0pt}}
+
+\section{Introduction}\label{introduction}
+
+Consider an experiment with sample space \(\Omega\) and let \(\omega\)
+denote an outcome of the experiment so that \(\omega\in\Omega\). In many
+applications we are concerned primarily with certain numerical
+characteristics of \(\omega\), rather than with \(\omega\) itself. A
+\emph{random variable} is a function that takes an element of \(\Omega\)
+and returns a real number.
+
+More formally, define a function \(X: \Omega\to \mathcal{X}\), where
+\(\mathcal{X}\) is a subset of \(\Re\), denote a random variable; the
+set \(\mathcal{X}\) is called the \emph{range} of \(X\) or, sometimes,
+the \emph{sample space} of \(X\). For a given outcome
+\(\omega\in \Omega\), the corresponding value of \(X\) is
+\(x=X(\omega)\).
+
+Probabilities regarding \(X\) may be obtained from the probability
+function \(\mbox{P}\) for the original experiment. Let \(\mbox{P}_X\)
+denote a function such that for any set \(A\subset \mathcal{X}\),
+\(\mbox{P}_X(A)\) denotes the probability that \(X\in A\). Then
+\(\mbox{P}_X\) is a probability function defined on subsets of
+\(\mathcal{X}\) and
+\[\mbox{P}_X(A) = \mbox{P}\big(\{ \omega\in\Omega: X(\omega)\in A \}\big).\]
+Here \[\{ \omega\in\Omega: X(\omega)\in A \}\] is the set of all basic
+outcomes \(\omega\) such that the corresponding value of the random
+variable \(X\), \(X(\omega)\), is in the set \(A\).
+
+Note that, because \(P_X\) defines a probability function on the subsets
+of \(\mathcal{X}\), it must satisfy conditions (P1) - (P3). Also, it is
+often convenient to proceed as if probability function \(\mbox{P}_X\) is
+defined on the entire space \(\Re\). Then the probability of any subset
+of \(\mathcal{X}^c\) is \(0\) and, for any set \(A \subset \Re\),
+\[\mbox{P}_X(A) \equiv \Pr(X\in A) = \Pr(X \in A\cap \mathcal{X}) .\]
+
+We will generally use a less formal notation in which \(\Pr(X\in A)\)
+denotes \(\mbox{P}_X(A)\). For instance, the probability that
+\(X\leq 1\) may be written as either \(\Pr(X\leq 1)\) or
+\(\mbox{P}_X\left( (-\infty, 1]\right)\).
+
+Consider an experiment with two possible outcomes,
+\(\omega_1, \omega_2\); recall that such an experiment is called a
+Bernoulli trial. Hence, \(\Omega = \{ \omega_1, \omega_2\}\).
+
+Define a function \(X\) on a \(\Omega\), i.e., a random variable, by
+\[X(\omega) = \begin{cases} 1 & \text{ if } \omega = \omega_1 \\
+                                          0 & \text{ if } \omega = \omega_2. 
+\end{cases}\] Thus, the range of \(X\) is \(\{0, 1 \}\).
+
+Let \(\theta = \mbox{P}(\{ \omega_1 \})\). Then
+\[\Pr(X = 1) = \theta \ \ \text{ and } \ \ \Pr(X = 0) = 1 - \theta.\]
+
+A random variable with these properties is said to be a \emph{Bernoulli
+random variable}.
+
+\phantomsection\label{binom_ex2}{}
+
+Consider an experiment with sample space
+\[\Omega = \{ x\in \Re^n: x = (x_1, \ldots, x_n), x_j = 0 \ \hbox{ or } 1, \ \ 
+j=1, \ldots, n \}\] so that an element of \(\Omega\) is a vector of ones
+and zeros.
+
+For \(\omega = (x_1, \ldots, x_n) \in \Omega\), take
+\[\mbox{P}(\omega)  = \prod_{j=1}^n \theta^{x_j} (1-\theta)^{1-x_j}\]
+where \(0 < \theta < 1\) is a given constant.
+
+For an element \(\omega\in\Omega\), define
+\[X(\omega) = \sum_{j=1}^n x_j\] so that \(X(\omega)\) is the number of
+ones in \(\omega\).
+
+Then \[\Pr(X = 0) = \mbox{P}((0, 0, \ldots, 0)) = (1-\theta)^n,\]
+\[\Pr(X = 1) = \mbox{P}((1, 0, \ldots, 0)) + \mbox{P}((0, 1, 0, \ldots, 0)) + \cdots 
++ \mbox{P}((0, 0, \ldots, 0, 1)) = n \theta (1-\theta)^{n-1}.\] More
+generally,
+\[\Pr(X = x) = {n \choose x} \theta^x (1-\theta)^{n-x}, \ \ x=0, 1, \ldots, n;\]
+to show this, note that each basic outcome
+\(\omega = (x_1, \ldots, x_n)\) such that \(\sum_{j=1}^n x_j = x\) has
+probability \(\theta^x (1-\theta)^{n-x}\) and there are
+\[{n \choose x}\] basic outcomes with \(\sum_{j=1}^n x_j = x\).
+
+\(X\) is said to have a \emph{binomial distribution} with parameters
+\(n\) and \(\theta\).
+
+Consider the experiment with sample space \(\Omega = (0, 1)\) and
+probability function \(\mbox{P}(\cdot)\) such that
+\[\mbox{P}(A) = \int_A dx, \ \ A\subset (0, 1).\]
+
+Define a random variable \(X\) by
+\[X(\omega) = \omega, \ \ 0 < \omega < 1.\] Then, for any
+\(A\subset (0, 1)\), \[\Pr(X\in A) = \int_A dt.\]
+
+As discussed above, we may take the range of \(X\) to be \(\Re\). Then,
+for any subset \(A\in \Re\), \[\Pr(X\in A) = \int_{A \cap (0, 1)} dt.\]
+For instance, \[\Pr(0.6 < X < 2) = \int_{0.6}^1 dx = 0.4.\]
+
+Note that, in the previous example, we could have simply defined the
+random variable \(X\) to have probability function given by
+\[\Pr(X\in A) = \int_{A \cap (0, 1)} dt, \ \ A\subset \Re\] without
+referring to an underlying experiment.
+
+In this course, we will usually define random variables in that way --
+without first constructing an experiment. However, it is sometimes
+important to keep in mind that a random variable is a real-valued
+function defined on the sample space \(\Omega\) of some experiment.
+
+\section{Distribution Functions}\label{distribution-functions}
+
+Consider a random variable \(X\). The properties of \(X\) are described
+by its probability function \(\mbox{P}_X\), which gives the probability
+that \(X\in A\) for any set \(A\subset \Re\).
+
+However, it is often convenient to specify the distribution of a random
+variable by considering \(\Pr(X\in A)\) for a more limited class of sets
+\(A\). That is, we do not need to specify \(\Pr(X \in A)\) for
+\textbf{all} subsets of \(\Re\) in order to describe the properties of
+\(X\); using a smaller class of subsets of \(\Re\) in this context leads
+to a simplification of the probability theory for random variables.
+
+For instance, consider sets of the form \((-\infty, x]\), for
+\(x\in \Re\), so that \[\Pr(X \in (-\infty, x]) = \Pr(X \leq x).\] The
+\emph{distribution function} of the distribution of \(X\) or, simply,
+the distribution function of \(X\), is the function
+\(F\equiv F_X: \Re\to [0, 1]\) given by
+\[F(x) = \Pr(X \leq x), \ \ -\infty < x < \infty.\]
+
+\phantomsection\label{uniform_ex}{}
+
+Suppose that \(X\) is a random variable such that
+\[\Pr(X\in A) = \int_{A\cap (0, 1)}  \ dx, \ \ A\subset \Re;\] \(X\) is
+said to have a uniform distribution on \((0, 1)\).
+
+The distribution function of this distribution is given by
+\[F(x) = \Pr\{ X \in (-\infty, x] \}=\int_{(-\infty, x]\cap (0, 1)} dt = 
+\begin{cases}0 & \text{ if } x \leq 0 \\
+       x & \text{ if } 0 < x \leq 1 \\
+       1 & \text{ if } x > 1 .
+\end{cases}\] Figure \hyperref[uni_plot]{1.1} gives a plot of \(F\).
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{fig2.383.pdf}
+
+}
+
+\caption{Distribution Function of the Uniform Distribution on
+\((0, 1)\)}
+
+\end{figure}%
+
+\phantomsection\label{binom_ex3}{}
+
+Let \(X\) denote a random variable with a binomial distribution with
+parameters \(n\) and \(\theta\), as described in Example
+\hyperref[binom_ex2]{{[}binom\_ex2{]}}. Then
+\[\Pr(X = x) = {n\choose x} \theta^x (1-\theta)^{n-x}, \ \ x=0, 1, \ldots, n\]
+and, hence, the distribution function of \(X\) is
+\[F(x) = \sum_{j=0, 1, \ldots; j\leq x} {n \choose j} \theta^j 
+(1-\theta)^{n-j}.\] Thus, \(F\) is a step function, with jumps at
+\(0, 1, 2, \ldots, n\).
+
+For instance, suppose that \(X\) has a binomial distribution with
+parameters \(n=2\) and \(\theta = 1/4\). Then
+\[\Pr(X = 0) ={2 \choose 0} \left(\frac{1}{4}\right)^0 \left(\frac{3}{4}\right)^2 = \frac{9}{16},\]
+\[\Pr(X = 1) = {2 \choose 1} \left(\frac{1}{4}\right)^1 \left(\frac{3}{4}\right)^1 = \frac{6}{16},\]
+and, by subtraction, \(\Pr(X = 2) = 1/16\).
+
+It follows that, for \(x < 0\), \(\Pr(X \leq x) = 0\), for
+\(0\leq x < 1\), \[\Pr(X \leq x) = \Pr(X = 0) = \frac{9}{16},\] for
+\(1 \leq x < 2\),
+\[\Pr(X \leq x) = \Pr(X = 0 \cup X=1) = \Pr(X=0) + \Pr(X = 1) = \frac{15}{16},\]
+and for \(x\geq 2\), \(\Pr(X \leq x) = 1\).
+
+Hence, the distribution function of \(X\) is given by \[F(x) =  
+\begin{cases}0 & \text{ if } x < 0 \\
+       \frac{9}{16} & \text{ if } 0 \leq x < 1 \\
+       \frac{15}{16} & \text{ if } 1 \leq x < 2 \\
+       1 & \text{ if } x \geq 2 .
+\end{cases}\] Figure \hyperref[binom_plot]{1.2} gives a plot of \(F\).
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{fig1.383.pdf}
+
+}
+
+\caption{Distribution Function of the Binomial Distribution with
+Parameters \(n=2\) and \(\theta = 1/4\)}
+
+\end{figure}%
+
+Clearly, there are some basic properties which any distribution function
+\(F\) must possess; these are given as properties (DF1)--(DF3) below.
+Furthermore, if a function \(F:\Re\mapsto [0, 1]\) satisfies
+(DF1)--(DF3), then there exists a random variable \(X\) such that \(F\)
+is the distribution function of \(X\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(\lim_{x\to\infty} F(x) = 1\); \(\lim_{x\to -\infty} F(x) = 0\)
+\item
+  If \(x_1 < x_2\) then \(F(x_1) \leq F(x_2)\)
+\item
+  \(\lim_{h\to 0^+} F(x+h) = F(x)\)
+\end{enumerate}
+
+To see why (DF1) must hold, note that, for any \(x\), \(F(x)\) is a
+probability, \(F\) must take values in \([0, 1]\) and, as \(x\)
+approaches \(\infty\),
+\[\Pr(X \leq x) \ \ \text{ approaches } \ \ \Pr(X < \infty)  = 1.\]
+Similarly, \(\Pr(X \leq x)\) must approach \(0\) as \(x\to-\infty\).
+
+For \(h>0\) \[\begin{aligned}
+F(x+h)&= 
+\Pr(X \leq x+h)\\ &= \Pr(X \leq x \cup x < X \leq x+h)\\
+&= \Pr(X \leq x) + \Pr(x < X \leq x+h) \\
+&= F(x) + \Pr(x < X \leq x+h) \\
+\geq F(x); 
+\end{aligned}\] hence, \(F\) must be a nondecreasing function, as stated
+in (DF2).
+
+A distribution function is not necessarily a continuous function;
+however, according to (DF3) (which will not be proven here), a
+distribution function is \emph{right-continuous}. Note that the notation
+\(h\to 0^+\) refers to a sequence of positive numbers that approaches
+\(0\); hence, \(x+h > x\) and \(x+h \to x\) as \(h\to 0^+\).
+
+An example of the right-continuity property of distribution functions is
+given in Figure \hyperref[binom_plot]{1.2}. Clearly, the distribution
+function in that figure is not continuous -- there are jumps at
+\(x=0, 1\), and \(2\). However, it is right-continuous at those points.
+For instance, consider the limit of \(F(x)\) as \(x\) approaches \(2\)
+from above. For all \(x \geq 2\), \(F(x) = 1\) so that
+\[\lim_{h\to 0^+} F(2+h) = 1 = F(2).\]
+
+On the other hand, for all \(1\leq x< 2\), \(F(x) = 15/16\) so that as
+\(x\) approaches \(2\) from below the limit is \(15/16\):
+\[\lim_{h\to 0^-} F(2+h) = 15/16.\] It follows that \(F(x)\) is not
+left-continuous at \(x=2\).
+
+Let \(F_1\) and \(F_2\) denote distribution functions for some random
+variables. Is the function given by \[F(x) = F_1(x) F_2(x),  \ x\in\Re\]
+also a distribution function?
+
+Recall that that \(F\) is a distribution function if it satisfies
+conditions (DF1) through (DF3).
+
+Consider \(F(x) = F_1(x) F_2(x)\). Clearly,
+\[\lim_{x\to\infty} F_1(x) F_2(x) = \lim_{x\to\infty} F_1(x) \ \lim_{x\to\infty} 
+F_2(x) = 1\] and
+\[\lim_{x\to -\infty} F_1(x) F_2(x) = \lim_{x\to\-\infty} F_1(x) \ 
+\lim_{x\to -\infty} F_2(x) = 0,\] establishing (DF1). Similarly,
+\[\lim_{h\to 0^+} F_1(x+h) F_2(x+h) = \lim_{h\to 0^+} F_1(x+h) \ \lim_{h\to 0} 
+F_2(x+h) = F_1(x) F_2(x),\] verifying (DF3). Because
+\(F_1(x_1) \leq F_1(x_2)\) and \(F_2(x_1) \leq F_2(x_2)\) for
+\(x_1 < x_2\), it follows that
+\(F_1(x_1) F_2(x_1) \leq F_1(x_2) F_2(x_2)\), establishing (DF2). Hence,
+\(F\) is a distribution function.
+
+Because of properties (DF1) and (DF2), when giving the form of a
+distribution function, it is convenient to only give the value of the
+function in the range of \(x\) for which \(F(x)\) varies between \(0\)
+and \(1\). For instance, in the uniform distribution example, in which
+\[F(x) = \Pr\{ X \in (-\infty, x] \}=\int_{(-\infty, x]\cap (0, 1)} dx = 
+\begin{cases}0 & \text{ if } x \leq 0 \\
+       x & \text{ if } 0 < x \leq 1 \\
+       1 & \text{ if } x > 1 
+\end{cases}\] we could say that \(F(x) = x\), \(0 \leq
+ x \leq 1\); in this case it is understood that \(F(x) = 0\) for
+\(x< 0\) and \(F(x) = 1\) for \(x>1\).
+
+A distribution function \(F\) gives the probability of sets of the form
+\((-\infty, x]\). However, it can also be used to give the probability
+of an bounded interval of the form \((x_1, x_2]\) where \(x_1 < x_2\).
+
+Note that \[(-\infty, x_1] \cup (x_1, x_2] = (-\infty, x_2];\]
+furthermore, \((-\infty, x_1]\) and \((x_1, x_2]\) are disjoint subsets
+of \(\Re\). It follows that
+\[\Pr(X \in (-\infty, x_2]) = \Pr(X \in (-\infty, x_1]) + \Pr(X \in (x_1, x_2]).\]
+Because
+\[\Pr(X \in (-\infty, x_2]) = F(x_2)  \ \ \text{ and } \ \  \Pr(X \in (-\infty, x_1]) = F(x_1),\]
+it follows that \[\Pr(X \in (x_1, x_2]) = F(x_2) - F(x_1).\]
+
+Thus, we have the following useful result. Let \(X\) denote a random
+variable with distribution function \(F\); Then, for \(x_1 < x_2\),
+\[\Pr( x_1 < X \leq x_2) = F(x_2) - F(x_1).\]
+
+Let \(X\) denote a random variable with distribution function
+\[F(x) = x^2(3 - 2x), \ \ 0 < x < 1.\]
+
+Then
+\[\Pr(0.2 < X \leq 0.5) = F(0.5) - F(0.2) = (0.5)^2(3 - 2(0.5)) - (0.2)^2(3 - 2(0.2)) = 0.3960\]
+and
+\[\Pr(X > 0.8) = \Pr(0.8 < X \leq \infty) = 1 - F(0.8) = 1 - (0.8)^2(3 - 2(0.8)) = 0.1040.\]
+
+Another important property of distribution functions is that the
+distribution function of a random variable completely characterizes its
+distribution: two random variables with the same distribution function
+have the same probability distribution.
+
+Let \(X_1\) and \(X_2\) denote random variables and let \(F_j\) denote
+the distribution function of \(X_j\), \(j=1, 2\).
+
+If \[F_1(x) = F_2(x) \ \ \text{ for all } \ \ -\infty < x < \infty,\]
+then
+\[\Pr(X_1 \in A) = \Pr(X_2 \in A) \ \ \text{ for any set} \ \ A\subset \Re.\]
+
+A proof this result requires sophisticated mathematical techniques and
+is beyond the scope of this course. However, it is not difficult to give
+an informal explanation of why we expect such a result to hold.
+
+The goal is to show that, if \(X_1\) and \(X_2\) have the same
+distribution function (denoted by \(F\)), then, for `any' set
+\(A\subset \Re\), \[\Pr(X_1\in A) = \Pr(X_2\in A).\] First suppose that
+\(A\) is an interval of the form \((a_0, a_1]\). Then
+\[\Pr(X_j \in A) = F(a_1) - F(a_0), \ \ j=1, 2\] so that
+\(\Pr(X_1 \in A) = \Pr(X_2 \in A)\). The same is true for \(A^c\). Now
+consider a second interval \(B=(b_0, b_1]\). Then
+\[A\cap B = \begin{cases} \emptyset & \text{ if } b_0 > a_1 \text{ or } a_0 > b_1 \\
+                    B & \text{ if } a_0 \leq b_0 < b_1 \leq a_1 \\ 
+                    A & \text{ if } b_0 \leq a_0 < a_1 \leq b_1 \\
+                    (a_0, b_1] & \text{ if } b_1 \leq a_1 \text{ and } b_0 \leq a_0 \\
+                    (b_0, a_1] & \text{ if }  a_1 \leq b_1 \text{ and } a_0 \leq b_0 
+\end{cases}.\] In each case, \(A\cap B\) is an interval and, hence,
+\(\Pr(X_j \in A\cap B)\) and \(\Pr(X_j \in A \cup B)\) do not depend on
+\(j=1,2\). The same approach can be used for any finite intersection of
+intervals.
+
+Also note that, because \[(A \cup B)^c = A^c \cap B^c\] and, if
+\(\Pr(X_j \in (A\cup B)^c)\) does not depend on \(j\) then
+\(\Pr(X_j \in (A\cup B))\) does not depend on \(j\), the same type of
+result holds for any finite union of intervals and for any finite
+combination of unions and intersections of intervals.
+
+Hence, if \(X_1\) and \(X_2\) have the same distribution function, then
+\[\Pr(X_1 \in A) = \Pr(X_2 \in A)\] for any set \(A\subset \Re\) that
+can be written in terms of a finite number of intervals of the form
+\((a, b]\) using unions and intersections. The mathematical challenge is
+to extend the result to `any' subset of \(\Re\).
+
+\section{Discrete Distributions}\label{discrete-distributions}
+
+Let \(X\) denote a random variable with range \(\mathcal{X}\). Suppose
+that \(\mathcal{X}\) is a countable set, that is, it is either a finite
+set of the form \[\mathcal{X}= \left\{ x_1, x_2, \ldots, x_m \right\}\]
+or it is an infinite set of the form
+\[\mathcal{X}= \left\{ x_1, x_2, \ldots, \right\}\] where
+\(x_1, x_2, \ldots\) are real numbers. In this case, we say that \(X\)
+has a \emph{discrete distribution} or is a \emph{discrete random
+variable}. We can assume that the elements \(x_1, x_2, \ldots\) of
+\(\mathcal{X}\) are ordered so that \[x_1 < x_2 < \cdots.\]
+
+Define a function \(p:\Re\to [0, 1]\) by \[p(x) = \Pr(X = x).\] The
+function \(p\) is called the \emph{mass function} of the distribution;
+the term \emph{frequency function} is also used. Note that we assume
+that \(p\) is defined for all \(-\infty < x < \infty\); if
+\(x\notin \mathcal{X}\), then \(p(x) = 0\).
+
+Clearly, because probabilities are nonnegative, \(p(x)\geq 0\) for all
+\(x\). Furthermore, if \(\mathcal{X}\) is finite, with \(m\) elements
+\[\label{mass_sum1}
+ \sum_{j=1}^m p(x_j) = 1;\] if \(\mathcal{X}\) is a countably infinite
+set, then \[\label{mass_sum2}
+\sum_{j=1}^\infty p(x_j) = 1.\]
+
+These results follow from the fact that (in the finite \(\mathcal{X}\)
+case), we can write \[\mathcal{X}= \cup_{j=1}^m \{ x_j \}\] where the
+sets \(\{x_1 \}, \{x_2 \}, \ldots\) are disjoint. Then \[\begin{aligned}
+ \Pr(X \in \mathcal{X}) &= \sum_{j=1}^m \Pr(X \in \{x_j \}) = \sum_{j=1}^m \Pr(X = x_j) \\
+&= \sum_{j=1}^m p(x_j).
+\end{aligned}\] The result \hyperref[mass_sum1]{{[}mass\_sum1{]}} now
+follows from \(\Pr(X \in \mathcal{X}) = 1\);
+\hyperref[mass_sum2]{{[}mass\_sum2{]}} follows from a similar argument.
+
+Consider \(\Pr(X \in A)\) where \(A\subset \Re\). Note that
+\[\Pr(X \in A) = \Pr(X \in A \cap \mathcal{X})\] and that
+\[A \cap \mathcal{X}= \{x \in \mathcal{X}: x \in A\}\] so that
+\[\Pr(X \in A) = \sum_{j: x_j\in A} p(x_j).\]
+
+In particular, the distribution function of a discrete random variable
+is discontinuous, with jumps at each value in its range. Let \(X\) be a
+discrete random variable with mass function \(p(\cdot)\) and range
+\(\mathcal{X}\) with elements \(x_j\). Then the distribution function of
+\(X\) is given by \[F(x) = \sum_{j: x_j\leq x} p(x).\]
+
+For instance, suppose that \(x_1 \leq x < x_2\). Then \(F(x) = p(x_1)\);
+however, \(F(x_2) = p(x_1)+p(x_2)\) so that \(F(x)\) has a jump at
+\(x=x_2\). Thus, \(F\) is a step function with jumps at each \(x_j\). We
+have already seen one instance of this property, in the binomial
+distribution discussed in Example
+\hyperref[binom_ex3]{{[}binom\_ex3{]}}; see Figure
+\hyperref[binom_plot]{1.2}.
+
+The converse is also true. That is, if a distribution function \(F\) is
+a step function, with jumps at \(x_1, x_2, \ldots\), then the
+distribution is discrete with range
+\(\mathcal{X}= \{x_1, x_2, \ldots \}\) and mass function \(p(\cdot)\),
+where \(p(x_j)\) is the size of the jump of \(F\) at \(x_j\).
+
+Let \(X\) denote a random variable with range
+\(\mathcal{X}= \{1, 2, \ldots, m \}\) for some \(m=1, 2, \ldots\), and
+let \[\theta_j = \Pr(X = j), \ \ j=1, \ldots, m.\] Therefore,
+\(\theta_j\) are nonnegative, and sum to \(1\);
+\(\theta_1 + \theta_2 + \cdots + \theta_m = 1\).
+
+The distribution function of \(X\) is given by
+\[F(x) = \begin{cases} 0 & \text{ if } x < 1 \\ 
+\theta_1 & \text{ if } 1 \leq x < 2 \\ 
+\theta_1 + \theta_2 & \text{ if } 2 \leq x < 3 \\
+\vdots \\ 
+\theta_1 + \cdots + \theta_{m-1} & \text{ if } m-1 \leq x < m \\ 
+1 & \text{ if } m \leq x \\
+\end{cases}.\]
+
+\phantomsection\label{binom_ex4}{}
+
+Let \(X\) denote the random variable defined in Example
+\hyperref[binom_ex3]{{[}binom\_ex3{]}}. Then
+\(\mathcal{X}= \{0, 1, \ldots, n \}\) and
+\[\Pr(X = x) = {n \choose x} \theta^x (1-\theta)^{n-x}, \ \ x=0, 1, \ldots, 
+n;\] here \(0 < \theta < 1\) is a constant.
+
+Then \(X\) is a discrete random variable with mass function
+\[p(x) = {n \choose x} \theta^x (1-\theta)^{n-x}, \ \ x=0, 1, \ldots, n.\]
+
+Let \(X\) denote a random variable with range
+\(\mathcal{X}= \{1, 2, \ldots\}\) and mass function
+\[p(x) = \left( \frac{1}{2} \right)^x, \ \ x=1, 2, \ldots.\] Note that
+\[\sum_{x=1}^\infty \left( \frac{1}{2} \right)^x =1.\]
+
+For a positive integer \(m\),
+\[\Pr(X \leq m) = \sum_{x=1}^m \left( \frac{1}{2} \right)^x = \frac{1/2 - (1/2)^{m+1}}{1 - 1/2}
+= 1 - \left( \frac{1}{2}\right)^{m}.\] Therefore, the distribution
+function of \(X\) is given by
+\[F(x) = 1 - \left(\frac{1}{2}\right)^m \ \ \text{ for } \ \ m \leq x < m+1.\]
+
+Let \(X\) denote a random variable with a discrete distribution with
+mass function
+\[p_X(x) = \theta ( 1- \theta)^{x-1}, \ \ x=1, 2, \ldots,\] where
+\(0 < \theta < 1\). Consider the probability that \(X\) is even, as a
+function of \(\theta\).
+
+Note that the event that \(X\) is even is given by
+\(\{2, 4, \ldots \}\). It follows that the probability that \(X\) is
+even is
+\[\Pr\left( X\in \{2, 4, \ldots \} \right) = \sum_{x=1}^\infty p_X(2x) = 
+\frac{\theta}{1-\theta} \sum_{x=1}^\infty (1 - \theta)^{2x}.\]
+
+We know that, for \(0 < p < 1\),
+\[\sum_{j=1}^\infty p^j = \frac{p}{1-p};\] it follows that
+\[\sum_{x=1}^\infty (1 - \theta)^{2x} =\frac{(1- \theta)^2}{1 - (1-\theta)^2}.\]
+
+Therefore, the probability that \(X\) is even is
+\[\frac{\theta}{1-\theta} \frac{(1-\theta)^2}{1 - (1-\theta)^2} = \frac{\theta(1-\theta)}{2\theta - \theta^2} = \frac{1 - \theta}{2 - \theta}.\]
+
+\section{Continuous Distributions}\label{den_sec}
+
+Consider a random variable \(X\) with distribution function \(F\) and
+range \(\mathcal{X}\). Suppose there exists a function \(p:\Re\to\Re\)
+such that \[\label{cont_dist}
+ F(x)  = \int_{-\infty}^x p(t) dt, \ \ -\infty < x < \infty .\] The
+function \(p\) is called the \emph{density function} of the distribution
+or, more simply, of \(X\).
+
+Because an integral is a continuous function of its limits, the
+distribution function \(F\) must be a continuous function. Hence, when
+\hyperref[cont_dist]{{[}cont\_dist{]}} holds, we say that the
+distribution of \(X\) is an \emph{continuous distribution};
+alternatively, we say that \(X\) is an \emph{continuous random
+variable}.
+
+Because \(F\) is non-decreasing, \(p\) can be assumed to be non-negative
+and because the limit of \(F(x)\) as \(x\to\infty\) is \(1\), we must
+have \[\int_{-\infty}^\infty p(x) dx = 1.\]
+
+Thus, if \(p\) is a nonnegative function satisfying
+\[\int_{-\infty}^\infty p(x) dx = 1\] then \(p\) is a density function
+of a continuous distribution and there exists a continuous random
+variable with \(p\) as its density function. That is, a continuous
+distribution can be specified by giving its density function.
+
+\phantomsection\label{uni_ex_den}{}
+
+Let \(X\) denote a random variable with the uniform distribution on
+\((0, 1)\), as defined in Example \hyperref[uni_ex]{{[}uni\_ex{]}}. In
+Example \hyperref[uniform_ex]{{[}uniform\_ex{]}} it is shown that the
+distribution function of this distribution is given by
+\[F(x) = \Pr\{ X \in (-\infty, x] \}=\int_{(-\infty, x]\cap (0, 1)} dt = 
+\begin{cases}0 & \text{ if } x \leq 0 \\
+       x & \text{ if } 0 < x \leq 1 \\
+       1 & \text{ if } x > 1 .
+\end{cases}\]
+
+Define a function \(p\) by
+\[p(x) = \begin{cases}1 & \text{ if } 0 \leq x \leq 1 \\
+0 & \text{ otherwise} 
+\end{cases};\] then
+\[F(x) = \int_0^x p(t) dt, \ \ -\infty < x < \infty.\]
+
+It follows that \(X\) has an continuous distribution with density
+function \(p\).
+
+Let \(F\) denote a distribution function for a random variable with a
+continuous distributions and let \(p\) denote the corresponding density
+function.
+
+Is \(\alpha p(\alpha x)\), where \(\alpha>0\), also the density function
+for a random variable with a continuous distribution?
+
+Note that, for \(\alpha>0\), \(\alpha p(\alpha x)\) is nonnegative and
+\[\int_{-\infty}^\infty \alpha p(\alpha x) dx = \int_{-\infty}^\infty p(x)dx = 1;\]
+hence, \(\alpha p(\alpha x)\) is a density function.
+
+For a random variable \(X\) with distribution function \(F\), we have
+seen that \[\Pr(x_1 < X \leq x_2) = F(x_2) - F(x_1).\]
+
+Therefore, if \(X\) has a continuous distribution with density \(p\), it
+follows that the density satisfies \[\begin{aligned}
+\Pr(x_1 < X \leq x_2) &= \int_{-\infty}^{x_2} p(t)\, dt - \int_{-\infty}^{x_1} p(t)\, dt \\
+&= \int_{x_1}^{x_2} p(t)\, dt.
+\end{aligned}\]
+
+It is important to note that there is a slight technical complication to
+the definition of a density function of a continuous distribution: it is
+not uniquely defined. Consider two nonnegative functions \(p_1\) and
+\(p_2\), such that \[\label{eq_den}
+ p_1(x) = p_2(x) \ \ \text{ for all }\ x \text{ except } \tilde{x}_1, \tilde{x}_2, \ldots .\]
+If \[F(x) = \int_{-\infty}^x p_1(t) dt, \ \ -\infty < x < \infty,\] then
+\[F(x) = \int_{-\infty}^x p_2(t) dt, \ \ -\infty < x < \infty.\]
+
+The reason for this is that changing the value of a function at a single
+point (or at a few isolated points) does not change the value of the
+integral. In this case, either \(p_1\) or \(p_2\) may be taken as the
+density function of the distribution. Generally, we use the simplest
+version of the density.
+
+When a condition holds for all \(x\), except for \(x\) in a countable
+set as in \hyperref[eq_den]{{[}eq\_den{]}}, we say that the condition
+hold for \emph{almost all} \(x\). Thus, \hyperref[eq_den]{{[}eq\_den{]}}
+could be written \[p_1(x) = p_2(x) \ \ \text{ for almost all }  \ x .\]
+
+In spite of the nonuniqueness of the density function of a distribution,
+we will refer to ``the" density function of the distribution, with the
+understanding that density functions could be changed slightly without
+changing the distribution.
+
+Let \(X\) denote a random variable with the uniform distribution on
+\((0, 1)\). In Example \hyperref[uni_ex_den]{{[}uni\_ex\_den{]}} it is
+shown that \(X\) has an continuous distribution with density function
+\[p(x) = \begin{cases}1 & \text{ if } 0 \leq x \leq 1 \\
+0 & \text{ otherwise} 
+\end{cases}.\]
+
+Note that the density function of \(X\) may also be taken to be
+\[p_1(x) = \begin{cases}1 & \text{ if } 0 < x  <  1 \\
+0 & \text{ otherwise}
+\end{cases}.\]
+
+That is, \[F(x) = \int_0^x p_1(t) dt, \ \ -\infty < x < \infty\] as
+well.
+
+In giving expressions for density functions, it is often convenient to
+give the value of the density function, \(p(x)\), only for those values
+of \(x\) for which the value is nonzero. For instance, in the previous
+example, the density function might be given as \(p(x) = 1\),
+\(0 < x < 1\). This statement implies that for \(x\geq 1\) or
+\(x\leq 0\), \(p(x) = 0\).
+
+The following theorem shows how the density function and distribution
+are related for continuous distributions; it is essentially the
+fundamental theorem of calculus, which relates differentiation and
+integration.
+
+\phantomsection\label{fund_theorem}{}
+
+Let \(F\) denote the distribution function of a distribution on \(\Re\).
+
+Suppose that \(F\) is continuous and there exists a function \(p\) such
+that \[F'(x) = p(x) \ \ \hbox{ for almost all} \ \ x.\] Then \(p\) is
+the density function corresponding to \(F\).
+
+Let \(X\) denote a random variable with distribution function
+\[F(x) = x^2(3 - 2x), \ \ 0 < x < 1.\] Note that \(F\) is continuous and
+\[F'(x) = \begin{cases}6 (x - x^2) & \text{ if } 0 < x < 1 \\
+                                   0 & \text{ otherwise}
+\end{cases}.\]
+
+It follows that the distribution is continuous with density function
+\[p(x) = 6 (x - x^2), \ \ 0 < x < 1.\]
+
+Let \(X\) denote a random variable with distribution function
+\[F(x) = 1 - \exp(-x), \ \ x>0.\] Note that \(F\) is a continuous
+function but that \(F'(x)\) does not exist at \(x=0\):
+\[\lim_{h\to 0^+} \frac{F(h) - F(0)}{h} = \lim_{h\to 0^+} \frac{1 - \exp(-h)}{h} = 1\]
+while
+\[\lim_{h\to 0^-} \frac{F(h) - F(0)}{h} = \lim_{h\to 0^-} \frac{0}{h} = 0.\]
+
+For \(x \neq 0\), \[F'(x) = \begin{cases} 0 & \text{ if } x<0 \\
+                                 \exp(-x) & \text{ if } x>0
+\end{cases}.\] Hence, the density of the distribution can be taken to be
+\(\exp(-x)\), \(x>0\).
+
+\subsection*{Interpretation of a density
+function}\label{interpretation-of-a-density-function}
+\addcontentsline{toc}{subsection}{Interpretation of a density function}
+
+By the properties of integrals, if \(X\) has a continuous distribution
+with density \(p\), then, for small \(\epsilon>0\),
+\[\Pr(x_0 - \epsilon/2 < X < x_0 + \epsilon/2) = \int_{x_0-\epsilon/2}^{x_0 + \epsilon/2} p(x) 
+dx \doteq p(x_0)\epsilon.\]
+
+Hence, \(p(x)\) can be viewed as being proportional to the probability
+that \(X\) lies in a small interval containing \(x\); it is important to
+note that such an interpretation only gives an intuitive meaning to the
+density function and cannot be used in formal arguments. It follows that
+the density function gives an indication of the relative likelihood of
+different possible values of \(X\).
+
+When working with continuous distributions, density functions are
+usually more informative than distribution functions for assessing the
+basic properties of a probability distribution. Of course,
+mathematically speaking, this statement is nonsense since the
+distribution function completely characterizes a probability
+distribution. However, for understanding the basic properties of the
+distribution of random variable, the density function is often more
+useful than the distribution function.
+
+\phantomsection\label{df_den_ex}{}
+
+Consider a continuous distribution with distribution function
+\[F(x) = (5 - 2x)(x-1)^2, \  1 < x < 2\] and density function
+\[p(x) = 6 (2-x)(x-1), \ \  1 < x < 2.\]
+
+Figure \hyperref[df_den_plot]{1.3} gives a plot of \(F\) and \(p\).
+Based on the plot of \(p\) it is clear that the most likely value of
+\(X\) is \(3/2\) and, for \(z < 1/2\), \(X = 3/2 - z\) and
+\(X =3/2 + z\) are equally likely; these facts are difficult to discern
+from the plot of, or the expression for, the distribution function.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{fig3.383.pdf}
+
+}
+
+\caption{Density and Distribution Functions in Example
+\hyperref[df_den_ex]{{[}df\_den\_ex{]}}}
+
+\end{figure}%
+
+\subsection*{A paradox with continuous random
+variables?}\label{a-paradox-with-continuous-random-variables}
+\addcontentsline{toc}{subsection}{A paradox with continuous random
+variables?}
+
+Let \(Y\) denote random variable with a continuous distribution with
+distribution function \(F\) and density function \(p\) and for a given
+real number \(y\) consider \(\Pr(Y = y)\). Note that for any
+\(\epsilon>0\),
+\[\Pr(Y = y) \leq \Pr\left( Y\in (y-\epsilon, y]\right) = \Pr(y -\epsilon < Y \leq y) = F(y) - F(y-\epsilon)\]
+and, hence,
+\[\Pr(Y = y) \leq \lim_{\epsilon \to 0^+} \left(F(y) - F(y - \epsilon) \right) .\]
+Because the distribution function of a continuous random variable is a
+continuous function, the right-hand side of this expression is \(0\).
+That is, \[\Pr( Y = y) = 0.\]
+
+Because \(y\) is arbitrary we have the interesting result that, for a
+continuous random variable \(Y\),
+\[\Pr(Y = y) = 0 \ \ \text{ for all } \ \ y\in\Re.\] That is, although
+\(Y\) takes values in \(\Re\), for all values of \(y\) in \(\Re\),
+\(\Pr(Y = y) = 0\).
+
+One explanation for this apparent paradox is based on the limiting
+relative frequency interpretation of probability, as discussed in
+Section \hyperref[prob_fcns]{{[}prob\_fcns{]}}. According to that
+interpretation, \(\Pr(Y = y) = 0\) does not mean that \(Y = y\) is
+absolutely impossible. What it means is that, if \(N_n(y)\) is the
+number of times that \(Y=y\) occurs in \(n\) repetitions of the
+experiment, then
+\[\frac{N_n(y)}{n} \to 0 \ \ \text{ as } \ \ n\to \infty.\] Thus,
+\(Y = y\) \textbf{might} occur, but it does not occur very often.
+
+A useful implication of this result is that, for a continuous random
+variable \(Y\),
+\[\Pr(Y \leq y) = \Pr(Y < y \cup Y=y) = \Pr(Y < y) + \Pr(Y = y) = \Pr(Y < y);\]
+similarly, \[\Pr(Y \geq y) = \Pr(Y > y).\]
+
+\section{Expectation}\label{expect}
+
+Let \(X\) denote a random variable with distribution function \(F\). The
+expected value of \(X\), denoted by \(\mbox{E}(X)\), is a summary of the
+distribution of \(X\); it represents a type of ``average value" of
+\(X\). The expected value \(\mbox{E}(X)\) is often described as
+the''mean of \(X\)" or as the ``mean of the distribution."
+
+If \(X\) has a discrete distribution, taking the values
+\(x_1, x_2, \ldots\) with mass function \(p\), then
+\[\mbox{E}(X) = \sum_{j} x_j\ p(x_j);\] this can also be written
+\[\mbox{E}(X)  =\sum_{x\in\mathcal{X}} x\, p(x).\] If \(X\) has a
+continuous distribution with density \(p\), then
+\[\mbox{E}(X) = \int_{-\infty}^\infty x\ p(x) dx.\]
+
+Let \(X\) denote a random variable with a discrete distribution with
+range \(\{0, 1, 2 \}\) and mass function \(p\) given by
+\[p(x) = \begin{cases} \frac{1}{2} & \text{ if } \ x=0 \\
+\frac{1}{4} & \text{ if } \ x=1 \\
+\frac{1}{4} & \text{ if } \ x=2 
+\end{cases}.\]
+
+Then
+\[\mbox{E}(X) = 0\left( \frac{1}{2}\right) + 1 \left( \frac{1}{4} \right) + 2 \left( \frac{1}{4}\right) = \frac{3}{4}.\]
+
+\phantomsection\label{binom_ex5}{} Let \(X\) denote a random variable
+with a binomial distribution with parameters \(n\) and \(\theta\), as
+described in Example 1.4. Then \(X\) is a discrete random variable with
+mass function
+\[p(x) = {n \choose x} \theta^x (1-\theta)^{n-x}, \ \ \ x=0, \ldots, n\]
+so that
+\[\mbox{E}(X) = \sum_{j=0}^n j {n \choose j} \theta^j (1-\theta)^{n-j}.\]
+
+Note that
+\[j {n \choose j} = \frac{n!}{(j-1)! (n-j)!} = n {n-1 \choose j-1}.\]
+Therefore, \[\begin{aligned}
+\sum_{j=0}^n j {n \choose j} \theta^j (1-\theta)^{n-j} &=
+\sum_{j=1}^n j {n \choose j} \theta^j (1-\theta)^{n-j} \\
+&= n\theta \sum_{j=1}^n  {n-1 \choose j-1} \theta^{j-1} (1-\theta)^{n-j}\\
+&= n\theta \sum_{j-1=0}^{n-1}  {n-1 \choose j-1} \theta^{j-1} (1-\theta)^{n-1-(j-1)}\\
+&= n\theta \sum_{k=0}^{n-1}{n-1 \choose k}\theta^k (1-\theta)^{n-1-k}.
+\end{aligned}\]
+
+Note that the terms in the sum
+\[\sum_{k=0}^{n-1}{n-1 \choose k}\theta^k (1-\theta)^{n-1-k}\] are the
+values of the mass function of the binomial distribution with parameters
+\(n-1\) and \(\theta\), evaluated at \(0, 1, \ldots, n-1\). It follows
+that \[\sum_{k=0}^{n-1}{n-1 \choose k}\theta^k (1-\theta)^{n-1-k} = 1\]
+and, hence, \[\mbox{E}(X) = n\theta.\]
+
+Let \(X\) denote a random variable with a continuous distribution with
+density function \[p(x) = \frac{2}{x^3}, \ \  x\geq 1.\]
+
+Then
+\[\mbox{E}(X) = \int_1^\infty x \frac{2}{x^{3}} dx =  \int_1^\infty 
+\frac{2}{x^{2}} dx = -\frac{2}{x}\Bigm|_{1}^\infty = 2.\]
+
+Let \(X\) denote a random variable with a continuous distribution with
+density function \[p(x) = 20 x^3 (1-x), \ \ 0 < x < 1.\]
+
+Then
+\[\mbox{E}(X) = \int_0^1 x\, 20 x^3 (1-x) dx = 20 \int_0^1 (x^4 - x^5) dx = 20 \frac{1}{30} = \frac{2}{3}.\]
+
+\subsection*{Expected value of a non-negative random
+variable}\label{expected-value-of-a-non-negative-random-variable}
+\addcontentsline{toc}{subsection}{Expected value of a non-negative
+random variable}
+
+Let \(X\) denote a random variable satisfying \(\mbox{P}(X\geq 0) = 1\).
+Then \(\mbox{E}(X) \geq 0\).
+
+To see why this holds, consider the case in which \(X\) has a continuous
+distribution with density function \(p\). Because
+\(\mbox{P}(X\geq 0) = 1\), we may assume that \(p(x) = 0\) for all
+\(x\leq 0\). It follows that \[\mbox{E}(X) = \int_0^\infty x\, p(x) dx\]
+and, because \(p(x)\geq 0\) for all \(x\), the integrand
+\(x\, p(x) \geq 0\) for all \(x>0\). Hence, \(\mbox{E}(X)\) cannot be
+negative.
+
+A similar argument holds for a discrete random variable.
+
+\subsection*{Existence of an expected
+value}\label{existence-of-an-expected-value}
+\addcontentsline{toc}{subsection}{Existence of an expected value}
+
+There are three possibilities for an expected value \(\mbox{E}(X)\):
+\(\mbox{E}(X) < \infty\), \(\mbox{E}(X) = \infty\), or \(\mbox{E}(X)\)
+might not exist. In general, \(\mbox{E}(X)\) fails to exist if the
+corresponding sum or integral used in its definition fails to exists.
+
+If \(X\) is nonnegative, then \(\mbox{E}(X)\) always exists, although we
+may have \(\mbox{E}(X) = \infty\). If \(X\) is discrete, \(\mbox{E}(X)\)
+exists and is finite provided that \[\sum_{j} |x_j| \ p(x_j) < \infty;\]
+if \(X\) is continuous, \(\mbox{E}(X)\) exists and is finite provided
+that \[\int_{-\infty}^\infty|x|\ p(x) dx < \infty.\]
+
+Let \(X\) denote a random variable with a continuous distribution with
+density function \[p(x) = \frac{1}{x^2}, \ \  x\geq 1.\]
+
+Then \[\mbox{E}(X) = \int_1^\infty x \frac{1}{x^{2}} dx = \int_1^\infty 
+\frac{1}{x} dx = \log(x) \Bigm|_{1}^\infty = \infty.\]
+
+Let \(X\) denote a random variable with a continuous distribution with
+density function
+\[p(x) = \frac{1}{\pi (1 + x^2)}, \ \  -\infty < x < \infty;\] this is a
+\emph{standard Cauchy distribution}. If \(\mbox{E}(X)\) exists, it must
+be equal to \[\begin{aligned}
+ \int_{-\infty}^\infty \frac{x}{\pi(1 + x^2)} dx &= 
+\int_0^\infty \frac{x}{ 
+\pi(1 + x^2)} dx + \int_{-\infty}^0 \frac{x}{\pi(1 + x^2)} dx \\
+&= \int_0^\infty \frac{x}{ 
+\pi(1 + x^2)} dx - \int_0^\infty \frac{x}{\pi(1 + x^2)} dx. 
+\end{aligned}\] Because
+\[\int_0^\infty {x \over \pi(1 + x^2)} dx = \infty,\]
+\[\int_{-\infty}^\infty \frac{x}{\pi(1 + x^2)} dx = \infty - \infty;\]
+it follows that \(\mbox{E}(X)\) does not exist.
+
+\section{Expectation of a Function of a Random
+Variable}\label{expectation-of-a-function-of-a-random-variable}
+
+Let \(X\) denote a random variable and let \(g\) denote a real-valued
+function defined on the range of \(X\). Define \(Y= g(X)\) and consider
+\(\mbox{E}(Y)\).
+
+\subsection*{Discrete distributions}\label{discrete-distributions-1}
+\addcontentsline{toc}{subsection}{Discrete distributions}
+
+Consider the case in which \(X\) has a discrete distribution. The
+following simple example illustrates the basic argument used in this
+case.
+
+Let \(X\) denote a discrete random variable with range
+\(\mathcal{X}= \{-1, 0, 1\}\) and mass function \(p_X\) with
+\(p_X(-1) = 0.1\), \(p_X(0) = 0.6\), and \(p_X(1) = 0.3\). Let
+\(Y = X^2\). Then \(Y\) is a discrete random variable with range
+\(\{0, 1\}\) and mass function \(p_Y\) with
+\[p_Y(0) =\Pr(Y = 0) = \Pr(X^2=0) = \Pr(X = 0) = 0.6\] and
+\[p_Y(1) = \Pr(Y = 1) =  \Pr(X^2 = 1) = \Pr(X = 1 \cup X=-1) = \Pr(X=1) + \Pr(X=-1) = 0.4.\]
+Then \[\mbox{E}(Y) = \sum_y y p_Y(y) = 0(0.6) + 1(0.4) = 0.4.\]
+
+As shown above, \(p_Y(0) = 0.6\) arises from the fact that \(x^2=0\)
+only if \(x=0\) and \(p_Y(1) = 0.4\) arises from the fact that there are
+two elements of \(\mathcal{X}\) that yield the value \(1\) for \(Y\):
+\(-1\) and \(1\), with probabilities \(0.1\) and \(0.3\), respectively.
+
+Hence, we can write
+\[\mbox{E}(Y) = (0)^2 p_X(0) + (-1)^2 p_X(-1) + (1)^2 p_X(1);\] that is,
+\[\mbox{E}(Y) = \sum_x x^2 p_X(x) .\] Alternatively, we can write
+\[\mbox{E}(X^2) = \sum_x x^2 p_X(x)\] to avoid the need to define \(Y\).
+
+This result holds in general:
+\[\mbox{E}\left( g(X) \right) = \sum_{x\in \mathcal{X}} g(x) p_X(x).\]
+The proof follows the argument given in the example. Let \(Y = g(X)\),
+let \(p_Y\) denote the mass function \(Y\) and let \(\mathcal{Y}\)
+denote its range. Then
+\[\mbox{E}(Y) = \sum_{y\in \mathcal{Y}} y \ p_Y(y).\] Note that
+\[p_Y(y) = \Pr(Y = y) = \Pr( X\in \{x\in\mathcal{X}: g(x) = y \}) = \sum_{x\in\mathcal{X}: g(x) = y} p_X(x).\]
+Hence,
+\[\mbox{E}(Y) = \sum_{y\in\mathcal{Y}} \sum_{x\in\mathcal{X}: g(x)=y} y\, p_X(x) = 
+ \sum_{y\in\mathcal{Y}} \sum_{x: g(x)=y}  g(x) p_X(x).\] Because every
+\(x\) value in the range of \(X\) leads to some value \(y\) in the range
+of \(Y\), the summation
+\[\sum_{y\in\mathcal{Y}} \sum_{x\in\mathcal{X}: g(x) = y}\] includes
+every value of \(x\); thus,
+\[\mbox{E}(Y) = \sum_{x\in\mathcal{X}}  g(x) p_X(x).\]
+
+\phantomsection\label{uni_int}{} Let \(X\) denote a discrete random
+variable with range \(\mathcal{X}= \{1, 2, \ldots, m \}\) for some
+positive integer \(m\) and mass function \(p\) satisfying
+\[p(1) = p(2) = \cdots = p(m) = \frac{1}{m};\] because all elements of
+\(\mathcal{X}\) have the same probability, this is often referred to as
+the \emph{uniform distribution on \(\mathcal{X}\)}.
+
+Then, using the well-known result for the sum of first \(m\) positive
+integers,
+\[\mbox{E}(X) = \sum_{j=1}^m j \frac{1}{m} = \frac{1}{m}\sum_{j=1}^m j = \frac{1}{m}\frac{m(m+1)}{2} =\frac{m+1}{2}.\]
+Similarly,
+\[\mbox{E}(X^2) = \frac{1}{m} \sum_{j=1}^m j^2 = \frac{1}{m} \frac{m(m+1)(2m+1)}{6}
+= \frac{(m+1)(2m+1)}{6},\] using the formula for the sum of the first
+\(m\) squared positive integers.
+
+\subsection*{Continuous distributions}\label{continuous-distributions}
+\addcontentsline{toc}{subsection}{Continuous distributions}
+
+Now consider the case in which \(X\) has a continuous distribution with
+density \(p_X\) and \(g\) is a function on the range of \(\mathcal{X}\).
+Then, by analogy with the discrete case,
+\[\mbox{E}\left(g(X)\right) = \int_{-\infty}^\infty g(x) p_X(x) dx.\] A
+formal proof of this result can be based on a general form of the
+change-of-variable formula for integration and is beyond the scope of
+this course.
+
+Note that it causes no problem if \(g(x)\) is undefined for \(x \in A\)
+for some set \(A\) such that \(\Pr(X\in A)=0\); this set can simply be
+omitted when computing the expected value.
+
+Let \(X\) denote a random variable with a continuous distribution with
+density function \[p_X(x) = 3 x^2, \ \ 0 < x < 1\] and consider
+\(\mbox{E}\left(X^{-1} \right)\). Then
+\[\mbox{E}\left(X^{-1} \right) = \int_0^1 \frac{1}{x} 3 x^2\, dx = 3 \int_0^1 x\, dx = \frac{3}{2}.\]
+
+\phantomsection\label{stdexp}{}
+
+Let \(X\) denote a random variable with a continuous distribution with
+density function \[p_X(x) = \exp( -x ), \ \ \ 0 < x < \infty.\]
+
+Consider the expected value of \(X^r\) where \(r\) is a positive
+integer. Then \[\label{exp_mom}
+ \mbox{E}(X^r) = \int_0^\infty x^r \exp(-x) dx;\] this is simply an
+expression for the well-known gamma function evaluated at \(r+1\),
+\(\Gamma(r+1)\).
+
+The gamma function is given by
+\[\Gamma(z) = \int_0^\infty t^{z-1} \exp(-t) dt, \ \  z>0.\] It has the
+properties that \(\Gamma(1) = 1\) and \[\Gamma(z+1) = z\Gamma(z).\]
+
+Hence, if \(r\) is a positive integer, as in the present example,
+\(\Gamma(r+1) = r!\). It follows that \[\mbox{E}(X^r) = r! ;\] this
+result can also from successive applications of integration-by-parts in
+evaluating the integral in \hyperref[exp_mom]{{[}exp\_mom{]}}.
+
+Expected values of the form \(\mbox{E}(X^r)\) for \(r=1, 2, \ldots\) are
+called the \emph{moments} of the distribution or the moments of \(X\).
+Moments will be discussed in detail in Chapter 4.
+
+\subsection*{Expectations of linear functions and
+sums}\label{expectations-of-linear-functions-and-sums}
+\addcontentsline{toc}{subsection}{Expectations of linear functions and
+sums}
+
+Suppose that \(X\) is a random variable, which may be either discrete or
+continuous.
+
+If \(g\) is a linear function of the form \(g(x) = ax + b\), for some
+constants \(a, b\), then \(\mbox{E}\left(g(X) \right)\) can be obtained
+directly from \(\\E(X)\): \[\mbox{E}(aX + b) = a \mbox{E}(X) + b.\] This
+result follows directly from the properties of the sum or integral
+defining the expectation. In particular, the expectation of a constant
+is simply the constant: \(\mbox{E}(b) = b\).
+
+Let \(X\) denote the random variable with range \(\{1, 2, \ldots, m\}\)
+and mass function
+\[p_X(x) = \frac{1}{m} \ \ \text{ for }  \ \ x=1, 2, \ldots, m.\] Note
+this random variable was considered in Example
+\hyperref[uni_int]{{[}uni\_int{]}}, where it was shown that
+\(\mbox{E}(X) = (m+1)/2\).
+
+Let \(Y = (X - 1)/m\). Then the range of \(Y\) is
+\(\{0, 1/m, \ldots, (m-1)/m\}\) and, for \(y\) in this set, the mass
+function of \(Y\) is given by \[p_Y(y) = \Pr(Y = y) = 1/m.\] It follows
+that
+\[\mbox{E}(Y) = \frac{1}{m}\mbox{E}(X) - \frac{1}{m} = \frac{m+1}{2m} - \frac{1}{m} = \frac{1}{2} - \frac{1}{2m}.\]
+
+This result could also be found directly by computing the sum
+\[\sum_{y=0, 1/m, \ldots, (m-1)/m}{\hspace{-30pt} y\, p_Y(y)} = \sum_{j=0}^{m-1} \frac{j}{m}\frac{1}{m}.\]
+
+Suppose that the function \(g\) can be written as a sum of functions
+\(g_1, g_2, \ldots, g_m\); that is,
+\[g(x) = g_1(x) + g_2(x) + \cdots + g_m(x).\] Then
+\[\mbox{E}\left(g(X)\right) =  \mbox{E}\left( g_1(X) + \cdots + g_m(X)\right)  = \mbox{E}\left( g_1(X) \right) + \cdots + \mbox{E}\left( g_m(X) \right) .\]
+As with the previous result, this result follows from the properties of
+the sums and integrals.
+
+Let \(X\) denote a random variable with a continuous distribution with
+density function \[p(x)  = \exp(-x), \ \ x>0.\] Find
+\(\mbox{E}\left( \cosh(X/2) \right)\), where \(\cosh(x)\) is the
+hyperbolic cosine function, given by
+\[\cosh(x)= \frac{ \exp(x) + \exp(-x)}{2}.\]
+
+Using the properties of the expectations of linear functions and sums,
+\[\begin{aligned}
+ \mbox{E}\left( \cosh(X/2) \right) &= \mbox{E}\left( \frac{ \exp(X/2) + \exp(-X/2)}{2} \right) \\
+&= \frac{1}{2}  \mbox{E}\left( \exp(X/2) + \exp(-X/2) \right) \\
+&= \frac{1}{2} \left( \mbox{E}\left( \exp(X/2)\right) + \mbox{E}\left(\exp(-X/2) \right) \right) . 
+\end{aligned}\]
+
+Note that
+\[\mbox{E}\left( \exp(X/2) \right) = \int_0^\infty \exp(x/2) \exp(-x) dx = \int_0^\infty \exp(-x/2) dx = 2\]
+and
+\[\mbox{E}\left( \exp(-X/2) \right) = \int_0^\infty \exp(-x/2) \exp(-x) dx = \int_0^\infty \exp(-3x/2) dx = \frac{2}{3}.\]
+It follows that
+\[\mbox{E}\left( \cosh(X/2) \right) = \frac{1}{2} \left( 2 + \frac{2}{3}\right) = \frac{4}{3}.\]
+
+\subsection*{Relationship between expectation and
+probability}\label{relationship-between-expectation-and-probability}
+\addcontentsline{toc}{subsection}{Relationship between expectation and
+probability}
+
+As might be expected, there is a close relationship between the
+expectation of functions of a random variable and its probability
+function.
+
+For a set \(A\subset \Re\), define the \emph{indicator function} of
+\(A\) by \[I_A(x) = \begin{cases} 1 & \text{ if } x\in A \\
+                                      0 & \text{ if } x\notin A
+\end{cases}.\]
+
+Let \(X\) denote a random variable; then \(I_A(X)\) is a random variable
+that takes two values \(1\), with probability \(\Pr(X \in A)\) and
+\(0\), with probability \(\Pr(X \notin A)\). It follows that
+\[\mbox{E}\left( I_A(X) \right) = 1\cdot \Pr(X\in A) + 0 \cdot \Pr(X \notin A) = \Pr( X\in A).\]
+That is, probability is just a special case of expectation.
+
+Suppose that \(X\) has a continuous distribution with density \(p\).
+Then, using an integral to compute an expected value,
+\[\Pr(X \in A) = \mbox{E}(I_A(X)) = \int_{-\infty}^\infty I_A(x) p(x)\, dx.\]
+Because \(I_A(x)\) is \(1\) if \(x\in A\) and \(0\) otherwise,
+\[\int_{-\infty}^\infty I_A(x) p(x)\, dx = \int_A p(x)\ dx,\] where
+\[\int_A\] denotes integration over the set \(A\). Thus,
+\[\Pr(X \in A) = \int_A p(x)\ dx,\] generalizing the expression for the
+distribution function,
+\[\Pr(X \leq x) \equiv \Pr(X \in (-\infty, x]) = \int_{-\infty}^x p(x)\, dx.\]
+
+\subsection*{A useful inequality}\label{a-useful-inequality}
+\addcontentsline{toc}{subsection}{A useful inequality}
+
+Suppose that \(X\) is a nonnegative random variable:
+\(\Pr(X \geq 0) = 1\). Then \(\mbox{E}(X) \geq 0\) and
+\(\mbox{E}(X) = 0\) if and only if \(\Pr(X  = 0) = 1\).
+
+This property suggests that if, for a nonnegative random variable \(X\),
+\(\mbox{E}(X)\) is close to \(0\), then \(X\) must be close to \(0\)
+with high probability. The following result, known as \emph{Markov's
+inequality} gives a bound on \(\Pr(X \geq c)\) in terms of
+\(\mbox{E}(X)\).
+
+\phantomsection\label{markov}{} Let \(X\) denote a nonnegative random
+variable. For any \(c > 0\),
+\[\Pr( X \geq c ) \leq \frac{\mbox{E}(X)}{c}.\]
+
+\begin{proof}
+\emph{Proof.} Fix \(c>0\). Let \(A = [c, \infty)\) and and let
+\(I_A(\cdot)\) denote the indicator function of the set \(A\).
+
+Consider the function \[z - c I_A(z).\] Note that, if \(z \geq c\), then
+\(I_A(z) = 1\) so that \[z - c I_A(z) = z-c \geq 0.\] If
+\(0 \leq z < c\), then \(I_A(z) = 0\) so that
+\[z - c I_A(z) = z \geq 0.\] It follows that, for \(z\geq 0\),
+\[z - c I_A(z) \geq 0.\]
+
+Let \(X\) denote a nonnegative random variable. Then \[X - c I_A(X)\] is
+also a non-negative random variable and, hence,
+\[\mbox{E}(X - cI_A(X)) = \mbox{E}(X) - c \mbox{E}(I_A(X)) \geq 0.\]
+Using properties of indicator functions, it follows that
+\[\mbox{E}(X) \geq c \mbox{E}\left( I_A(X) \right) = c \Pr( X \geq c)\]
+or \[\Pr(X \geq c) \leq \frac{\mbox{E}(X)}{c}.\]~◻
+\end{proof}
+
+\phantomsection\label{Markov_ex}{} Let \(X\) denote a continuous random
+variable with density \[p_X(x) =  2/x^3, \ \ x>1;\] we have seen that
+\(\mbox{E}(X) = 2\).
+
+According to Markov's inequality,
+\[\Pr(X \geq c)  \leq \frac{2}{c} \ \ \text{ for }\ \ c>0.\]
+
+For this distribution, we can calculate \(\Pr(X \geq c)\) exactly: for
+\(c>1\),
+\[\Pr(X \geq c) = \int_c^\infty \frac{2}{x^3} dx = \frac{2}{c^2}.\]
+
+For instance, for \(c=10\), the bound based on Markov's inequality is
+\(0.2\), while the true probability is \(0.02\).
+
+Markov's inequality is most useful when \(\mbox{E}(X)\) is easy to
+determine but \(\Pr(X \geq c)\) is not. If \(X\) is not necessarily
+nonnegative, then Markov's inequality can be applied to \(|X|\) so that
+\[\Pr(|X| \geq c) \leq \frac{\mbox{E}(|X|)}{c}.\]
+
+If \(g\) is a nonnegative, strictly increasing, function, then
+\[\Pr(X \geq c) = \Pr(g(X) \geq g(c)) \leq \frac{\mbox{E}\left( g(X) \right)}{g(c)}.\]
+
+Let \(X\) denote a continuous random variable with density
+\[p_X(x) =  2/x^3, \ \ x>1,\] as in Example
+\hyperref[Markov_ex]{{[}Markov\_ex{]}}.
+
+Note that, for \(r<2\), \[\begin{aligned}
+ \mbox{E}(X^r) &= \int_1^\infty x^r \frac{2}{x^3} dx\\  &= 2 \int_1^\infty \frac{1}{x^{3-r}} dx \\
+&= \frac{1}{2-r}. 
+\end{aligned}\]
+
+Then, for \(c>0\) and \(0 < r<2\),
+\[\Pr(X \geq c) = \Pr( X^r \geq c^r) \leq \frac{ \mbox{E}\left( X^r \right)}{c^r} = \frac{1}{(2-r)c^r}.\]
+
+For instance, for \(r=3/2\) and \(c=10\), this bound is about \(0.063\),
+while the true probability is \(0.02\).
+
+\section{Some Commonly-Used Families of
+Distributions}\label{some-commonly-used-families-of-distributions}
+
+Although a mass or density function can take virtually any form --
+subject to the requirements that it is nonnegative and it either sums or
+integrates to \(1\) -- there are certain families of distributions that
+are often used in applications.
+
+We have already seen one of these, the binomial distribution, studied in
+Examples \hyperref[binom_ex2]{{[}binom\_ex2{]}},
+\hyperref[binom_ex3]{{[}binom\_ex3{]}},
+\hyperref[binom_ex4]{{[}binom\_ex4{]}}, and
+\hyperref[binom_ex5]{{[}binom\_ex5{]}}. Recall the binomial distribution
+is a discrete distribution with range
+\(\mathcal{X}= \{0, 1, \ldots, n \}\) and mass function
+\[p(x) = {n \choose x} \theta^x (1-\theta)^{n-x}, \ \ x=0, 1, \ldots, n.\]
+Here \(n\) and \(\theta\) are parameters; \(n\) is a positive integer
+and \(\theta\) is a real number in the interval \((0, 1)\).
+
+Thus, every choice of parameter values represents a different
+distribution; however, because the distributions for different parameter
+values tend to have similar properties, it is convenient to consider
+them together. The set of possible parameter values is known as the
+\emph{parameter space} for the family.
+
+In this section, we consider a few commonly-used families of
+distribution; others will be introduced as needed throughout the course.
+
+\subsection*{Gamma distributions}\label{gamma-distributions}
+\addcontentsline{toc}{subsection}{Gamma distributions}
+
+A random variable \(X\) is said to have a \emph{gamma distribution} with
+parameters \(\alpha\) and \(\beta\) if it has a continuous distribution
+with density function of the form \[\label{gamma_orig}
+ p(x) = \frac{1}{\Gamma(\alpha) \beta^\alpha} x^{\alpha - 1} \exp(- x/\beta), \ \ x>0\]
+where \(\alpha>0\) and \(\beta>0\).
+
+Here \(\Gamma(\cdot)\) is the gamma function, discussed in Example
+\hyperref[stdexp]{{[}stdexp{]}}. Recall that \(\Gamma(z)\) is defined
+for \(z>0\) and the gamma function has the properties that
+\(\Gamma(1) = 1\) and \[\Gamma(z+1) = z\Gamma(z).\] Hence, if \(r\) is a
+positive integer, \(\Gamma(r+1) = r!\).
+
+The gamma distribution illustrates a very useful property of parametric
+families of density functions. Because we know that a density function
+must integrate to \(1\), the form of the density function gives us an
+integral identity: \[\label{gamma_ident}
+ \int_0^\infty x^{\alpha - 1} \exp(- x/\beta) dx = \Gamma(\alpha) \beta^\alpha \ \text{ for all }\ \  \alpha>0, \ \ 
+\beta>0.\]
+
+It often happens that the integral identity based on a given density
+function is useful for performing calculations related to that density.
+For instance, suppose that \(X\) has a gamma distribution with
+parameters \(\alpha\) and \(\beta\). Then
+\[\mbox{E}(X) = \int_0^\infty x \frac{1}{\Gamma(\alpha) \beta^\alpha} x^{\alpha - 1} \exp(- x/\beta) dx.\]
+Note that the integrand in this expression is of a form closely related
+to that of a gamma density:
+\[\int_0^\infty x \frac{1}{\Gamma(\alpha) \beta^\alpha} x^{\alpha - 1} \exp(- x/\beta) dx = 
+ \int_0^\infty \frac{1}{\Gamma(\alpha) \beta^\alpha} x^{\alpha} \exp(- x/\beta) dx.\]
+Using the identity \hyperref[gamma_ident]{{[}gamma\_ident{]}},
+\[\begin{aligned}
+ \int_0^\infty \frac{1}{\Gamma(\alpha) \beta^\alpha} x^{\alpha} \exp(- x/\beta) dx
+&=  \frac{1}{\Gamma(\alpha) \beta^\alpha}  \int_0^\infty  x^{\alpha} \exp(- x/\beta) dx\\
+&= \frac{1}{\Gamma(\alpha) \beta^\alpha}  \Gamma(\alpha+1) \beta^{\alpha+1} \\
+&= \frac{\Gamma(\alpha+1)}{\Gamma(\alpha)} \beta.
+\end{aligned}\] Using the reproductive property of the gamma function,
+\(\Gamma(\alpha+1) = \alpha\Gamma(\alpha)\), so that
+\[\mbox{E}(X) = \alpha\beta.\]
+
+Often, the density functions of the family of gamma distributions are
+taken to be of the form \[\label{gamma_alt}
+p(x) = \frac{\beta^{\alpha}}{\Gamma(\alpha)} x^{\alpha - 1} \exp(- \beta x), \ \ x>0\]
+where \(\alpha>0\) and \(\beta>0\). Note that the density functions
+given in equation \hyperref[gamma_orig]{{[}gamma\_orig{]}} and those
+given in \hyperref[gamma_alt]{{[}gamma\_alt{]}} describe the same family
+of distributions.
+
+For example, the density function
+\[p(x) = \frac{1}{\Gamma(3) 2^3} x^{2} \exp(- x/2)\] is of the form
+given by equation \hyperref[gamma_orig]{{[}gamma\_orig{]}} with
+\(\alpha = 3\) and \(\beta = 2\) and it is also of the form given by
+equation \hyperref[gamma_alt]{{[}gamma\_alt{]}} with \(\alpha = 3\) and
+\(\beta = 1/2\).
+
+In the alternative parameterization given by
+\hyperref[gamma_alt]{{[}gamma\_alt{]}},
+\[\mbox{E}(X) = \frac{\alpha}{\beta}.\]
+
+Because both forms of the density function are routinely used, when
+using results regarding the gamma distribution, it is important to keep
+track of which form of the density function is under consideration.
+
+\subsection*{Exponential distribution}\label{exponential-distribution}
+\addcontentsline{toc}{subsection}{Exponential distribution}
+
+A special case of the gamma distribution is the \emph{exponential
+distribution}, which is a gamma distribution with parameter \(\alpha\)
+taken to be \(1\). Often (but not always), the parameter \(\beta\) of
+the gamma distribution is written in terms of \(\lambda =1/\beta\), so
+that a random variable \(X\) is said to have an exponential distribution
+with parameter \(\lambda\) if it has a continuous distribution with
+density function of the form
+\[p(x) = \lambda \exp(-\lambda x), \ \ x>0\] where \(\lambda>0\).
+
+A \emph{standard} exponential distribution has \(\lambda = 1\); thus,
+the density of the standard exponential distribution is
+\(\exp(-x), x>0\).
+
+\subsection*{Gaussian distribution}\label{gaussian-distribution}
+\addcontentsline{toc}{subsection}{Gaussian distribution}
+
+A random variable \(X\) is said to have a \emph{Gaussian distribution}
+with parameters \(\mu\) and \(\sigma^2\) if it has a continuous
+distribution with density function of the form
+\[p(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left( - \frac{1}{2\sigma^2}(x - \mu)^2 \right), \ \ 
+-\infty < x < \infty\] where \(-\infty < \mu < \infty\) and
+\(\sigma^2>0\). Note that \(\sigma = \sqrt{\sigma^2}\) is sometimes used
+in place of \(\sigma^2\) as a parameter; then \(\sigma>0\). Note that
+the family of distributions does not change when this switch is made.
+The Gaussian distribution (also called the \emph{normal distribution})
+is the most commonly-used distribution in statistics.
+
+The \emph{standard Gaussian distribution} is the Gaussian distribution
+with parameter values \(\mu = 0\) and \(\sigma^2 = 1\); that is, the
+standard Gaussian distribution has density function
+\[\frac{1}{\sqrt{2\pi}} \exp\left( - \frac{1}{2}x^2 \right), \ \ 
+-\infty < x < \infty.\]
+
+The density function of the Gaussian distribution is often described as
+being a ``bell-shaped curve"; see Figure \hyperref[gauss_fig1]{1.4} for
+a plot of the standard Gaussian density.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{stdgauss.pdf}
+
+}
+
+\caption{Density Function of the Standard Gaussian Distribution}
+
+\end{figure}%
+
+An important property of the standard Gaussian density is that it is
+symmetric about \(0\); this can be seen from the form of the density
+given previously, as well as from the plot of the density in Figure
+\hyperref[gauss_fig1]{1.4}. One consequence of this property is that, if
+\(X\) has a standard Gaussian distribution, then
+\[\Pr(X > c) = \Pr(X < -c)\] for any real number \(c\). This is
+illustrated in Figure \hyperref[gauss_fig2]{1.5} for the case \(c=1\).
+
+For the general Gaussian distribution, with parameter \(\mu\) and
+\(\sigma\), the density function is symmetric about \(x=\mu\), so that
+\[\Pr(X > \mu + c) = \Pr(X < \mu - c)\] for any real number \(c\).
+
+\subsection*{Poisson distribution}\label{poisson-distribution}
+\addcontentsline{toc}{subsection}{Poisson distribution}
+
+A random variable \(X\) is said to have a \emph{Poisson distribution}
+with parameter \(\lambda\) if it has a discrete distribution with range
+\(\mathcal{X}= \{0, 1, 2, \ldots\}\) and mass function
+\[p(x) = \frac{\lambda^x \exp(-\lambda)}{x!}, \ \ x=0, 1, 2, \ldots\]
+where \(\lambda>0\).
+
+Just as the density function of a continuous distribution gives an
+integral identity, the mass function of discrete distribution gives an
+identity for a certain type of sum. For the Poisson distribution, this
+identity states that
+\[\sum_{x=0}^\infty \frac{\lambda^x \exp(-\lambda)}{x!} = 1\] or,
+equivalently,
+\[\sum_{x=0}^\infty \frac{\lambda^x }{x!} = \exp(\lambda), \ \ \text{ for all }\ \ \lambda>0.\]
+
+\subsection*{Distribution table}\label{distribution-table}
+\addcontentsline{toc}{subsection}{Distribution table}
+
+The final page of this chapter contains a table of some commonly-used
+distributions. Note that the variance and the ``mgf'' (i.e., the
+moment-generating function) of a distribution will be discussed later in
+the course.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{gausscomp.pdf}
+
+}
+
+\caption{Comparison of Probabilities for the Standard Gaussian
+Distribution}
+
+\end{figure}%
+
+\bookmarksetup{startatroot}
+
+\chapter*{References}\label{references}
+\addcontentsline{toc}{chapter}{References}
+
+\markboth{References}{References}
+
+\phantomsection\label{refs}
+
+
+
+
+\end{document}

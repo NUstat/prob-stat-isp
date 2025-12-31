@@ -12,7 +12,7 @@ book:
   chapters:
     - index.qmd
     - Chapter1.qmd
-    - summary.qmd
+    - Chapter2.qmd
     - references.qmd
 
 bibliography: references.bib

@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>2&nbsp; Random Variables – Probability and Statistics for ISP</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="next">
+<link href="./Chapter1.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Chapter2.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Random Variables</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Probability and Statistics for ISP</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Probability-and-Statistics-for-ISP.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chapter1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Probability</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chapter2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">2.1</span> Introduction</a></li>
+  <li><a href="#distribution-functions" id="toc-distribution-functions" class="nav-link" data-scroll-target="#distribution-functions"><span class="header-section-number">2.2</span> Distribution Functions</a></li>
+  <li><a href="#discrete-distributions" id="toc-discrete-distributions" class="nav-link" data-scroll-target="#discrete-distributions"><span class="header-section-number">2.3</span> Discrete Distributions</a></li>
+  <li><a href="#den_sec" id="toc-den_sec" class="nav-link" data-scroll-target="#den_sec"><span class="header-section-number">2.4</span> Continuous Distributions</a>
+  <ul class="collapse">
+  <li><a href="#interpretation-of-a-density-function" id="toc-interpretation-of-a-density-function" class="nav-link" data-scroll-target="#interpretation-of-a-density-function">Interpretation of a density function</a></li>
+  <li><a href="#a-paradox-with-continuous-random-variables" id="toc-a-paradox-with-continuous-random-variables" class="nav-link" data-scroll-target="#a-paradox-with-continuous-random-variables">A paradox with continuous random variables?</a></li>
+  </ul></li>
+  <li><a href="#expect" id="toc-expect" class="nav-link" data-scroll-target="#expect"><span class="header-section-number">2.5</span> Expectation</a>
+  <ul class="collapse">
+  <li><a href="#expected-value-of-a-non-negative-random-variable" id="toc-expected-value-of-a-non-negative-random-variable" class="nav-link" data-scroll-target="#expected-value-of-a-non-negative-random-variable">Expected value of a non-negative random variable</a></li>
+  <li><a href="#existence-of-an-expected-value" id="toc-existence-of-an-expected-value" class="nav-link" data-scroll-target="#existence-of-an-expected-value">Existence of an expected value</a></li>
+  </ul></li>
+  <li><a href="#expectation-of-a-function-of-a-random-variable" id="toc-expectation-of-a-function-of-a-random-variable" class="nav-link" data-scroll-target="#expectation-of-a-function-of-a-random-variable"><span class="header-section-number">2.6</span> Expectation of a Function of a Random Variable</a>
+  <ul class="collapse">
+  <li><a href="#discrete-distributions-1" id="toc-discrete-distributions-1" class="nav-link" data-scroll-target="#discrete-distributions-1">Discrete distributions</a></li>
+  <li><a href="#continuous-distributions" id="toc-continuous-distributions" class="nav-link" data-scroll-target="#continuous-distributions">Continuous distributions</a></li>
+  <li><a href="#expectations-of-linear-functions-and-sums" id="toc-expectations-of-linear-functions-and-sums" class="nav-link" data-scroll-target="#expectations-of-linear-functions-and-sums">Expectations of linear functions and sums</a></li>
+  <li><a href="#relationship-between-expectation-and-probability" id="toc-relationship-between-expectation-and-probability" class="nav-link" data-scroll-target="#relationship-between-expectation-and-probability">Relationship between expectation and probability</a></li>
+  <li><a href="#a-useful-inequality" id="toc-a-useful-inequality" class="nav-link" data-scroll-target="#a-useful-inequality">A useful inequality</a></li>
+  </ul></li>
+  <li><a href="#some-commonly-used-families-of-distributions" id="toc-some-commonly-used-families-of-distributions" class="nav-link" data-scroll-target="#some-commonly-used-families-of-distributions"><span class="header-section-number">2.7</span> Some Commonly-Used Families of Distributions</a>
+  <ul class="collapse">
+  <li><a href="#gamma-distributions" id="toc-gamma-distributions" class="nav-link" data-scroll-target="#gamma-distributions">Gamma distributions</a></li>
+  <li><a href="#exponential-distribution" id="toc-exponential-distribution" class="nav-link" data-scroll-target="#exponential-distribution">Exponential distribution</a></li>
+  <li><a href="#gaussian-distribution" id="toc-gaussian-distribution" class="nav-link" data-scroll-target="#gaussian-distribution">Gaussian distribution</a></li>
+  <li><a href="#poisson-distribution" id="toc-poisson-distribution" class="nav-link" data-scroll-target="#poisson-distribution">Poisson distribution</a></li>
+  <li><a href="#distribution-table" id="toc-distribution-table" class="nav-link" data-scroll-target="#distribution-table">Distribution table</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-chap2" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Random Variables</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div data-when-format="html">
+<!-- bold face vector mu -->
+<!-- \newcommand{\T}{\mathcal{T}} -->
+<!-- \newcommand{\Zbar}{\bar{Z}} -->
+</div>
+<section id="introduction" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">2.1</span> Introduction</h2>
+<p>Consider an experiment with sample space <span class="math inline">\(\Omega\)</span> and let <span class="math inline">\(\omega\)</span> denote an outcome of the experiment so that <span class="math inline">\(\omega\in\Omega\)</span>. In many applications we are concerned primarily with certain numerical characteristics of <span class="math inline">\(\omega\)</span>, rather than with <span class="math inline">\(\omega\)</span> itself. A <em>random variable</em> is a function that takes an element of <span class="math inline">\(\Omega\)</span> and returns a real number.</p>
+<p>More formally, define a function <span class="math inline">\(X: \Omega\to \mathcal{X}\)</span>, where <span class="math inline">\(\mathcal{X}\)</span> is a subset of <span class="math inline">\(\Re\)</span>, denote a random variable; the set <span class="math inline">\(\mathcal{X}\)</span> is called the <em>range</em> of <span class="math inline">\(X\)</span> or, sometimes, the <em>sample space</em> of <span class="math inline">\(X\)</span>. For a given outcome <span class="math inline">\(\omega\in \Omega\)</span>, the corresponding value of <span class="math inline">\(X\)</span> is <span class="math inline">\(x=X(\omega)\)</span>.</p>
+<p>Probabilities regarding <span class="math inline">\(X\)</span> may be obtained from the probability function <span class="math inline">\(\mbox{P}\)</span> for the original experiment. Let <span class="math inline">\(\mbox{P}_X\)</span> denote a function such that for any set <span class="math inline">\(A\subset \mathcal{X}\)</span>, <span class="math inline">\(\mbox{P}_X(A)\)</span> denotes the probability that <span class="math inline">\(X\in A\)</span>. Then <span class="math inline">\(\mbox{P}_X\)</span> is a probability function defined on subsets of <span class="math inline">\(\mathcal{X}\)</span> and <span class="math display">\[\mbox{P}_X(A) = \mbox{P}\big(\{ \omega\in\Omega: X(\omega)\in A \}\big).\]</span> Here <span class="math display">\[\{ \omega\in\Omega: X(\omega)\in A \}\]</span> is the set of all basic outcomes <span class="math inline">\(\omega\)</span> such that the corresponding value of the random variable <span class="math inline">\(X\)</span>, <span class="math inline">\(X(\omega)\)</span>, is in the set <span class="math inline">\(A\)</span>.</p>
+<p>Note that, because <span class="math inline">\(P_X\)</span> defines a probability function on the subsets of <span class="math inline">\(\mathcal{X}\)</span>, it must satisfy conditions (P1) - (P3). Also, it is often convenient to proceed as if probability function <span class="math inline">\(\mbox{P}_X\)</span> is defined on the entire space <span class="math inline">\(\Re\)</span>. Then the probability of any subset of <span class="math inline">\(\mathcal{X}^c\)</span> is <span class="math inline">\(0\)</span> and, for any set <span class="math inline">\(A \subset \Re\)</span>, <span class="math display">\[\mbox{P}_X(A) \equiv \Pr(X\in A) = \Pr(X \in A\cap \mathcal{X}) .\]</span></p>
+<p>We will generally use a less formal notation in which <span class="math inline">\(\Pr(X\in A)\)</span> denotes <span class="math inline">\(\mbox{P}_X(A)\)</span>. For instance, the probability that <span class="math inline">\(X\leq 1\)</span> may be written as either <span class="math inline">\(\Pr(X\leq 1)\)</span> or <span class="math inline">\(\mbox{P}_X\left( (-\infty, 1]\right)\)</span>.</p>
+<div class="example">
+<p>Consider an experiment with two possible outcomes, <span class="math inline">\(\omega_1, \omega_2\)</span>; recall that such an experiment is called a Bernoulli trial. Hence, <span class="math inline">\(\Omega = \{ \omega_1, \omega_2\}\)</span>.</p>
+<p>Define a function <span class="math inline">\(X\)</span> on a <span class="math inline">\(\Omega\)</span>, i.e., a random variable, by <span class="math display">\[X(\omega) = \begin{cases} 1 &amp; \text{ if } \omega = \omega_1 \\
+                                          0 &amp; \text{ if } \omega = \omega_2.
+\end{cases}\]</span> Thus, the range of <span class="math inline">\(X\)</span> is <span class="math inline">\(\{0, 1 \}\)</span>.</p>
+<p>Let <span class="math inline">\(\theta = \mbox{P}(\{ \omega_1 \})\)</span>. Then <span class="math display">\[\Pr(X = 1) = \theta \ \ \text{ and } \ \ \Pr(X = 0) = 1 - \theta.\]</span></p>
+<p>A random variable with these properties is said to be a <em>Bernoulli random variable</em>.</p>
+</div>
+<div class="example">
+<p><span id="binom_ex2" data-label="binom_ex2"></span></p>
+<p>Consider an experiment with sample space <span class="math display">\[\Omega = \{ x\in \Re^n: x = (x_1, \ldots, x_n), x_j = 0 \ \hbox{ or } 1, \ \
+j=1, \ldots, n \}\]</span> so that an element of <span class="math inline">\(\Omega\)</span> is a vector of ones and zeros.</p>
+<p>For <span class="math inline">\(\omega = (x_1, \ldots, x_n) \in \Omega\)</span>, take <span class="math display">\[\mbox{P}(\omega)  = \prod_{j=1}^n \theta^{x_j} (1-\theta)^{1-x_j}\]</span> where <span class="math inline">\(0 &lt; \theta &lt; 1\)</span> is a given constant.</p>
+<p>For an element <span class="math inline">\(\omega\in\Omega\)</span>, define <span class="math display">\[X(\omega) = \sum_{j=1}^n x_j\]</span> so that <span class="math inline">\(X(\omega)\)</span> is the number of ones in <span class="math inline">\(\omega\)</span>.</p>
+<p>Then <span class="math display">\[\Pr(X = 0) = \mbox{P}((0, 0, \ldots, 0)) = (1-\theta)^n,\]</span> <span class="math display">\[\Pr(X = 1) = \mbox{P}((1, 0, \ldots, 0)) + \mbox{P}((0, 1, 0, \ldots, 0)) + \cdots
++ \mbox{P}((0, 0, \ldots, 0, 1)) = n \theta (1-\theta)^{n-1}.\]</span> More generally, <span class="math display">\[\Pr(X = x) = {n \choose x} \theta^x (1-\theta)^{n-x}, \ \ x=0, 1, \ldots, n;\]</span> to show this, note that each basic outcome <span class="math inline">\(\omega = (x_1, \ldots, x_n)\)</span> such that <span class="math inline">\(\sum_{j=1}^n x_j = x\)</span> has probability <span class="math inline">\(\theta^x (1-\theta)^{n-x}\)</span> and there are <span class="math display">\[{n \choose x}\]</span> basic outcomes with <span class="math inline">\(\sum_{j=1}^n x_j = x\)</span>.</p>
+<p><span class="math inline">\(X\)</span> is said to have a <em>binomial distribution</em> with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(\theta\)</span>.</p>
+</div>
+<div class="example">
+<p>Consider the experiment with sample space <span class="math inline">\(\Omega = (0, 1)\)</span> and probability function <span class="math inline">\(\mbox{P}(\cdot)\)</span> such that <span class="math display">\[\mbox{P}(A) = \int_A dx, \ \ A\subset (0, 1).\]</span></p>
+<p>Define a random variable <span class="math inline">\(X\)</span> by <span class="math display">\[X(\omega) = \omega, \ \ 0 &lt; \omega &lt; 1.\]</span> Then, for any <span class="math inline">\(A\subset (0, 1)\)</span>, <span class="math display">\[\Pr(X\in A) = \int_A dt.\]</span></p>
+<p>As discussed above, we may take the range of <span class="math inline">\(X\)</span> to be <span class="math inline">\(\Re\)</span>. Then, for any subset <span class="math inline">\(A\in \Re\)</span>, <span class="math display">\[\Pr(X\in A) = \int_{A \cap (0, 1)} dt.\]</span> For instance, <span class="math display">\[\Pr(0.6 &lt; X &lt; 2) = \int_{0.6}^1 dx = 0.4.\]</span></p>
+</div>
+<p>Note that, in the previous example, we could have simply defined the random variable <span class="math inline">\(X\)</span> to have probability function given by <span class="math display">\[\Pr(X\in A) = \int_{A \cap (0, 1)} dt, \ \ A\subset \Re\]</span> without referring to an underlying experiment.</p>
+<p>In this course, we will usually define random variables in that way – without first constructing an experiment. However, it is sometimes important to keep in mind that a random variable is a real-valued function defined on the sample space <span class="math inline">\(\Omega\)</span> of some experiment.</p>
+</section>
+<section id="distribution-functions" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="distribution-functions"><span class="header-section-number">2.2</span> Distribution Functions</h2>
+<p>Consider a random variable <span class="math inline">\(X\)</span>. The properties of <span class="math inline">\(X\)</span> are described by its probability function <span class="math inline">\(\mbox{P}_X\)</span>, which gives the probability that <span class="math inline">\(X\in A\)</span> for any set <span class="math inline">\(A\subset \Re\)</span>.</p>
+<p>However, it is often convenient to specify the distribution of a random variable by considering <span class="math inline">\(\Pr(X\in A)\)</span> for a more limited class of sets <span class="math inline">\(A\)</span>. That is, we do not need to specify <span class="math inline">\(\Pr(X \in A)\)</span> for <strong>all</strong> subsets of <span class="math inline">\(\Re\)</span> in order to describe the properties of <span class="math inline">\(X\)</span>; using a smaller class of subsets of <span class="math inline">\(\Re\)</span> in this context leads to a simplification of the probability theory for random variables.</p>
+<p>For instance, consider sets of the form <span class="math inline">\((-\infty, x]\)</span>, for <span class="math inline">\(x\in \Re\)</span>, so that <span class="math display">\[\Pr(X \in (-\infty, x]) = \Pr(X \leq x).\]</span> The <em>distribution function</em> of the distribution of <span class="math inline">\(X\)</span> or, simply, the distribution function of <span class="math inline">\(X\)</span>, is the function <span class="math inline">\(F\equiv F_X: \Re\to [0, 1]\)</span> given by <span class="math display">\[F(x) = \Pr(X \leq x), \ \ -\infty &lt; x &lt; \infty.\]</span></p>
+<div class="example">
+<p><span id="uniform_ex" data-label="uniform_ex"></span></p>
+<p>Suppose that <span class="math inline">\(X\)</span> is a random variable such that <span class="math display">\[\Pr(X\in A) = \int_{A\cap (0, 1)}  \ dx, \ \ A\subset \Re;\]</span> <span class="math inline">\(X\)</span> is said to have a uniform distribution on <span class="math inline">\((0, 1)\)</span>.</p>
+<p>The distribution function of this distribution is given by <span class="math display">\[F(x) = \Pr\{ X \in (-\infty, x] \}=\int_{(-\infty, x]\cap (0, 1)} dt =
+\begin{cases}0 &amp; \text{ if } x \leq 0 \\
+       x &amp; \text{ if } 0 &lt; x \leq 1 \\
+       1 &amp; \text{ if } x &gt; 1 .
+\end{cases}\]</span> Figure <a href="#uni_plot" data-reference-type="ref" data-reference="uni_plot">1.1</a> gives a plot of <span class="math inline">\(F\)</span>.</p>
+</div>
+<div id="uni_plot" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><embed src="fig2.383.pdf" class="img-fluid" style="width:75.0%"></p>
+<figcaption>Distribution Function of the Uniform Distribution on <span class="math inline">\((0, 1)\)</span></figcaption>
+</figure>
+</div>
+<div class="example">
+<p><span id="binom_ex3" data-label="binom_ex3"></span></p>
+<p>Let <span class="math inline">\(X\)</span> denote a random variable with a binomial distribution with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(\theta\)</span>, as described in Example <a href="#binom_ex2" data-reference-type="ref" data-reference="binom_ex2">[binom_ex2]</a>. Then <span class="math display">\[\Pr(X = x) = {n\choose x} \theta^x (1-\theta)^{n-x}, \ \ x=0, 1, \ldots, n\]</span> and, hence, the distribution function of <span class="math inline">\(X\)</span> is <span class="math display">\[F(x) = \sum_{j=0, 1, \ldots; j\leq x} {n \choose j} \theta^j
+(1-\theta)^{n-j}.\]</span> Thus, <span class="math inline">\(F\)</span> is a step function, with jumps at <span class="math inline">\(0, 1, 2, \ldots, n\)</span>.</p>
+<p>For instance, suppose that <span class="math inline">\(X\)</span> has a binomial distribution with parameters <span class="math inline">\(n=2\)</span> and <span class="math inline">\(\theta = 1/4\)</span>. Then <span class="math display">\[\Pr(X = 0) ={2 \choose 0} \left(\frac{1}{4}\right)^0 \left(\frac{3}{4}\right)^2 = \frac{9}{16},\]</span> <span class="math display">\[\Pr(X = 1) = {2 \choose 1} \left(\frac{1}{4}\right)^1 \left(\frac{3}{4}\right)^1 = \frac{6}{16},\]</span> and, by subtraction, <span class="math inline">\(\Pr(X = 2) = 1/16\)</span>.</p>
+<p>It follows that, for <span class="math inline">\(x &lt; 0\)</span>, <span class="math inline">\(\Pr(X \leq x) = 0\)</span>, for <span class="math inline">\(0\leq x &lt; 1\)</span>, <span class="math display">\[\Pr(X \leq x) = \Pr(X = 0) = \frac{9}{16},\]</span> for <span class="math inline">\(1 \leq x &lt; 2\)</span>, <span class="math display">\[\Pr(X \leq x) = \Pr(X = 0 \cup X=1) = \Pr(X=0) + \Pr(X = 1) = \frac{15}{16},\]</span> and for <span class="math inline">\(x\geq 2\)</span>, <span class="math inline">\(\Pr(X \leq x) = 1\)</span>.</p>
+<p>Hence, the distribution function of <span class="math inline">\(X\)</span> is given by <span class="math display">\[F(x) =  
+\begin{cases}0 &amp; \text{ if } x &lt; 0 \\
+       \frac{9}{16} &amp; \text{ if } 0 \leq x &lt; 1 \\
+       \frac{15}{16} &amp; \text{ if } 1 \leq x &lt; 2 \\
+       1 &amp; \text{ if } x \geq 2 .
+\end{cases}\]</span> Figure <a href="#binom_plot" data-reference-type="ref" data-reference="binom_plot">1.2</a> gives a plot of <span class="math inline">\(F\)</span>.</p>
+</div>
+<div id="binom_plot" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><embed src="fig1.383.pdf" class="img-fluid" style="width:75.0%"></p>
+<figcaption>Distribution Function of the Binomial Distribution with Parameters <span class="math inline">\(n=2\)</span> and <span class="math inline">\(\theta = 1/4\)</span></figcaption>
+</figure>
+</div>
+<p>Clearly, there are some basic properties which any distribution function <span class="math inline">\(F\)</span> must possess; these are given as properties (DF1)–(DF3) below. Furthermore, if a function <span class="math inline">\(F:\Re\mapsto [0, 1]\)</span> satisfies (DF1)–(DF3), then there exists a random variable <span class="math inline">\(X\)</span> such that <span class="math inline">\(F\)</span> is the distribution function of <span class="math inline">\(X\)</span>.</p>
+<ol type="1">
+<li><p><span class="math inline">\(\lim_{x\to\infty} F(x) = 1\)</span>; <span class="math inline">\(\lim_{x\to -\infty} F(x) = 0\)</span></p></li>
+<li><p>If <span class="math inline">\(x_1 &lt; x_2\)</span> then <span class="math inline">\(F(x_1) \leq F(x_2)\)</span></p></li>
+<li><p><span class="math inline">\(\lim_{h\to 0^+} F(x+h) = F(x)\)</span></p></li>
+</ol>
+<p>To see why (DF1) must hold, note that, for any <span class="math inline">\(x\)</span>, <span class="math inline">\(F(x)\)</span> is a probability, <span class="math inline">\(F\)</span> must take values in <span class="math inline">\([0, 1]\)</span> and, as <span class="math inline">\(x\)</span> approaches <span class="math inline">\(\infty\)</span>, <span class="math display">\[\Pr(X \leq x) \ \ \text{ approaches } \ \ \Pr(X &lt; \infty)  = 1.\]</span> Similarly, <span class="math inline">\(\Pr(X \leq x)\)</span> must approach <span class="math inline">\(0\)</span> as <span class="math inline">\(x\to-\infty\)</span>.</p>
+<p>For <span class="math inline">\(h&gt;0\)</span> <span class="math display">\[\begin{aligned}
+F(x+h)&amp;=
+\Pr(X \leq x+h)\\ &amp;= \Pr(X \leq x \cup x &lt; X \leq x+h)\\
+&amp;= \Pr(X \leq x) + \Pr(x &lt; X \leq x+h) \\
+&amp;= F(x) + \Pr(x &lt; X \leq x+h) \\
+\geq F(x);
+\end{aligned}\]</span> hence, <span class="math inline">\(F\)</span> must be a nondecreasing function, as stated in (DF2).</p>
+<p>A distribution function is not necessarily a continuous function; however, according to (DF3) (which will not be proven here), a distribution function is <em>right-continuous</em>. Note that the notation <span class="math inline">\(h\to 0^+\)</span> refers to a sequence of positive numbers that approaches <span class="math inline">\(0\)</span>; hence, <span class="math inline">\(x+h &gt; x\)</span> and <span class="math inline">\(x+h \to x\)</span> as <span class="math inline">\(h\to 0^+\)</span>.</p>
+<p>An example of the right-continuity property of distribution functions is given in Figure <a href="#binom_plot" data-reference-type="ref" data-reference="binom_plot">1.2</a>. Clearly, the distribution function in that figure is not continuous – there are jumps at <span class="math inline">\(x=0, 1\)</span>, and <span class="math inline">\(2\)</span>. However, it is right-continuous at those points. For instance, consider the limit of <span class="math inline">\(F(x)\)</span> as <span class="math inline">\(x\)</span> approaches <span class="math inline">\(2\)</span> from above. For all <span class="math inline">\(x \geq 2\)</span>, <span class="math inline">\(F(x) = 1\)</span> so that <span class="math display">\[\lim_{h\to 0^+} F(2+h) = 1 = F(2).\]</span></p>
+<p>On the other hand, for all <span class="math inline">\(1\leq x&lt; 2\)</span>, <span class="math inline">\(F(x) = 15/16\)</span> so that as <span class="math inline">\(x\)</span> approaches <span class="math inline">\(2\)</span> from below the limit is <span class="math inline">\(15/16\)</span>: <span class="math display">\[\lim_{h\to 0^-} F(2+h) = 15/16.\]</span> It follows that <span class="math inline">\(F(x)\)</span> is not left-continuous at <span class="math inline">\(x=2\)</span>.</p>
+<div class="example">
+<p>Let <span class="math inline">\(F_1\)</span> and <span class="math inline">\(F_2\)</span> denote distribution functions for some random variables. Is the function given by <span class="math display">\[F(x) = F_1(x) F_2(x),  \ x\in\Re\]</span> also a distribution function?</p>
+<p>Recall that that <span class="math inline">\(F\)</span> is a distribution function if it satisfies conditions (DF1) through (DF3).</p>
+<p>Consider <span class="math inline">\(F(x) = F_1(x) F_2(x)\)</span>. Clearly, <span class="math display">\[\lim_{x\to\infty} F_1(x) F_2(x) = \lim_{x\to\infty} F_1(x) \ \lim_{x\to\infty}
+F_2(x) = 1\]</span> and <span class="math display">\[\lim_{x\to -\infty} F_1(x) F_2(x) = \lim_{x\to\-\infty} F_1(x) \
+\lim_{x\to -\infty} F_2(x) = 0,\]</span> establishing (DF1). Similarly, <span class="math display">\[\lim_{h\to 0^+} F_1(x+h) F_2(x+h) = \lim_{h\to 0^+} F_1(x+h) \ \lim_{h\to 0}
+F_2(x+h) = F_1(x) F_2(x),\]</span> verifying (DF3). Because <span class="math inline">\(F_1(x_1) \leq F_1(x_2)\)</span> and <span class="math inline">\(F_2(x_1) \leq F_2(x_2)\)</span> for <span class="math inline">\(x_1 &lt; x_2\)</span>, it follows that <span class="math inline">\(F_1(x_1) F_2(x_1) \leq F_1(x_2) F_2(x_2)\)</span>, establishing (DF2). Hence, <span class="math inline">\(F\)</span> is a distribution function.</p>
+</div>
+<p>Because of properties (DF1) and (DF2), when giving the form of a distribution function, it is convenient to only give the value of the function in the range of <span class="math inline">\(x\)</span> for which <span class="math inline">\(F(x)\)</span> varies between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>. For instance, in the uniform distribution example, in which <span class="math display">\[F(x) = \Pr\{ X \in (-\infty, x] \}=\int_{(-\infty, x]\cap (0, 1)} dx =
+\begin{cases}0 &amp; \text{ if } x \leq 0 \\
+       x &amp; \text{ if } 0 &lt; x \leq 1 \\
+       1 &amp; \text{ if } x &gt; 1
+\end{cases}\]</span> we could say that <span class="math inline">\(F(x) = x\)</span>, <span class="math inline">\(0 \leq
+x \leq 1\)</span>; in this case it is understood that <span class="math inline">\(F(x) = 0\)</span> for <span class="math inline">\(x&lt; 0\)</span> and <span class="math inline">\(F(x) = 1\)</span> for <span class="math inline">\(x&gt;1\)</span>.</p>
+<p>A distribution function <span class="math inline">\(F\)</span> gives the probability of sets of the form <span class="math inline">\((-\infty, x]\)</span>. However, it can also be used to give the probability of an bounded interval of the form <span class="math inline">\((x_1, x_2]\)</span> where <span class="math inline">\(x_1 &lt; x_2\)</span>.</p>
+<p>Note that <span class="math display">\[(-\infty, x_1] \cup (x_1, x_2] = (-\infty, x_2];\]</span> furthermore, <span class="math inline">\((-\infty, x_1]\)</span> and <span class="math inline">\((x_1, x_2]\)</span> are disjoint subsets of <span class="math inline">\(\Re\)</span>. It follows that <span class="math display">\[\Pr(X \in (-\infty, x_2]) = \Pr(X \in (-\infty, x_1]) + \Pr(X \in (x_1, x_2]).\]</span> Because <span class="math display">\[\Pr(X \in (-\infty, x_2]) = F(x_2)  \ \ \text{ and } \ \  \Pr(X \in (-\infty, x_1]) = F(x_1),\]</span> it follows that <span class="math display">\[\Pr(X \in (x_1, x_2]) = F(x_2) - F(x_1).\]</span></p>
+<p>Thus, we have the following useful result. Let <span class="math inline">\(X\)</span> denote a random variable with distribution function <span class="math inline">\(F\)</span>; Then, for <span class="math inline">\(x_1 &lt; x_2\)</span>, <span class="math display">\[\Pr( x_1 &lt; X \leq x_2) = F(x_2) - F(x_1).\]</span></p>
+<div class="example">
+<p>Let <span class="math inline">\(X\)</span> denote a random variable with distribution function <span class="math display">\[F(x) = x^2(3 - 2x), \ \ 0 &lt; x &lt; 1.\]</span></p>
+<p>Then <span class="math display">\[\Pr(0.2 &lt; X \leq 0.5) = F(0.5) - F(0.2) = (0.5)^2(3 - 2(0.5)) - (0.2)^2(3 - 2(0.2)) = 0.3960\]</span> and <span class="math display">\[\Pr(X &gt; 0.8) = \Pr(0.8 &lt; X \leq \infty) = 1 - F(0.8) = 1 - (0.8)^2(3 - 2(0.8)) = 0.1040.\]</span></p>
+</div>
+<p>Another important property of distribution functions is that the distribution function of a random variable completely characterizes its distribution: two random variables with the same distribution function have the same probability distribution.</p>
+<p>Let <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> denote random variables and let <span class="math inline">\(F_j\)</span> denote the distribution function of <span class="math inline">\(X_j\)</span>, <span class="math inline">\(j=1, 2\)</span>.</p>
+<p>If <span class="math display">\[F_1(x) = F_2(x) \ \ \text{ for all } \ \ -\infty &lt; x &lt; \infty,\]</span> then <span class="math display">\[\Pr(X_1 \in A) = \Pr(X_2 \in A) \ \ \text{ for any set} \ \ A\subset \Re.\]</span></p>
+<p>A proof this result requires sophisticated mathematical techniques and is beyond the scope of this course. However, it is not difficult to give an informal explanation of why we expect such a result to hold.</p>
+<p>The goal is to show that, if <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> have the same distribution function (denoted by <span class="math inline">\(F\)</span>), then, for ‘any’ set <span class="math inline">\(A\subset \Re\)</span>, <span class="math display">\[\Pr(X_1\in A) = \Pr(X_2\in A).\]</span> First suppose that <span class="math inline">\(A\)</span> is an interval of the form <span class="math inline">\((a_0, a_1]\)</span>. Then <span class="math display">\[\Pr(X_j \in A) = F(a_1) - F(a_0), \ \ j=1, 2\]</span> so that <span class="math inline">\(\Pr(X_1 \in A) = \Pr(X_2 \in A)\)</span>. The same is true for <span class="math inline">\(A^c\)</span>. Now consider a second interval <span class="math inline">\(B=(b_0, b_1]\)</span>. Then <span class="math display">\[A\cap B = \begin{cases} \emptyset &amp; \text{ if } b_0 &gt; a_1 \text{ or } a_0 &gt; b_1 \\
+                    B &amp; \text{ if } a_0 \leq b_0 &lt; b_1 \leq a_1 \\
+                    A &amp; \text{ if } b_0 \leq a_0 &lt; a_1 \leq b_1 \\
+                    (a_0, b_1] &amp; \text{ if } b_1 \leq a_1 \text{ and } b_0 \leq a_0 \\
+                    (b_0, a_1] &amp; \text{ if }  a_1 \leq b_1 \text{ and } a_0 \leq b_0
+\end{cases}.\]</span> In each case, <span class="math inline">\(A\cap B\)</span> is an interval and, hence, <span class="math inline">\(\Pr(X_j \in A\cap B)\)</span> and <span class="math inline">\(\Pr(X_j \in A \cup B)\)</span> do not depend on <span class="math inline">\(j=1,2\)</span>. The same approach can be used for any finite intersection of intervals.</p>
+<p>Also note that, because <span class="math display">\[(A \cup B)^c = A^c \cap B^c\]</span> and, if <span class="math inline">\(\Pr(X_j \in (A\cup B)^c)\)</span> does not depend on <span class="math inline">\(j\)</span> then <span class="math inline">\(\Pr(X_j \in (A\cup B))\)</span> does not depend on <span class="math inline">\(j\)</span>, the same type of result holds for any finite union of intervals and for any finite combination of unions and intersections of intervals.</p>
+<p>Hence, if <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> have the same distribution function, then <span class="math display">\[\Pr(X_1 \in A) = \Pr(X_2 \in A)\]</span> for any set <span class="math inline">\(A\subset \Re\)</span> that can be written in terms of a finite number of intervals of the form <span class="math inline">\((a, b]\)</span> using unions and intersections. The mathematical challenge is to extend the result to ‘any’ subset of <span class="math inline">\(\Re\)</span>.</p>
+</section>
+<section id="discrete-distributions" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="discrete-distributions"><span class="header-section-number">2.3</span> Discrete Distributions</h2>
+<p>Let <span class="math inline">\(X\)</span> denote a random variable with range <span class="math inline">\(\mathcal{X}\)</span>. Suppose that <span class="math inline">\(\mathcal{X}\)</span> is a countable set, that is, it is either a finite set of the form <span class="math display">\[\mathcal{X}= \left\{ x_1, x_2, \ldots, x_m \right\}\]</span> or it is an infinite set of the form <span class="math display">\[\mathcal{X}= \left\{ x_1, x_2, \ldots, \right\}\]</span> where <span class="math inline">\(x_1, x_2, \ldots\)</span> are real numbers. In this case, we say that <span class="math inline">\(X\)</span> has a <em>discrete distribution</em> or is a <em>discrete random variable</em>. We can assume that the elements <span class="math inline">\(x_1, x_2, \ldots\)</span> of <span class="math inline">\(\mathcal{X}\)</span> are ordered so that <span class="math display">\[x_1 &lt; x_2 &lt; \cdots.\]</span></p>
+<p>Define a function <span class="math inline">\(p:\Re\to [0, 1]\)</span> by <span class="math display">\[p(x) = \Pr(X = x).\]</span> The function <span class="math inline">\(p\)</span> is called the <em>mass function</em> of the distribution; the term <em>frequency function</em> is also used. Note that we assume that <span class="math inline">\(p\)</span> is defined for all <span class="math inline">\(-\infty &lt; x &lt; \infty\)</span>; if <span class="math inline">\(x\notin \mathcal{X}\)</span>, then <span class="math inline">\(p(x) = 0\)</span>.</p>
+<p>Clearly, because probabilities are nonnegative, <span class="math inline">\(p(x)\geq 0\)</span> for all <span class="math inline">\(x\)</span>. Furthermore, if <span class="math inline">\(\mathcal{X}\)</span> is finite, with <span class="math inline">\(m\)</span> elements <span class="math display">\[\label{mass_sum1}
+\sum_{j=1}^m p(x_j) = 1;\]</span> if <span class="math inline">\(\mathcal{X}\)</span> is a countably infinite set, then <span class="math display">\[\label{mass_sum2}
+\sum_{j=1}^\infty p(x_j) = 1.\]</span></p>
+<p>These results follow from the fact that (in the finite <span class="math inline">\(\mathcal{X}\)</span> case), we can write <span class="math display">\[\mathcal{X}= \cup_{j=1}^m \{ x_j \}\]</span> where the sets <span class="math inline">\(\{x_1 \}, \{x_2 \}, \ldots\)</span> are disjoint. Then <span class="math display">\[\begin{aligned}
+\Pr(X \in \mathcal{X}) &amp;= \sum_{j=1}^m \Pr(X \in \{x_j \}) = \sum_{j=1}^m \Pr(X = x_j) \\
+&amp;= \sum_{j=1}^m p(x_j).
+\end{aligned}\]</span> The result <a href="#mass_sum1" data-reference-type="eqref" data-reference="mass_sum1">[mass_sum1]</a> now follows from <span class="math inline">\(\Pr(X \in \mathcal{X}) = 1\)</span>; <a href="#mass_sum2" data-reference-type="eqref" data-reference="mass_sum2">[mass_sum2]</a> follows from a similar argument.</p>
+<p>Consider <span class="math inline">\(\Pr(X \in A)\)</span> where <span class="math inline">\(A\subset \Re\)</span>. Note that <span class="math display">\[\Pr(X \in A) = \Pr(X \in A \cap \mathcal{X})\]</span> and that <span class="math display">\[A \cap \mathcal{X}= \{x \in \mathcal{X}: x \in A\}\]</span> so that <span class="math display">\[\Pr(X \in A) = \sum_{j: x_j\in A} p(x_j).\]</span></p>
+<p>In particular, the distribution function of a discrete random variable is discontinuous, with jumps at each value in its range. Let <span class="math inline">\(X\)</span> be a discrete random variable with mass function <span class="math inline">\(p(\cdot)\)</span> and range <span class="math inline">\(\mathcal{X}\)</span> with elements <span class="math inline">\(x_j\)</span>. Then the distribution function of <span class="math inline">\(X\)</span> is given by <span class="math display">\[F(x) = \sum_{j: x_j\leq x} p(x).\]</span></p>
+<p>For instance, suppose that <span class="math inline">\(x_1 \leq x &lt; x_2\)</span>. Then <span class="math inline">\(F(x) = p(x_1)\)</span>; however, <span class="math inline">\(F(x_2) = p(x_1)+p(x_2)\)</span> so that <span class="math inline">\(F(x)\)</span> has a jump at <span class="math inline">\(x=x_2\)</span>. Thus, <span class="math inline">\(F\)</span> is a step function with jumps at each <span class="math inline">\(x_j\)</span>. We have already seen one instance of this property, in the binomial distribution discussed in Example <a href="#binom_ex3" data-reference-type="ref" data-reference="binom_ex3">[binom_ex3]</a>; see Figure <a href="#binom_plot" data-reference-type="ref" data-reference="binom_plot">1.2</a>.</p>
+<p>The converse is also true. That is, if a distribution function <span class="math inline">\(F\)</span> is a step function, with jumps at <span class="math inline">\(x_1, x_2, \ldots\)</span>, then the distribution is discrete with range <span class="math inline">\(\mathcal{X}= \{x_1, x_2, \ldots \}\)</span> and mass function <span class="math inline">\(p(\cdot)\)</span>, where <span class="math inline">\(p(x_j)\)</span> is the size of the jump of <span class="math inline">\(F\)</span> at <span class="math inline">\(x_j\)</span>.</p>
+<div class="example">
+<p>Let <span class="math inline">\(X\)</span> denote a random variable with range <span class="math inline">\(\mathcal{X}= \{1, 2, \ldots, m \}\)</span> for some <span class="math inline">\(m=1, 2, \ldots\)</span>, and let <span class="math display">\[\theta_j = \Pr(X = j), \ \ j=1, \ldots, m.\]</span> Therefore, <span class="math inline">\(\theta_j\)</span> are nonnegative, and sum to <span class="math inline">\(1\)</span>; <span class="math inline">\(\theta_1 + \theta_2 + \cdots + \theta_m = 1\)</span>.</p>
+<p>The distribution function of <span class="math inline">\(X\)</span> is given by <span class="math display">\[F(x) = \begin{cases} 0 &amp; \text{ if } x &lt; 1 \\
+\theta_1 &amp; \text{ if } 1 \leq x &lt; 2 \\
+\theta_1 + \theta_2 &amp; \text{ if } 2 \leq x &lt; 3 \\
+\vdots \\
+\theta_1 + \cdots + \theta_{m-1} &amp; \text{ if } m-1 \leq x &lt; m \\
+1 &amp; \text{ if } m \leq x \\
+\end{cases}.\]</span></p>
+</div>
+<div class="example">
+<p><span id="binom_ex4" data-label="binom_ex4"></span></p>
+<p>Let <span class="math inline">\(X\)</span> denote the random variable defined in Example <a href="#binom_ex3" data-reference-type="ref" data-reference="binom_ex3">[binom_ex3]</a>. Then <span class="math inline">\(\mathcal{X}= \{0, 1, \ldots, n \}\)</span> and <span class="math display">\[\Pr(X = x) = {n \choose x} \theta^x (1-\theta)^{n-x}, \ \ x=0, 1, \ldots,
+n;\]</span> here <span class="math inline">\(0 &lt; \theta &lt; 1\)</span> is a constant.</p>
+<p>Then <span class="math inline">\(X\)</span> is a discrete random variable with mass function <span class="math display">\[p(x) = {n \choose x} \theta^x (1-\theta)^{n-x}, \ \ x=0, 1, \ldots, n.\]</span></p>
+</div>
+<div class="example">
+<p>Let <span class="math inline">\(X\)</span> denote a random variable with range <span class="math inline">\(\mathcal{X}= \{1, 2, \ldots\}\)</span> and mass function <span class="math display">\[p(x) = \left( \frac{1}{2} \right)^x, \ \ x=1, 2, \ldots.\]</span> Note that <span class="math display">\[\sum_{x=1}^\infty \left( \frac{1}{2} \right)^x =1.\]</span></p>
+<p>For a positive integer <span class="math inline">\(m\)</span>, <span class="math display">\[\Pr(X \leq m) = \sum_{x=1}^m \left( \frac{1}{2} \right)^x = \frac{1/2 - (1/2)^{m+1}}{1 - 1/2}
+= 1 - \left( \frac{1}{2}\right)^{m}.\]</span> Therefore, the distribution function of <span class="math inline">\(X\)</span> is given by <span class="math display">\[F(x) = 1 - \left(\frac{1}{2}\right)^m \ \ \text{ for } \ \ m \leq x &lt; m+1.\]</span></p>
+</div>
+<div class="example">
+<p>Let <span class="math inline">\(X\)</span> denote a random variable with a discrete distribution with mass function <span class="math display">\[p_X(x) = \theta ( 1- \theta)^{x-1}, \ \ x=1, 2, \ldots,\]</span> where <span class="math inline">\(0 &lt; \theta &lt; 1\)</span>. Consider the probability that <span class="math inline">\(X\)</span> is even, as a function of <span class="math inline">\(\theta\)</span>.</p>
+<p>Note that the event that <span class="math inline">\(X\)</span> is even is given by <span class="math inline">\(\{2, 4, \ldots \}\)</span>. It follows that the probability that <span class="math inline">\(X\)</span> is even is <span class="math display">\[\Pr\left( X\in \{2, 4, \ldots \} \right) = \sum_{x=1}^\infty p_X(2x) =
+\frac{\theta}{1-\theta} \sum_{x=1}^\infty (1 - \theta)^{2x}.\]</span></p>
+<p>We know that, for <span class="math inline">\(0 &lt; p &lt; 1\)</span>, <span class="math display">\[\sum_{j=1}^\infty p^j = \frac{p}{1-p};\]</span> it follows that <span class="math display">\[\sum_{x=1}^\infty (1 - \theta)^{2x} =\frac{(1- \theta)^2}{1 - (1-\theta)^2}.\]</span></p>
+<p>Therefore, the probability that <span class="math inline">\(X\)</span> is even is <span class="math display">\[\frac{\theta}{1-\theta} \frac{(1-\theta)^2}{1 - (1-\theta)^2} = \frac{\theta(1-\theta)}{2\theta - \theta^2} = \frac{1 - \theta}{2 - \theta}.\]</span></p>
+</div>
+</section>
+<section id="den_sec" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="den_sec"><span class="header-section-number">2.4</span> Continuous Distributions</h2>
+<p>Consider a random variable <span class="math inline">\(X\)</span> with distribution function <span class="math inline">\(F\)</span> and range <span class="math inline">\(\mathcal{X}\)</span>. Suppose there exists a function <span class="math inline">\(p:\Re\to\Re\)</span> such that <span class="math display">\[\label{cont_dist}
+F(x)  = \int_{-\infty}^x p(t) dt, \ \ -\infty &lt; x &lt; \infty .\]</span> The function <span class="math inline">\(p\)</span> is called the <em>density function</em> of the distribution or, more simply, of <span class="math inline">\(X\)</span>.</p>
+<p>Because an integral is a continuous function of its limits, the distribution function <span class="math inline">\(F\)</span> must be a continuous function. Hence, when <a href="#cont_dist" data-reference-type="eqref" data-reference="cont_dist">[cont_dist]</a> holds, we say that the distribution of <span class="math inline">\(X\)</span> is an <em>continuous distribution</em>; alternatively, we say that <span class="math inline">\(X\)</span> is an <em>continuous random variable</em>.</p>
+<p>Because <span class="math inline">\(F\)</span> is non-decreasing, <span class="math inline">\(p\)</span> can be assumed to be non-negative and because the limit of <span class="math inline">\(F(x)\)</span> as <span class="math inline">\(x\to\infty\)</span> is <span class="math inline">\(1\)</span>, we must have <span class="math display">\[\int_{-\infty}^\infty p(x) dx = 1.\]</span></p>
+<p>Thus, if <span class="math inline">\(p\)</span> is a nonnegative function satisfying <span class="math display">\[\int_{-\infty}^\infty p(x) dx = 1\]</span> then <span class="math inline">\(p\)</span> is a density function of a continuous distribution and there exists a continuous random variable with <span class="math inline">\(p\)</span> as its density function. That is, a continuous distribution can be specified by giving its density function.</p>
+<div class="example">
+<p><span id="uni_ex_den" data-label="uni_ex_den"></span></p>
+<p>Let <span class="math inline">\(X\)</span> denote a random variable with the uniform distribution on <span class="math inline">\((0, 1)\)</span>, as defined in Example <a href="#uni_ex" data-reference-type="ref" data-reference="uni_ex">[uni_ex]</a>. In Example <a href="#uniform_ex" data-reference-type="ref" data-reference="uniform_ex">[uniform_ex]</a> it is shown that the distribution function of this distribution is given by <span class="math display">\[F(x) = \Pr\{ X \in (-\infty, x] \}=\int_{(-\infty, x]\cap (0, 1)} dt =
+\begin{cases}0 &amp; \text{ if } x \leq 0 \\
+       x &amp; \text{ if } 0 &lt; x \leq 1 \\
+       1 &amp; \text{ if } x &gt; 1 .
+\end{cases}\]</span></p>
+<p>Define a function <span class="math inline">\(p\)</span> by <span class="math display">\[p(x) = \begin{cases}1 &amp; \text{ if } 0 \leq x \leq 1 \\
+0 &amp; \text{ otherwise}
+\end{cases};\]</span> then <span class="math display">\[F(x) = \int_0^x p(t) dt, \ \ -\infty &lt; x &lt; \infty.\]</span></p>
+<p>It follows that <span class="math inline">\(X\)</span> has an continuous distribution with density function <span class="math inline">\(p\)</span>.</p>
+</div>
+<div class="example">
+<p>Let <span class="math inline">\(F\)</span> denote a distribution function for a random variable with a continuous distributions and let <span class="math inline">\(p\)</span> denote the corresponding density function.</p>
+<p>Is <span class="math inline">\(\alpha p(\alpha x)\)</span>, where <span class="math inline">\(\alpha&gt;0\)</span>, also the density function for a random variable with a continuous distribution?</p>
+<p>Note that, for <span class="math inline">\(\alpha&gt;0\)</span>, <span class="math inline">\(\alpha p(\alpha x)\)</span> is nonnegative and <span class="math display">\[\int_{-\infty}^\infty \alpha p(\alpha x) dx = \int_{-\infty}^\infty p(x)dx = 1;\]</span> hence, <span class="math inline">\(\alpha p(\alpha x)\)</span> is a density function.</p>
+</div>
+<p>For a random variable <span class="math inline">\(X\)</span> with distribution function <span class="math inline">\(F\)</span>, we have seen that <span class="math display">\[\Pr(x_1 &lt; X \leq x_2) = F(x_2) - F(x_1).\]</span></p>
+<p>Therefore, if <span class="math inline">\(X\)</span> has a continuous distribution with density <span class="math inline">\(p\)</span>, it follows that the density satisfies <span class="math display">\[\begin{aligned}
+\Pr(x_1 &lt; X \leq x_2) &amp;= \int_{-\infty}^{x_2} p(t)\, dt - \int_{-\infty}^{x_1} p(t)\, dt \\
+&amp;= \int_{x_1}^{x_2} p(t)\, dt.
+\end{aligned}\]</span></p>
+<p>It is important to note that there is a slight technical complication to the definition of a density function of a continuous distribution: it is not uniquely defined. Consider two nonnegative functions <span class="math inline">\(p_1\)</span> and <span class="math inline">\(p_2\)</span>, such that <span class="math display">\[\label{eq_den}
+p_1(x) = p_2(x) \ \ \text{ for all }\ x \text{ except } \tilde{x}_1, \tilde{x}_2, \ldots .\]</span> If <span class="math display">\[F(x) = \int_{-\infty}^x p_1(t) dt, \ \ -\infty &lt; x &lt; \infty,\]</span> then <span class="math display">\[F(x) = \int_{-\infty}^x p_2(t) dt, \ \ -\infty &lt; x &lt; \infty.\]</span></p>
+<p>The reason for this is that changing the value of a function at a single point (or at a few isolated points) does not change the value of the integral. In this case, either <span class="math inline">\(p_1\)</span> or <span class="math inline">\(p_2\)</span> may be taken as the density function of the distribution. Generally, we use the simplest version of the density.</p>
+<p>When a condition holds for all <span class="math inline">\(x\)</span>, except for <span class="math inline">\(x\)</span> in a countable set as in <a href="#eq_den" data-reference-type="eqref" data-reference="eq_den">[eq_den]</a>, we say that the condition hold for <em>almost all</em> <span class="math inline">\(x\)</span>. Thus, <a href="#eq_den" data-reference-type="eqref" data-reference="eq_den">[eq_den]</a> could be written <span class="math display">\[p_1(x) = p_2(x) \ \ \text{ for almost all }  \ x .\]</span></p>
+<p>In spite of the nonuniqueness of the density function of a distribution, we will refer to “the" density function of the distribution, with the understanding that density functions could be changed slightly without changing the distribution.</p>
+<div class="example">
+<p>Let <span class="math inline">\(X\)</span> denote a random variable with the uniform distribution on <span class="math inline">\((0, 1)\)</span>. In Example <a href="#uni_ex_den" data-reference-type="ref" data-reference="uni_ex_den">[uni_ex_den]</a> it is shown that <span class="math inline">\(X\)</span> has an continuous distribution with density function <span class="math display">\[p(x) = \begin{cases}1 &amp; \text{ if } 0 \leq x \leq 1 \\
+0 &amp; \text{ otherwise}
+\end{cases}.\]</span></p>
+<p>Note that the density function of <span class="math inline">\(X\)</span> may also be taken to be <span class="math display">\[p_1(x) = \begin{cases}1 &amp; \text{ if } 0 &lt; x  &lt;  1 \\
+0 &amp; \text{ otherwise}
+\end{cases}.\]</span></p>
+<p>That is, <span class="math display">\[F(x) = \int_0^x p_1(t) dt, \ \ -\infty &lt; x &lt; \infty\]</span> as well.</p>
+</div>
+<p>In giving expressions for density functions, it is often convenient to give the value of the density function, <span class="math inline">\(p(x)\)</span>, only for those values of <span class="math inline">\(x\)</span> for which the value is nonzero. For instance, in the previous example, the density function might be given as <span class="math inline">\(p(x) = 1\)</span>, <span class="math inline">\(0 &lt; x &lt; 1\)</span>. This statement implies that for <span class="math inline">\(x\geq 1\)</span> or <span class="math inline">\(x\leq 0\)</span>, <span class="math inline">\(p(x) = 0\)</span>.</p>
+<p>The following theorem shows how the density function and distribution are related for continuous distributions; it is essentially the fundamental theorem of calculus, which relates differentiation and integration.</p>
+<div class="theorem">
+<p><span id="fund_theorem" data-label="fund_theorem"></span></p>
+<p>Let <span class="math inline">\(F\)</span> denote the distribution function of a distribution on <span class="math inline">\(\Re\)</span>.</p>
+<p>Suppose that <span class="math inline">\(F\)</span> is continuous and there exists a function <span class="math inline">\(p\)</span> such that <span class="math display">\[F'(x) = p(x) \ \ \hbox{ for almost all} \ \ x.\]</span> Then <span class="math inline">\(p\)</span> is the density function corresponding to <span class="math inline">\(F\)</span>.</p>
+</div>
+<div class="example">
+<p>Let <span class="math inline">\(X\)</span> denote a random variable with distribution function <span class="math display">\[F(x) = x^2(3 - 2x), \ \ 0 &lt; x &lt; 1.\]</span> Note that <span class="math inline">\(F\)</span> is continuous and <span class="math display">\[F'(x) = \begin{cases}6 (x - x^2) &amp; \text{ if } 0 &lt; x &lt; 1 \\
+                                   0 &amp; \text{ otherwise}
+\end{cases}.\]</span></p>
+<p>It follows that the distribution is continuous with density function <span class="math display">\[p(x) = 6 (x - x^2), \ \ 0 &lt; x &lt; 1.\]</span></p>
+</div>
+<div class="example">
+<p>Let <span class="math inline">\(X\)</span> denote a random variable with distribution function <span class="math display">\[F(x) = 1 - \exp(-x), \ \ x&gt;0.\]</span> Note that <span class="math inline">\(F\)</span> is a continuous function but that <span class="math inline">\(F'(x)\)</span> does not exist at <span class="math inline">\(x=0\)</span>: <span class="math display">\[\lim_{h\to 0^+} \frac{F(h) - F(0)}{h} = \lim_{h\to 0^+} \frac{1 - \exp(-h)}{h} = 1\]</span> while <span class="math display">\[\lim_{h\to 0^-} \frac{F(h) - F(0)}{h} = \lim_{h\to 0^-} \frac{0}{h} = 0.\]</span></p>
+<p>For <span class="math inline">\(x \neq 0\)</span>, <span class="math display">\[F'(x) = \begin{cases} 0 &amp; \text{ if } x&lt;0 \\
+                                 \exp(-x) &amp; \text{ if } x&gt;0
+\end{cases}.\]</span> Hence, the density of the distribution can be taken to be <span class="math inline">\(\exp(-x)\)</span>, <span class="math inline">\(x&gt;0\)</span>.</p>
+</div>
+<section id="interpretation-of-a-density-function" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="interpretation-of-a-density-function">Interpretation of a density function</h3>
+<p>By the properties of integrals, if <span class="math inline">\(X\)</span> has a continuous distribution with density <span class="math inline">\(p\)</span>, then, for small <span class="math inline">\(\epsilon&gt;0\)</span>, <span class="math display">\[\Pr(x_0 - \epsilon/2 &lt; X &lt; x_0 + \epsilon/2) = \int_{x_0-\epsilon/2}^{x_0 + \epsilon/2} p(x)
+dx \doteq p(x_0)\epsilon.\]</span></p>
+<p>Hence, <span class="math inline">\(p(x)\)</span> can be viewed as being proportional to the probability that <span class="math inline">\(X\)</span> lies in a small interval containing <span class="math inline">\(x\)</span>; it is important to note that such an interpretation only gives an intuitive meaning to the density function and cannot be used in formal arguments. It follows that the density function gives an indication of the relative likelihood of different possible values of <span class="math inline">\(X\)</span>.</p>
+<p>When working with continuous distributions, density functions are usually more informative than distribution functions for assessing the basic properties of a probability distribution. Of course, mathematically speaking, this statement is nonsense since the distribution function completely characterizes a probability distribution. However, for understanding the basic properties of the distribution of random variable, the density function is often more useful than the distribution function.</p>
+<div class="example">
+<p><span id="df_den_ex" data-label="df_den_ex"></span></p>
+<p>Consider a continuous distribution with distribution function <span class="math display">\[F(x) = (5 - 2x)(x-1)^2, \  1 &lt; x &lt; 2\]</span> and density function <span class="math display">\[p(x) = 6 (2-x)(x-1), \ \  1 &lt; x &lt; 2.\]</span></p>
+<p>Figure <a href="#df_den_plot" data-reference-type="ref" data-reference="df_den_plot">1.3</a> gives a plot of <span class="math inline">\(F\)</span> and <span class="math inline">\(p\)</span>. Based on the plot of <span class="math inline">\(p\)</span> it is clear that the most likely value of <span class="math inline">\(X\)</span> is <span class="math inline">\(3/2\)</span> and, for <span class="math inline">\(z &lt; 1/2\)</span>, <span class="math inline">\(X = 3/2 - z\)</span> and <span class="math inline">\(X =3/2 + z\)</span> are equally likely; these facts are difficult to discern from the plot of, or the expression for, the distribution function.</p>
+</div>
+<div id="df_den_plot" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><embed src="fig3.383.pdf" class="img-fluid" style="width:75.0%"></p>
+<figcaption>Density and Distribution Functions in Example <a href="#df_den_ex" data-reference-type="ref" data-reference="df_den_ex">[df_den_ex]</a></figcaption>
+</figure>
+</div>
+</section>
+<section id="a-paradox-with-continuous-random-variables" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="a-paradox-with-continuous-random-variables">A paradox with continuous random variables?</h3>
+<p>Let <span class="math inline">\(Y\)</span> denote random variable with a continuous distribution with distribution function <span class="math inline">\(F\)</span> and density function <span class="math inline">\(p\)</span> and for a given real number <span class="math inline">\(y\)</span> consider <span class="math inline">\(\Pr(Y = y)\)</span>. Note that for any <span class="math inline">\(\epsilon&gt;0\)</span>, <span class="math display">\[\Pr(Y = y) \leq \Pr\left( Y\in (y-\epsilon, y]\right) = \Pr(y -\epsilon &lt; Y \leq y) = F(y) - F(y-\epsilon)\]</span> and, hence, <span class="math display">\[\Pr(Y = y) \leq \lim_{\epsilon \to 0^+} \left(F(y) - F(y - \epsilon) \right) .\]</span> Because the distribution function of a continuous random variable is a continuous function, the right-hand side of this expression is <span class="math inline">\(0\)</span>. That is, <span class="math display">\[\Pr( Y = y) = 0.\]</span></p>
+<p>Because <span class="math inline">\(y\)</span> is arbitrary we have the interesting result that, for a continuous random variable <span class="math inline">\(Y\)</span>, <span class="math display">\[\Pr(Y = y) = 0 \ \ \text{ for all } \ \ y\in\Re.\]</span> That is, although <span class="math inline">\(Y\)</span> takes values in <span class="math inline">\(\Re\)</span>, for all values of <span class="math inline">\(y\)</span> in <span class="math inline">\(\Re\)</span>, <span class="math inline">\(\Pr(Y = y) = 0\)</span>.</p>
+<p>One explanation for this apparent paradox is based on the limiting relative frequency interpretation of probability, as discussed in Section <a href="#prob_fcns" data-reference-type="ref" data-reference="prob_fcns">[prob_fcns]</a>. According to that interpretation, <span class="math inline">\(\Pr(Y = y) = 0\)</span> does not mean that <span class="math inline">\(Y = y\)</span> is absolutely impossible. What it means is that, if <span class="math inline">\(N_n(y)\)</span> is the number of times that <span class="math inline">\(Y=y\)</span> occurs in <span class="math inline">\(n\)</span> repetitions of the experiment, then <span class="math display">\[\frac{N_n(y)}{n} \to 0 \ \ \text{ as } \ \ n\to \infty.\]</span> Thus, <span class="math inline">\(Y = y\)</span> <strong>might</strong> occur, but it does not occur very often.</p>
+<p>A useful implication of this result is that, for a continuous random variable <span class="math inline">\(Y\)</span>, <span class="math display">\[\Pr(Y \leq y) = \Pr(Y &lt; y \cup Y=y) = \Pr(Y &lt; y) + \Pr(Y = y) = \Pr(Y &lt; y);\]</span> similarly, <span class="math display">\[\Pr(Y \geq y) = \Pr(Y &gt; y).\]</span></p>
+</section>
+</section>
+<section id="expect" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="expect"><span class="header-section-number">2.5</span> Expectation</h2>
+<p>Let <span class="math inline">\(X\)</span> denote a random variable with distribution function <span class="math inline">\(F\)</span>. The expected value of <span class="math inline">\(X\)</span>, denoted by <span class="math inline">\(\mbox{E}(X)\)</span>, is a summary of the distribution of <span class="math inline">\(X\)</span>; it represents a type of “average value" of <span class="math inline">\(X\)</span>. The expected value <span class="math inline">\(\mbox{E}(X)\)</span> is often described as the”mean of <span class="math inline">\(X\)</span>" or as the “mean of the distribution."</p>
+<p>If <span class="math inline">\(X\)</span> has a discrete distribution, taking the values <span class="math inline">\(x_1, x_2, \ldots\)</span> with mass function <span class="math inline">\(p\)</span>, then <span class="math display">\[\mbox{E}(X) = \sum_{j} x_j\ p(x_j);\]</span> this can also be written <span class="math display">\[\mbox{E}(X)  =\sum_{x\in\mathcal{X}} x\, p(x).\]</span> If <span class="math inline">\(X\)</span> has a continuous distribution with density <span class="math inline">\(p\)</span>, then <span class="math display">\[\mbox{E}(X) = \int_{-\infty}^\infty x\ p(x) dx.\]</span></p>
+<div class="example">
+<p>Let <span class="math inline">\(X\)</span> denote a random variable with a discrete distribution with range <span class="math inline">\(\{0, 1, 2 \}\)</span> and mass function <span class="math inline">\(p\)</span> given by <span class="math display">\[p(x) = \begin{cases} \frac{1}{2} &amp; \text{ if } \ x=0 \\
+\frac{1}{4} &amp; \text{ if } \ x=1 \\
+\frac{1}{4} &amp; \text{ if } \ x=2
+\end{cases}.\]</span></p>
+<p>Then <span class="math display">\[\mbox{E}(X) = 0\left( \frac{1}{2}\right) + 1 \left( \frac{1}{4} \right) + 2 \left( \frac{1}{4}\right) = \frac{3}{4}.\]</span></p>
+</div>
+<div class="example">
+<p><span id="binom_ex5" data-label="binom_ex5"></span> Let <span class="math inline">\(X\)</span> denote a random variable with a binomial distribution with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(\theta\)</span>, as described in Example 1.4. Then <span class="math inline">\(X\)</span> is a discrete random variable with mass function <span class="math display">\[p(x) = {n \choose x} \theta^x (1-\theta)^{n-x}, \ \ \ x=0, \ldots, n\]</span> so that <span class="math display">\[\mbox{E}(X) = \sum_{j=0}^n j {n \choose j} \theta^j (1-\theta)^{n-j}.\]</span></p>
+<p>Note that <span class="math display">\[j {n \choose j} = \frac{n!}{(j-1)! (n-j)!} = n {n-1 \choose j-1}.\]</span> Therefore, <span class="math display">\[\begin{aligned}
+\sum_{j=0}^n j {n \choose j} \theta^j (1-\theta)^{n-j} &amp;=
+\sum_{j=1}^n j {n \choose j} \theta^j (1-\theta)^{n-j} \\
+&amp;= n\theta \sum_{j=1}^n  {n-1 \choose j-1} \theta^{j-1} (1-\theta)^{n-j}\\
+&amp;= n\theta \sum_{j-1=0}^{n-1}  {n-1 \choose j-1} \theta^{j-1} (1-\theta)^{n-1-(j-1)}\\
+&amp;= n\theta \sum_{k=0}^{n-1}{n-1 \choose k}\theta^k (1-\theta)^{n-1-k}.
+\end{aligned}\]</span></p>
+<p>Note that the terms in the sum <span class="math display">\[\sum_{k=0}^{n-1}{n-1 \choose k}\theta^k (1-\theta)^{n-1-k}\]</span> are the values of the mass function of the binomial distribution with parameters <span class="math inline">\(n-1\)</span> and <span class="math inline">\(\theta\)</span>, evaluated at <span class="math inline">\(0, 1, \ldots, n-1\)</span>. It follows that <span class="math display">\[\sum_{k=0}^{n-1}{n-1 \choose k}\theta^k (1-\theta)^{n-1-k} = 1\]</span> and, hence, <span class="math display">\[\mbox{E}(X) = n\theta.\]</span></p>
+</div>
+<div class="example">
+<p>Let <span class="math inline">\(X\)</span> denote a random variable with a continuous distribution with density function <span class="math display">\[p(x) = \frac{2}{x^3}, \ \  x\geq 1.\]</span></p>
+<p>Then <span class="math display">\[\mbox{E}(X) = \int_1^\infty x \frac{2}{x^{3}} dx =  \int_1^\infty
+\frac{2}{x^{2}} dx = -\frac{2}{x}\Bigm|_{1}^\infty = 2.\]</span></p>
+</div>
+<div class="example">
+<p>Let <span class="math inline">\(X\)</span> denote a random variable with a continuous distribution with density function <span class="math display">\[p(x) = 20 x^3 (1-x), \ \ 0 &lt; x &lt; 1.\]</span></p>
+<p>Then <span class="math display">\[\mbox{E}(X) = \int_0^1 x\, 20 x^3 (1-x) dx = 20 \int_0^1 (x^4 - x^5) dx = 20 \frac{1}{30} = \frac{2}{3}.\]</span></p>
+</div>
+<section id="expected-value-of-a-non-negative-random-variable" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="expected-value-of-a-non-negative-random-variable">Expected value of a non-negative random variable</h3>
+<p>Let <span class="math inline">\(X\)</span> denote a random variable satisfying <span class="math inline">\(\mbox{P}(X\geq 0) = 1\)</span>. Then <span class="math inline">\(\mbox{E}(X) \geq 0\)</span>.</p>
+<p>To see why this holds, consider the case in which <span class="math inline">\(X\)</span> has a continuous distribution with density function <span class="math inline">\(p\)</span>. Because <span class="math inline">\(\mbox{P}(X\geq 0) = 1\)</span>, we may assume that <span class="math inline">\(p(x) = 0\)</span> for all <span class="math inline">\(x\leq 0\)</span>. It follows that <span class="math display">\[\mbox{E}(X) = \int_0^\infty x\, p(x) dx\]</span> and, because <span class="math inline">\(p(x)\geq 0\)</span> for all <span class="math inline">\(x\)</span>, the integrand <span class="math inline">\(x\, p(x) \geq 0\)</span> for all <span class="math inline">\(x&gt;0\)</span>. Hence, <span class="math inline">\(\mbox{E}(X)\)</span> cannot be negative.</p>
+<p>A similar argument holds for a discrete random variable.</p>
+</section>
+<section id="existence-of-an-expected-value" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="existence-of-an-expected-value">Existence of an expected value</h3>
+<p>There are three possibilities for an expected value <span class="math inline">\(\mbox{E}(X)\)</span>: <span class="math inline">\(\mbox{E}(X) &lt; \infty\)</span>, <span class="math inline">\(\mbox{E}(X) = \infty\)</span>, or <span class="math inline">\(\mbox{E}(X)\)</span> might not exist. In general, <span class="math inline">\(\mbox{E}(X)\)</span> fails to exist if the corresponding sum or integral used in its definition fails to exists.</p>
+<p>If <span class="math inline">\(X\)</span> is nonnegative, then <span class="math inline">\(\mbox{E}(X)\)</span> always exists, although we may have <span class="math inline">\(\mbox{E}(X) = \infty\)</span>. If <span class="math inline">\(X\)</span> is discrete, <span class="math inline">\(\mbox{E}(X)\)</span> exists and is finite provided that <span class="math display">\[\sum_{j} |x_j| \ p(x_j) &lt; \infty;\]</span> if <span class="math inline">\(X\)</span> is continuous, <span class="math inline">\(\mbox{E}(X)\)</span> exists and is finite provided that <span class="math display">\[\int_{-\infty}^\infty|x|\ p(x) dx &lt; \infty.\]</span></p>
+<div class="example">
+<p>Let <span class="math inline">\(X\)</span> denote a random variable with a continuous distribution with density function <span class="math display">\[p(x) = \frac{1}{x^2}, \ \  x\geq 1.\]</span></p>
+<p>Then <span class="math display">\[\mbox{E}(X) = \int_1^\infty x \frac{1}{x^{2}} dx = \int_1^\infty
+\frac{1}{x} dx = \log(x) \Bigm|_{1}^\infty = \infty.\]</span></p>
+</div>
+<div class="example">
+<p>Let <span class="math inline">\(X\)</span> denote a random variable with a continuous distribution with density function <span class="math display">\[p(x) = \frac{1}{\pi (1 + x^2)}, \ \  -\infty &lt; x &lt; \infty;\]</span> this is a <em>standard Cauchy distribution</em>. If <span class="math inline">\(\mbox{E}(X)\)</span> exists, it must be equal to <span class="math display">\[\begin{aligned}
+\int_{-\infty}^\infty \frac{x}{\pi(1 + x^2)} dx &amp;=
+\int_0^\infty \frac{x}{
+\pi(1 + x^2)} dx + \int_{-\infty}^0 \frac{x}{\pi(1 + x^2)} dx \\
+&amp;= \int_0^\infty \frac{x}{
+\pi(1 + x^2)} dx - \int_0^\infty \frac{x}{\pi(1 + x^2)} dx.
+\end{aligned}\]</span> Because <span class="math display">\[\int_0^\infty {x \over \pi(1 + x^2)} dx = \infty,\]</span> <span class="math display">\[\int_{-\infty}^\infty \frac{x}{\pi(1 + x^2)} dx = \infty - \infty;\]</span> it follows that <span class="math inline">\(\mbox{E}(X)\)</span> does not exist.</p>
+</div>
+</section>
+</section>
+<section id="expectation-of-a-function-of-a-random-variable" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="expectation-of-a-function-of-a-random-variable"><span class="header-section-number">2.6</span> Expectation of a Function of a Random Variable</h2>
+<p>Let <span class="math inline">\(X\)</span> denote a random variable and let <span class="math inline">\(g\)</span> denote a real-valued function defined on the range of <span class="math inline">\(X\)</span>. Define <span class="math inline">\(Y= g(X)\)</span> and consider <span class="math inline">\(\mbox{E}(Y)\)</span>.</p>
+<section id="discrete-distributions-1" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="discrete-distributions-1">Discrete distributions</h3>
+<p>Consider the case in which <span class="math inline">\(X\)</span> has a discrete distribution. The following simple example illustrates the basic argument used in this case.</p>
+<div class="example">
+<p>Let <span class="math inline">\(X\)</span> denote a discrete random variable with range <span class="math inline">\(\mathcal{X}= \{-1, 0, 1\}\)</span> and mass function <span class="math inline">\(p_X\)</span> with <span class="math inline">\(p_X(-1) = 0.1\)</span>, <span class="math inline">\(p_X(0) = 0.6\)</span>, and <span class="math inline">\(p_X(1) = 0.3\)</span>. Let <span class="math inline">\(Y = X^2\)</span>. Then <span class="math inline">\(Y\)</span> is a discrete random variable with range <span class="math inline">\(\{0, 1\}\)</span> and mass function <span class="math inline">\(p_Y\)</span> with <span class="math display">\[p_Y(0) =\Pr(Y = 0) = \Pr(X^2=0) = \Pr(X = 0) = 0.6\]</span> and <span class="math display">\[p_Y(1) = \Pr(Y = 1) =  \Pr(X^2 = 1) = \Pr(X = 1 \cup X=-1) = \Pr(X=1) + \Pr(X=-1) = 0.4.\]</span> Then <span class="math display">\[\mbox{E}(Y) = \sum_y y p_Y(y) = 0(0.6) + 1(0.4) = 0.4.\]</span></p>
+<p>As shown above, <span class="math inline">\(p_Y(0) = 0.6\)</span> arises from the fact that <span class="math inline">\(x^2=0\)</span> only if <span class="math inline">\(x=0\)</span> and <span class="math inline">\(p_Y(1) = 0.4\)</span> arises from the fact that there are two elements of <span class="math inline">\(\mathcal{X}\)</span> that yield the value <span class="math inline">\(1\)</span> for <span class="math inline">\(Y\)</span>: <span class="math inline">\(-1\)</span> and <span class="math inline">\(1\)</span>, with probabilities <span class="math inline">\(0.1\)</span> and <span class="math inline">\(0.3\)</span>, respectively.</p>
+<p>Hence, we can write <span class="math display">\[\mbox{E}(Y) = (0)^2 p_X(0) + (-1)^2 p_X(-1) + (1)^2 p_X(1);\]</span> that is, <span class="math display">\[\mbox{E}(Y) = \sum_x x^2 p_X(x) .\]</span> Alternatively, we can write <span class="math display">\[\mbox{E}(X^2) = \sum_x x^2 p_X(x)\]</span> to avoid the need to define <span class="math inline">\(Y\)</span>.</p>
+</div>
+<p>This result holds in general: <span class="math display">\[\mbox{E}\left( g(X) \right) = \sum_{x\in \mathcal{X}} g(x) p_X(x).\]</span> The proof follows the argument given in the example. Let <span class="math inline">\(Y = g(X)\)</span>, let <span class="math inline">\(p_Y\)</span> denote the mass function <span class="math inline">\(Y\)</span> and let <span class="math inline">\(\mathcal{Y}\)</span> denote its range. Then <span class="math display">\[\mbox{E}(Y) = \sum_{y\in \mathcal{Y}} y \ p_Y(y).\]</span> Note that <span class="math display">\[p_Y(y) = \Pr(Y = y) = \Pr( X\in \{x\in\mathcal{X}: g(x) = y \}) = \sum_{x\in\mathcal{X}: g(x) = y} p_X(x).\]</span> Hence, <span class="math display">\[\mbox{E}(Y) = \sum_{y\in\mathcal{Y}} \sum_{x\in\mathcal{X}: g(x)=y} y\, p_X(x) =
+\sum_{y\in\mathcal{Y}} \sum_{x: g(x)=y}  g(x) p_X(x).\]</span> Because every <span class="math inline">\(x\)</span> value in the range of <span class="math inline">\(X\)</span> leads to some value <span class="math inline">\(y\)</span> in the range of <span class="math inline">\(Y\)</span>, the summation <span class="math display">\[\sum_{y\in\mathcal{Y}} \sum_{x\in\mathcal{X}: g(x) = y}\]</span> includes every value of <span class="math inline">\(x\)</span>; thus, <span class="math display">\[\mbox{E}(Y) = \sum_{x\in\mathcal{X}}  g(x) p_X(x).\]</span></p>
+<div class="example">
+<p><span id="uni_int" data-label="uni_int"></span> Let <span class="math inline">\(X\)</span> denote a discrete random variable with range <span class="math inline">\(\mathcal{X}= \{1, 2, \ldots, m \}\)</span> for some positive integer <span class="math inline">\(m\)</span> and mass function <span class="math inline">\(p\)</span> satisfying <span class="math display">\[p(1) = p(2) = \cdots = p(m) = \frac{1}{m};\]</span> because all elements of <span class="math inline">\(\mathcal{X}\)</span> have the same probability, this is often referred to as the <em>uniform distribution on <span class="math inline">\(\mathcal{X}\)</span></em>.</p>
+<p>Then, using the well-known result for the sum of first <span class="math inline">\(m\)</span> positive integers, <span class="math display">\[\mbox{E}(X) = \sum_{j=1}^m j \frac{1}{m} = \frac{1}{m}\sum_{j=1}^m j = \frac{1}{m}\frac{m(m+1)}{2} =\frac{m+1}{2}.\]</span> Similarly, <span class="math display">\[\mbox{E}(X^2) = \frac{1}{m} \sum_{j=1}^m j^2 = \frac{1}{m} \frac{m(m+1)(2m+1)}{6}
+= \frac{(m+1)(2m+1)}{6},\]</span> using the formula for the sum of the first <span class="math inline">\(m\)</span> squared positive integers.</p>
+</div>
+</section>
+<section id="continuous-distributions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="continuous-distributions">Continuous distributions</h3>
+<p>Now consider the case in which <span class="math inline">\(X\)</span> has a continuous distribution with density <span class="math inline">\(p_X\)</span> and <span class="math inline">\(g\)</span> is a function on the range of <span class="math inline">\(\mathcal{X}\)</span>. Then, by analogy with the discrete case, <span class="math display">\[\mbox{E}\left(g(X)\right) = \int_{-\infty}^\infty g(x) p_X(x) dx.\]</span> A formal proof of this result can be based on a general form of the change-of-variable formula for integration and is beyond the scope of this course.</p>
+<p>Note that it causes no problem if <span class="math inline">\(g(x)\)</span> is undefined for <span class="math inline">\(x \in A\)</span> for some set <span class="math inline">\(A\)</span> such that <span class="math inline">\(\Pr(X\in A)=0\)</span>; this set can simply be omitted when computing the expected value.</p>
+<div class="example">
+<p>Let <span class="math inline">\(X\)</span> denote a random variable with a continuous distribution with density function <span class="math display">\[p_X(x) = 3 x^2, \ \ 0 &lt; x &lt; 1\]</span> and consider <span class="math inline">\(\mbox{E}\left(X^{-1} \right)\)</span>. Then <span class="math display">\[\mbox{E}\left(X^{-1} \right) = \int_0^1 \frac{1}{x} 3 x^2\, dx = 3 \int_0^1 x\, dx = \frac{3}{2}.\]</span></p>
+</div>
+<div class="example">
+<p><span id="stdexp" data-label="stdexp"></span></p>
+<p>Let <span class="math inline">\(X\)</span> denote a random variable with a continuous distribution with density function <span class="math display">\[p_X(x) = \exp( -x ), \ \ \ 0 &lt; x &lt; \infty.\]</span></p>
+<p>Consider the expected value of <span class="math inline">\(X^r\)</span> where <span class="math inline">\(r\)</span> is a positive integer. Then <span class="math display">\[\label{exp_mom}
+\mbox{E}(X^r) = \int_0^\infty x^r \exp(-x) dx;\]</span> this is simply an expression for the well-known gamma function evaluated at <span class="math inline">\(r+1\)</span>, <span class="math inline">\(\Gamma(r+1)\)</span>.</p>
+<p>The gamma function is given by <span class="math display">\[\Gamma(z) = \int_0^\infty t^{z-1} \exp(-t) dt, \ \  z&gt;0.\]</span> It has the properties that <span class="math inline">\(\Gamma(1) = 1\)</span> and <span class="math display">\[\Gamma(z+1) = z\Gamma(z).\]</span></p>
+<p>Hence, if <span class="math inline">\(r\)</span> is a positive integer, as in the present example, <span class="math inline">\(\Gamma(r+1) = r!\)</span>. It follows that <span class="math display">\[\mbox{E}(X^r) = r! ;\]</span> this result can also from successive applications of integration-by-parts in evaluating the integral in <a href="#exp_mom" data-reference-type="eqref" data-reference="exp_mom">[exp_mom]</a>.</p>
+</div>
+<p>Expected values of the form <span class="math inline">\(\mbox{E}(X^r)\)</span> for <span class="math inline">\(r=1, 2, \ldots\)</span> are called the <em>moments</em> of the distribution or the moments of <span class="math inline">\(X\)</span>. Moments will be discussed in detail in Chapter 4.</p>
+</section>
+<section id="expectations-of-linear-functions-and-sums" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="expectations-of-linear-functions-and-sums">Expectations of linear functions and sums</h3>
+<p>Suppose that <span class="math inline">\(X\)</span> is a random variable, which may be either discrete or continuous.</p>
+<p>If <span class="math inline">\(g\)</span> is a linear function of the form <span class="math inline">\(g(x) = ax + b\)</span>, for some constants <span class="math inline">\(a, b\)</span>, then <span class="math inline">\(\mbox{E}\left(g(X) \right)\)</span> can be obtained directly from <span class="math inline">\(\\E(X)\)</span>: <span class="math display">\[\mbox{E}(aX + b) = a \mbox{E}(X) + b.\]</span> This result follows directly from the properties of the sum or integral defining the expectation. In particular, the expectation of a constant is simply the constant: <span class="math inline">\(\mbox{E}(b) = b\)</span>.</p>
+<div class="example">
+<p>Let <span class="math inline">\(X\)</span> denote the random variable with range <span class="math inline">\(\{1, 2, \ldots, m\}\)</span> and mass function <span class="math display">\[p_X(x) = \frac{1}{m} \ \ \text{ for }  \ \ x=1, 2, \ldots, m.\]</span> Note this random variable was considered in Example <a href="#uni_int" data-reference-type="ref" data-reference="uni_int">[uni_int]</a>, where it was shown that <span class="math inline">\(\mbox{E}(X) = (m+1)/2\)</span>.</p>
+<p>Let <span class="math inline">\(Y = (X - 1)/m\)</span>. Then the range of <span class="math inline">\(Y\)</span> is <span class="math inline">\(\{0, 1/m, \ldots, (m-1)/m\}\)</span> and, for <span class="math inline">\(y\)</span> in this set, the mass function of <span class="math inline">\(Y\)</span> is given by <span class="math display">\[p_Y(y) = \Pr(Y = y) = 1/m.\]</span> It follows that <span class="math display">\[\mbox{E}(Y) = \frac{1}{m}\mbox{E}(X) - \frac{1}{m} = \frac{m+1}{2m} - \frac{1}{m} = \frac{1}{2} - \frac{1}{2m}.\]</span></p>
+<p>This result could also be found directly by computing the sum <span class="math display">\[\sum_{y=0, 1/m, \ldots, (m-1)/m}{\hspace{-30pt} y\, p_Y(y)} = \sum_{j=0}^{m-1} \frac{j}{m}\frac{1}{m}.\]</span></p>
+</div>
+<p>Suppose that the function <span class="math inline">\(g\)</span> can be written as a sum of functions <span class="math inline">\(g_1, g_2, \ldots, g_m\)</span>; that is, <span class="math display">\[g(x) = g_1(x) + g_2(x) + \cdots + g_m(x).\]</span> Then <span class="math display">\[\mbox{E}\left(g(X)\right) =  \mbox{E}\left( g_1(X) + \cdots + g_m(X)\right)  = \mbox{E}\left( g_1(X) \right) + \cdots + \mbox{E}\left( g_m(X) \right) .\]</span> As with the previous result, this result follows from the properties of the sums and integrals.</p>
+<div class="example">
+<p>Let <span class="math inline">\(X\)</span> denote a random variable with a continuous distribution with density function <span class="math display">\[p(x)  = \exp(-x), \ \ x&gt;0.\]</span> Find <span class="math inline">\(\mbox{E}\left( \cosh(X/2) \right)\)</span>, where <span class="math inline">\(\cosh(x)\)</span> is the hyperbolic cosine function, given by <span class="math display">\[\cosh(x)= \frac{ \exp(x) + \exp(-x)}{2}.\]</span></p>
+<p>Using the properties of the expectations of linear functions and sums, <span class="math display">\[\begin{aligned}
+\mbox{E}\left( \cosh(X/2) \right) &amp;= \mbox{E}\left( \frac{ \exp(X/2) + \exp(-X/2)}{2} \right) \\
+&amp;= \frac{1}{2}  \mbox{E}\left( \exp(X/2) + \exp(-X/2) \right) \\
+&amp;= \frac{1}{2} \left( \mbox{E}\left( \exp(X/2)\right) + \mbox{E}\left(\exp(-X/2) \right) \right) .
+\end{aligned}\]</span></p>
+<p>Note that <span class="math display">\[\mbox{E}\left( \exp(X/2) \right) = \int_0^\infty \exp(x/2) \exp(-x) dx = \int_0^\infty \exp(-x/2) dx = 2\]</span> and <span class="math display">\[\mbox{E}\left( \exp(-X/2) \right) = \int_0^\infty \exp(-x/2) \exp(-x) dx = \int_0^\infty \exp(-3x/2) dx = \frac{2}{3}.\]</span> It follows that <span class="math display">\[\mbox{E}\left( \cosh(X/2) \right) = \frac{1}{2} \left( 2 + \frac{2}{3}\right) = \frac{4}{3}.\]</span></p>
+</div>
+</section>
+<section id="relationship-between-expectation-and-probability" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="relationship-between-expectation-and-probability">Relationship between expectation and probability</h3>
+<p>As might be expected, there is a close relationship between the expectation of functions of a random variable and its probability function.</p>
+<p>For a set <span class="math inline">\(A\subset \Re\)</span>, define the <em>indicator function</em> of <span class="math inline">\(A\)</span> by <span class="math display">\[I_A(x) = \begin{cases} 1 &amp; \text{ if } x\in A \\
+                                      0 &amp; \text{ if } x\notin A
+\end{cases}.\]</span></p>
+<p>Let <span class="math inline">\(X\)</span> denote a random variable; then <span class="math inline">\(I_A(X)\)</span> is a random variable that takes two values <span class="math inline">\(1\)</span>, with probability <span class="math inline">\(\Pr(X \in A)\)</span> and <span class="math inline">\(0\)</span>, with probability <span class="math inline">\(\Pr(X \notin A)\)</span>. It follows that <span class="math display">\[\mbox{E}\left( I_A(X) \right) = 1\cdot \Pr(X\in A) + 0 \cdot \Pr(X \notin A) = \Pr( X\in A).\]</span> That is, probability is just a special case of expectation.</p>
+<p>Suppose that <span class="math inline">\(X\)</span> has a continuous distribution with density <span class="math inline">\(p\)</span>. Then, using an integral to compute an expected value, <span class="math display">\[\Pr(X \in A) = \mbox{E}(I_A(X)) = \int_{-\infty}^\infty I_A(x) p(x)\, dx.\]</span> Because <span class="math inline">\(I_A(x)\)</span> is <span class="math inline">\(1\)</span> if <span class="math inline">\(x\in A\)</span> and <span class="math inline">\(0\)</span> otherwise, <span class="math display">\[\int_{-\infty}^\infty I_A(x) p(x)\, dx = \int_A p(x)\ dx,\]</span> where <span class="math display">\[\int_A\]</span> denotes integration over the set <span class="math inline">\(A\)</span>. Thus, <span class="math display">\[\Pr(X \in A) = \int_A p(x)\ dx,\]</span> generalizing the expression for the distribution function, <span class="math display">\[\Pr(X \leq x) \equiv \Pr(X \in (-\infty, x]) = \int_{-\infty}^x p(x)\, dx.\]</span></p>
+</section>
+<section id="a-useful-inequality" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="a-useful-inequality">A useful inequality</h3>
+<p>Suppose that <span class="math inline">\(X\)</span> is a nonnegative random variable: <span class="math inline">\(\Pr(X \geq 0) = 1\)</span>. Then <span class="math inline">\(\mbox{E}(X) \geq 0\)</span> and <span class="math inline">\(\mbox{E}(X) = 0\)</span> if and only if <span class="math inline">\(\Pr(X  = 0) = 1\)</span>.</p>
+<p>This property suggests that if, for a nonnegative random variable <span class="math inline">\(X\)</span>, <span class="math inline">\(\mbox{E}(X)\)</span> is close to <span class="math inline">\(0\)</span>, then <span class="math inline">\(X\)</span> must be close to <span class="math inline">\(0\)</span> with high probability. The following result, known as <em>Markov’s inequality</em> gives a bound on <span class="math inline">\(\Pr(X \geq c)\)</span> in terms of <span class="math inline">\(\mbox{E}(X)\)</span>.</p>
+<div class="theorem">
+<p><span id="markov" data-label="markov"></span> Let <span class="math inline">\(X\)</span> denote a nonnegative random variable. For any <span class="math inline">\(c &gt; 0\)</span>, <span class="math display">\[\Pr( X \geq c ) \leq \frac{\mbox{E}(X)}{c}.\]</span></p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> Fix <span class="math inline">\(c&gt;0\)</span>. Let <span class="math inline">\(A = [c, \infty)\)</span> and and let <span class="math inline">\(I_A(\cdot)\)</span> denote the indicator function of the set <span class="math inline">\(A\)</span>.</p>
+<p>Consider the function <span class="math display">\[z - c I_A(z).\]</span> Note that, if <span class="math inline">\(z \geq c\)</span>, then <span class="math inline">\(I_A(z) = 1\)</span> so that <span class="math display">\[z - c I_A(z) = z-c \geq 0.\]</span> If <span class="math inline">\(0 \leq z &lt; c\)</span>, then <span class="math inline">\(I_A(z) = 0\)</span> so that <span class="math display">\[z - c I_A(z) = z \geq 0.\]</span> It follows that, for <span class="math inline">\(z\geq 0\)</span>, <span class="math display">\[z - c I_A(z) \geq 0.\]</span></p>
+<p>Let <span class="math inline">\(X\)</span> denote a nonnegative random variable. Then <span class="math display">\[X - c I_A(X)\]</span> is also a non-negative random variable and, hence, <span class="math display">\[\mbox{E}(X - cI_A(X)) = \mbox{E}(X) - c \mbox{E}(I_A(X)) \geq 0.\]</span> Using properties of indicator functions, it follows that <span class="math display">\[\mbox{E}(X) \geq c \mbox{E}\left( I_A(X) \right) = c \Pr( X \geq c)\]</span> or <span class="math display">\[\Pr(X \geq c) \leq \frac{\mbox{E}(X)}{c}.\]</span>&nbsp;◻</p>
+</div>
+<div class="example">
+<p><span id="Markov_ex" data-label="Markov_ex"></span> Let <span class="math inline">\(X\)</span> denote a continuous random variable with density <span class="math display">\[p_X(x) =  2/x^3, \ \ x&gt;1;\]</span> we have seen that <span class="math inline">\(\mbox{E}(X) = 2\)</span>.</p>
+<p>According to Markov’s inequality, <span class="math display">\[\Pr(X \geq c)  \leq \frac{2}{c} \ \ \text{ for }\ \ c&gt;0.\]</span></p>
+<p>For this distribution, we can calculate <span class="math inline">\(\Pr(X \geq c)\)</span> exactly: for <span class="math inline">\(c&gt;1\)</span>, <span class="math display">\[\Pr(X \geq c) = \int_c^\infty \frac{2}{x^3} dx = \frac{2}{c^2}.\]</span></p>
+<p>For instance, for <span class="math inline">\(c=10\)</span>, the bound based on Markov’s inequality is <span class="math inline">\(0.2\)</span>, while the true probability is <span class="math inline">\(0.02\)</span>.</p>
+</div>
+<p>Markov’s inequality is most useful when <span class="math inline">\(\mbox{E}(X)\)</span> is easy to determine but <span class="math inline">\(\Pr(X \geq c)\)</span> is not. If <span class="math inline">\(X\)</span> is not necessarily nonnegative, then Markov’s inequality can be applied to <span class="math inline">\(|X|\)</span> so that <span class="math display">\[\Pr(|X| \geq c) \leq \frac{\mbox{E}(|X|)}{c}.\]</span></p>
+<p>If <span class="math inline">\(g\)</span> is a nonnegative, strictly increasing, function, then <span class="math display">\[\Pr(X \geq c) = \Pr(g(X) \geq g(c)) \leq \frac{\mbox{E}\left( g(X) \right)}{g(c)}.\]</span></p>
+<div class="example">
+<p>Let <span class="math inline">\(X\)</span> denote a continuous random variable with density <span class="math display">\[p_X(x) =  2/x^3, \ \ x&gt;1,\]</span> as in Example <a href="#Markov_ex" data-reference-type="ref" data-reference="Markov_ex">[Markov_ex]</a>.</p>
+<p>Note that, for <span class="math inline">\(r&lt;2\)</span>, <span class="math display">\[\begin{aligned}
+\mbox{E}(X^r) &amp;= \int_1^\infty x^r \frac{2}{x^3} dx\\  &amp;= 2 \int_1^\infty \frac{1}{x^{3-r}} dx \\
+&amp;= \frac{1}{2-r}.
+\end{aligned}\]</span></p>
+<p>Then, for <span class="math inline">\(c&gt;0\)</span> and <span class="math inline">\(0 &lt; r&lt;2\)</span>, <span class="math display">\[\Pr(X \geq c) = \Pr( X^r \geq c^r) \leq \frac{ \mbox{E}\left( X^r \right)}{c^r} = \frac{1}{(2-r)c^r}.\]</span></p>
+<p>For instance, for <span class="math inline">\(r=3/2\)</span> and <span class="math inline">\(c=10\)</span>, this bound is about <span class="math inline">\(0.063\)</span>, while the true probability is <span class="math inline">\(0.02\)</span>.</p>
+</div>
+</section>
+</section>
+<section id="some-commonly-used-families-of-distributions" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="some-commonly-used-families-of-distributions"><span class="header-section-number">2.7</span> Some Commonly-Used Families of Distributions</h2>
+<p>Although a mass or density function can take virtually any form – subject to the requirements that it is nonnegative and it either sums or integrates to <span class="math inline">\(1\)</span> – there are certain families of distributions that are often used in applications.</p>
+<p>We have already seen one of these, the binomial distribution, studied in Examples <a href="#binom_ex2" data-reference-type="ref" data-reference="binom_ex2">[binom_ex2]</a>, <a href="#binom_ex3" data-reference-type="ref" data-reference="binom_ex3">[binom_ex3]</a>, <a href="#binom_ex4" data-reference-type="ref" data-reference="binom_ex4">[binom_ex4]</a>, and <a href="#binom_ex5" data-reference-type="ref" data-reference="binom_ex5">[binom_ex5]</a>. Recall the binomial distribution is a discrete distribution with range <span class="math inline">\(\mathcal{X}= \{0, 1, \ldots, n \}\)</span> and mass function <span class="math display">\[p(x) = {n \choose x} \theta^x (1-\theta)^{n-x}, \ \ x=0, 1, \ldots, n.\]</span> Here <span class="math inline">\(n\)</span> and <span class="math inline">\(\theta\)</span> are parameters; <span class="math inline">\(n\)</span> is a positive integer and <span class="math inline">\(\theta\)</span> is a real number in the interval <span class="math inline">\((0, 1)\)</span>.</p>
+<p>Thus, every choice of parameter values represents a different distribution; however, because the distributions for different parameter values tend to have similar properties, it is convenient to consider them together. The set of possible parameter values is known as the <em>parameter space</em> for the family.</p>
+<p>In this section, we consider a few commonly-used families of distribution; others will be introduced as needed throughout the course.</p>
+<section id="gamma-distributions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="gamma-distributions">Gamma distributions</h3>
+<p>A random variable <span class="math inline">\(X\)</span> is said to have a <em>gamma distribution</em> with parameters <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> if it has a continuous distribution with density function of the form <span class="math display">\[\label{gamma_orig}
+p(x) = \frac{1}{\Gamma(\alpha) \beta^\alpha} x^{\alpha - 1} \exp(- x/\beta), \ \ x&gt;0\]</span> where <span class="math inline">\(\alpha&gt;0\)</span> and <span class="math inline">\(\beta&gt;0\)</span>.</p>
+<p>Here <span class="math inline">\(\Gamma(\cdot)\)</span> is the gamma function, discussed in Example <a href="#stdexp" data-reference-type="ref" data-reference="stdexp">[stdexp]</a>. Recall that <span class="math inline">\(\Gamma(z)\)</span> is defined for <span class="math inline">\(z&gt;0\)</span> and the gamma function has the properties that <span class="math inline">\(\Gamma(1) = 1\)</span> and <span class="math display">\[\Gamma(z+1) = z\Gamma(z).\]</span> Hence, if <span class="math inline">\(r\)</span> is a positive integer, <span class="math inline">\(\Gamma(r+1) = r!\)</span>.</p>
+<p>The gamma distribution illustrates a very useful property of parametric families of density functions. Because we know that a density function must integrate to <span class="math inline">\(1\)</span>, the form of the density function gives us an integral identity: <span class="math display">\[\label{gamma_ident}
+\int_0^\infty x^{\alpha - 1} \exp(- x/\beta) dx = \Gamma(\alpha) \beta^\alpha \ \text{ for all }\ \  \alpha&gt;0, \ \
+\beta&gt;0.\]</span></p>
+<p>It often happens that the integral identity based on a given density function is useful for performing calculations related to that density. For instance, suppose that <span class="math inline">\(X\)</span> has a gamma distribution with parameters <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>. Then <span class="math display">\[\mbox{E}(X) = \int_0^\infty x \frac{1}{\Gamma(\alpha) \beta^\alpha} x^{\alpha - 1} \exp(- x/\beta) dx.\]</span> Note that the integrand in this expression is of a form closely related to that of a gamma density: <span class="math display">\[\int_0^\infty x \frac{1}{\Gamma(\alpha) \beta^\alpha} x^{\alpha - 1} \exp(- x/\beta) dx =
+\int_0^\infty \frac{1}{\Gamma(\alpha) \beta^\alpha} x^{\alpha} \exp(- x/\beta) dx.\]</span> Using the identity <a href="#gamma_ident" data-reference-type="eqref" data-reference="gamma_ident">[gamma_ident]</a>, <span class="math display">\[\begin{aligned}
+\int_0^\infty \frac{1}{\Gamma(\alpha) \beta^\alpha} x^{\alpha} \exp(- x/\beta) dx
+&amp;=  \frac{1}{\Gamma(\alpha) \beta^\alpha}  \int_0^\infty  x^{\alpha} \exp(- x/\beta) dx\\
+&amp;= \frac{1}{\Gamma(\alpha) \beta^\alpha}  \Gamma(\alpha+1) \beta^{\alpha+1} \\
+&amp;= \frac{\Gamma(\alpha+1)}{\Gamma(\alpha)} \beta.
+\end{aligned}\]</span> Using the reproductive property of the gamma function, <span class="math inline">\(\Gamma(\alpha+1) = \alpha\Gamma(\alpha)\)</span>, so that <span class="math display">\[\mbox{E}(X) = \alpha\beta.\]</span></p>
+<p>Often, the density functions of the family of gamma distributions are taken to be of the form <span class="math display">\[\label{gamma_alt}
+p(x) = \frac{\beta^{\alpha}}{\Gamma(\alpha)} x^{\alpha - 1} \exp(- \beta x), \ \ x&gt;0\]</span> where <span class="math inline">\(\alpha&gt;0\)</span> and <span class="math inline">\(\beta&gt;0\)</span>. Note that the density functions given in equation <a href="#gamma_orig" data-reference-type="eqref" data-reference="gamma_orig">[gamma_orig]</a> and those given in <a href="#gamma_alt" data-reference-type="eqref" data-reference="gamma_alt">[gamma_alt]</a> describe the same family of distributions.</p>
+<p>For example, the density function <span class="math display">\[p(x) = \frac{1}{\Gamma(3) 2^3} x^{2} \exp(- x/2)\]</span> is of the form given by equation <a href="#gamma_orig" data-reference-type="eqref" data-reference="gamma_orig">[gamma_orig]</a> with <span class="math inline">\(\alpha = 3\)</span> and <span class="math inline">\(\beta = 2\)</span> and it is also of the form given by equation <a href="#gamma_alt" data-reference-type="eqref" data-reference="gamma_alt">[gamma_alt]</a> with <span class="math inline">\(\alpha = 3\)</span> and <span class="math inline">\(\beta = 1/2\)</span>.</p>
+<p>In the alternative parameterization given by <a href="#gamma_alt" data-reference-type="eqref" data-reference="gamma_alt">[gamma_alt]</a>, <span class="math display">\[\mbox{E}(X) = \frac{\alpha}{\beta}.\]</span></p>
+<p>Because both forms of the density function are routinely used, when using results regarding the gamma distribution, it is important to keep track of which form of the density function is under consideration.</p>
+</section>
+<section id="exponential-distribution" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="exponential-distribution">Exponential distribution</h3>
+<p>A special case of the gamma distribution is the <em>exponential distribution</em>, which is a gamma distribution with parameter <span class="math inline">\(\alpha\)</span> taken to be <span class="math inline">\(1\)</span>. Often (but not always), the parameter <span class="math inline">\(\beta\)</span> of the gamma distribution is written in terms of <span class="math inline">\(\lambda =1/\beta\)</span>, so that a random variable <span class="math inline">\(X\)</span> is said to have an exponential distribution with parameter <span class="math inline">\(\lambda\)</span> if it has a continuous distribution with density function of the form <span class="math display">\[p(x) = \lambda \exp(-\lambda x), \ \ x&gt;0\]</span> where <span class="math inline">\(\lambda&gt;0\)</span>.</p>
+<p>A <em>standard</em> exponential distribution has <span class="math inline">\(\lambda = 1\)</span>; thus, the density of the standard exponential distribution is <span class="math inline">\(\exp(-x), x&gt;0\)</span>.</p>
+</section>
+<section id="gaussian-distribution" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="gaussian-distribution">Gaussian distribution</h3>
+<p>A random variable <span class="math inline">\(X\)</span> is said to have a <em>Gaussian distribution</em> with parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span> if it has a continuous distribution with density function of the form <span class="math display">\[p(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left( - \frac{1}{2\sigma^2}(x - \mu)^2 \right), \ \
+-\infty &lt; x &lt; \infty\]</span> where <span class="math inline">\(-\infty &lt; \mu &lt; \infty\)</span> and <span class="math inline">\(\sigma^2&gt;0\)</span>. Note that <span class="math inline">\(\sigma = \sqrt{\sigma^2}\)</span> is sometimes used in place of <span class="math inline">\(\sigma^2\)</span> as a parameter; then <span class="math inline">\(\sigma&gt;0\)</span>. Note that the family of distributions does not change when this switch is made. The Gaussian distribution (also called the <em>normal distribution</em>) is the most commonly-used distribution in statistics.</p>
+<p>The <em>standard Gaussian distribution</em> is the Gaussian distribution with parameter values <span class="math inline">\(\mu = 0\)</span> and <span class="math inline">\(\sigma^2 = 1\)</span>; that is, the standard Gaussian distribution has density function <span class="math display">\[\frac{1}{\sqrt{2\pi}} \exp\left( - \frac{1}{2}x^2 \right), \ \
+-\infty &lt; x &lt; \infty.\]</span></p>
+<p>The density function of the Gaussian distribution is often described as being a “bell-shaped curve"; see Figure <a href="#gauss_fig1" data-reference-type="ref" data-reference="gauss_fig1">1.4</a> for a plot of the standard Gaussian density.</p>
+<div id="gauss_fig1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><embed src="stdgauss.pdf" class="img-fluid" style="width:75.0%"></p>
+<figcaption>Density Function of the Standard Gaussian Distribution</figcaption>
+</figure>
+</div>
+<p>An important property of the standard Gaussian density is that it is symmetric about <span class="math inline">\(0\)</span>; this can be seen from the form of the density given previously, as well as from the plot of the density in Figure <a href="#gauss_fig1" data-reference-type="ref" data-reference="gauss_fig1">1.4</a>. One consequence of this property is that, if <span class="math inline">\(X\)</span> has a standard Gaussian distribution, then <span class="math display">\[\Pr(X &gt; c) = \Pr(X &lt; -c)\]</span> for any real number <span class="math inline">\(c\)</span>. This is illustrated in Figure <a href="#gauss_fig2" data-reference-type="ref" data-reference="gauss_fig2">1.5</a> for the case <span class="math inline">\(c=1\)</span>.</p>
+<p>For the general Gaussian distribution, with parameter <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>, the density function is symmetric about <span class="math inline">\(x=\mu\)</span>, so that <span class="math display">\[\Pr(X &gt; \mu + c) = \Pr(X &lt; \mu - c)\]</span> for any real number <span class="math inline">\(c\)</span>.</p>
+</section>
+<section id="poisson-distribution" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="poisson-distribution">Poisson distribution</h3>
+<p>A random variable <span class="math inline">\(X\)</span> is said to have a <em>Poisson distribution</em> with parameter <span class="math inline">\(\lambda\)</span> if it has a discrete distribution with range <span class="math inline">\(\mathcal{X}= \{0, 1, 2, \ldots\}\)</span> and mass function <span class="math display">\[p(x) = \frac{\lambda^x \exp(-\lambda)}{x!}, \ \ x=0, 1, 2, \ldots\]</span> where <span class="math inline">\(\lambda&gt;0\)</span>.</p>
+<p>Just as the density function of a continuous distribution gives an integral identity, the mass function of discrete distribution gives an identity for a certain type of sum. For the Poisson distribution, this identity states that <span class="math display">\[\sum_{x=0}^\infty \frac{\lambda^x \exp(-\lambda)}{x!} = 1\]</span> or, equivalently, <span class="math display">\[\sum_{x=0}^\infty \frac{\lambda^x }{x!} = \exp(\lambda), \ \ \text{ for all }\ \ \lambda&gt;0.\]</span></p>
+</section>
+<section id="distribution-table" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="distribution-table">Distribution table</h3>
+<p>The final page of this chapter contains a table of some commonly-used distributions. Note that the variance and the “mgf” (i.e., the moment-generating function) of a distribution will be discussed later in the course.</p>
+<div id="gauss_fig2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><embed src="gausscomp.pdf" class="img-fluid" style="width:75.0%"></p>
+<figcaption>Comparison of Probabilities for the Standard Gaussian Distribution</figcaption>
+</figure>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Chapter1.html" class="pagination-link" aria-label="Probability">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Probability</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,5 +1,7 @@
 # Probability {#sec-chap1}
 
+{{< include test.qmd >}}
+
 ## Experiments
 
 The starting point for probability theory is the concept of an
